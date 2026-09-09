@@ -1,0 +1,19 @@
+CHANGELOG.md
+  s_2a37e2ea0b4b83::t_cb6d9db15d6fe3 6-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "68ab6576d8a24aec5d65439b20923fe06b214f56",
+  "prompts": {},
+  "sessions": {
+    "s_2a37e2ea0b4b83": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0b51583e-5a68-4195-9d11-899cef6214e2",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
