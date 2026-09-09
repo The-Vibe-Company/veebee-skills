@@ -24,6 +24,8 @@ One to three questions per turn, each one chosen because of the previous answer.
 
 Every question should fill or sharpen one slot of the frame below. When no question would change a slot, you are done asking.
 
+When the user names something they love (a game, a product, a book), treat it as a taste signal, never as a template: ask what they love in it, then let their Idea grow on its own terms. Mapping the reference part by part onto a new theme ("its matches become your services") produces an allegory of the reference, not their Idea, and they will feel it.
+
 Fill slots only with what the user said. When their message implies a slot without stating it, write your reading of it followed by "(to confirm)" so they can correct it in passing; a frame full of words they never said is not their Idea. Propose a working title yourself as soon as the one-sentence slot exists; they rename it whenever they like.
 
 ## The Idea frame
