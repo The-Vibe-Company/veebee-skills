@@ -1,0 +1,19 @@
+skills/eureka/SKILL.md
+  s_7a1e8df732d3c4::t_e296ba02cbe124 15,46,61,65,74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "f73cf28b94c67e2a3aceef4070b805f7991a3a25",
+  "prompts": {},
+  "sessions": {
+    "s_7a1e8df732d3c4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-af8d2ca7ac0524799",
+        "model": "unknown"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
