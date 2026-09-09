@@ -51,18 +51,24 @@ The kind-specific slots appear once the kind is known; until then the frame show
 
 ## The live canvas
 
-The user should see the Idea take shape while they talk, not only at the end. Use the Artifact tool when it is available:
+The user should see the Idea take shape while they talk, not only at the end. The canvas is a blank sheet: a title that reads "Sans titre" until the Idea has a name, the Idea written underneath in a few plain sentences, and this turn's questions styled at the bottom. Nothing else: no slots, no transcript, no timeline. The user is looking at their Idea, not at the process.
 
-1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a stable path in the OS temporary directory (for example `$TMPDIR/veebee-eureka-<name of the current directory>.html`), fill the `IDEA` object at the top of its script with what you already know, and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
-2. After every answer, update the `IDEA` object and publish the same file path again, so the page updates at the same URL.
+Use the Artifact tool when it is available:
 
-The canvas shows the frame with its slots, empty then filled, the open questions at the bottom, and once it exists, the competitive study. Nothing else: no transcript, no timeline. The user is looking at their Idea, not at the process.
+1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a stable path in the OS temporary directory (for example `$TMPDIR/veebee-eureka-<name of the current directory>.html`), fill the `IDEA` object at the top of its script, and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
+2. After every answer, rewrite `lines` with the Idea as it now stands, in the user's words, replace `questions` with the ones you are asking this turn, and publish the same file path again, so the page updates at the same URL.
+
+The frame below is how the Idea is written to disk at the end; on the canvas it reads as prose, not as a form.
 
 If the Artifact tool is not available, skip the canvas without comment and end each turn with the current frame in a code block instead: the frame only, without the competitive study, which is shown once when it is produced.
 
+## Asking
+
+Questions are the whole interface, so they get care. Number them, bold the point of each one in a few words, then ask it in one sentence with a concrete example when one helps. One question per line, nothing between them. The same questions go on the canvas, in the same order.
+
 ## The competitive study
 
-Offer it once, when the frame is mostly filled, or earlier if the "why it does not already exist" slot stays empty, since the study is often what fills it: "Would you like a quick look at what already exists?" Never impose it: they may have done it already, and forcing it would make them stop listening. If they say yes, search the web and list three to five existing solutions, one line each, linked to its source: what it does, what it misses for this audience. Add it as a `## What already exists` section of the Idea and to the canvas.
+Offer it once, when the frame is mostly filled, or earlier if the "why it does not already exist" slot stays empty, since the study is often what fills it: "Would you like a quick look at what already exists?" Never impose it: they may have done it already, and forcing it would make them stop listening. If they say yes, search the web and list three to five existing solutions, one line each, linked to its source: what it does, what it misses for this audience. Add it as a `## What already exists` section of the Idea; on the canvas, one sentence naming the closest existing solutions and their gap is enough.
 
 No pricing tables, no market sizes. This study exists to answer one question: does this Idea already exist as such?
 

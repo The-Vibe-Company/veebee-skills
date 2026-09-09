@@ -31,7 +31,11 @@ Kind-specific slots appear once the kind is known. Extensible with new kinds lat
 
 ## Live artifact
 
-Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. Shows the frame with its slots, empty then filled, open questions at the bottom, and at the end the final Idea plus the competitive study if requested. Nothing else: no transcript, no timeline.
+Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences, and this turn's questions styled at the bottom. Nothing else: no slots, no transcript, no timeline.
+
+## Questions
+
+Numbered, the point of each one in bold, then one sentence with a concrete example when it helps. Same questions on the canvas, same order.
 
 ## Output
 

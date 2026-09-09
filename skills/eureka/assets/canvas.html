@@ -1,141 +1,79 @@
 <title>Eureka</title>
 <style>
   :root {
-    --bg: #faf8f3;
-    --paper: #ffffff;
-    --ink: #1c1a16;
-    --muted: #7a7469;
-    --line: #e6e1d6;
-    --accent: #f27313;
-    --accent-soft: #fdebdc;
-    --empty: #b9b2a5;
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6;
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #141310; --paper: #1d1b17; --ink: #f1ede4; --muted: #9a9385;
-      --line: #2e2b25; --accent: #f27313; --accent-soft: #3a2413; --empty: #5d574c;
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #141310; --paper: #1d1b17; --ink: #f1ede4; --muted: #9a9385;
-    --line: #2e2b25; --accent: #f27313; --accent-soft: #3a2413; --empty: #5d574c;
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
   }
-  body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
-  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
-  header .brand { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-  header .status { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
-  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0 0 8px; }
-  h1.empty { color: var(--empty); font-style: italic; }
-  .kind { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
-  .napkin { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 8px 28px; box-shadow: 0 1px 0 var(--line); }
-  .slot { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-  .slot:last-child { border-bottom: 0; }
-  .slot .label { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
-  .slot .value { font-family: var(--serif); font-size: 18px; }
-  .slot .value.empty { color: var(--empty); border-bottom: 1px dashed var(--empty); height: 1.3em; }
-  .slot .value.big { font-size: 22px; }
-  section { margin-top: 40px; }
-  section h2 { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
-  ul { margin: 0; padding-left: 20px; }
-  li { margin: 6px 0; }
-  .competitor { display: grid; grid-template-columns: 160px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
-  .competitor:last-child { border-bottom: 0; }
-  .competitor .name { font-weight: 600; }
-  .competitor .misses { color: var(--muted); }
-  .next { margin-top: 48px; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; font-size: 15px; }
-  .next code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-  @media (max-width: 520px) { .slot, .competitor { grid-template-columns: 1fr; gap: 4px; } }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  .sheet { max-width: 640px; min-height: 80vh; margin: 40px auto; padding: 72px 64px 64px; background: var(--paper);
+           box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 40px rgba(0,0,0,.08); }
+  h1 { font-weight: 500; font-size: 40px; line-height: 1.1; margin: 0 0 40px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+  .idea p { font-size: 19px; line-height: 1.6; margin: 0 0 18px; }
+  .idea p.pending { color: var(--muted); }
+  .questions { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .questions .label { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .q { display: flex; gap: 16px; align-items: baseline; padding: 14px 18px; margin-bottom: 10px; background: var(--accent-soft); border-radius: 10px; font-size: 17px; line-height: 1.5; }
+  .q .n { font-family: var(--sans); font-weight: 700; color: var(--accent); font-size: 14px; flex: none; }
+  .done { margin-top: 48px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
+  .done code { font-family: ui-monospace, Menlo, monospace; color: var(--ink); }
+  @media (max-width: 640px) { .sheet { margin: 0; padding: 48px 24px; min-height: 100vh; } h1 { font-size: 32px; } }
 </style>
 
-<main>
-  <header>
-    <div class="brand">Veebee · Eureka</div>
-    <div class="status" id="status"></div>
-  </header>
+<div class="sheet">
   <h1 id="title"></h1>
-  <div class="kind" id="kind"></div>
-  <div class="napkin" id="napkin"></div>
-  <section id="questions-section" hidden>
-    <h2 id="questions-title"></h2>
-    <ul id="questions"></ul>
-  </section>
-  <section id="competitors-section" hidden>
-    <h2 id="competitors-title"></h2>
-    <div id="competitors"></div>
-  </section>
-  <div class="next" id="next" hidden></div>
-</main>
+  <div class="idea" id="idea"></div>
+  <div class="questions" id="questions" hidden>
+    <div class="label" id="questions-label"></div>
+    <div id="qs"></div>
+  </div>
+  <div class="done" id="done" hidden></div>
+</div>
 
 <script>
-// Edit only this object. Leave a value as "" while it is unknown: the page draws an empty slot for it.
-// `lang` is "fr" or "en" and only affects the page chrome; the idea itself is written in the user's language.
-// `status` is "draft" or "final".
+// Edit only this object.
+// - title: "" until the idea has a name; the page shows "Sans titre" / "Untitled" meanwhile.
+// - lines: the idea so far, as short sentences in the user's words, one string per paragraph. Empty at the start.
+// - questions: the questions you are asking this turn. Replace them every turn. Empty when the idea is done.
+// - done: true on the last turn only.
 const IDEA = {
-  lang: "en",
-  status: "draft",
+  lang: "fr",
   title: "",
-  kind: "",                 // "product" | "game" | "skill"
-  oneSentence: "",
-  forWhom: "",
-  whyNotExisting: "",
-  specific: [
-    // kind-specific slots, in order. Use the labels from SKILL.md, translated to the user's language.
-    // { label: "The pain", value: "" },
-  ],
-  openQuestions: [],        // strings, what is still unknown
-  competitors: [],          // { name: "", does: "", misses: "" }
+  lines: [],
+  questions: [],
+  done: false,
 };
 
 const T = {
-  en: { draft: "taking shape", final: "ready to challenge", untitled: "An idea without a name yet",
-        kind: "Kind", one: "In one sentence", who: "For whom", why: "Why it doesn't already exist like this",
-        questions: "Still open", competitors: "What already exists", next: "Next step: run <code>/challenge</code> on this idea.",
-        kinds: { product: "Product", game: "Game", skill: "Skill / agent" } },
-  fr: { draft: "en train de prendre forme", final: "prête à être challengée", untitled: "Une idée qui n'a pas encore de nom",
-        kind: "Type", one: "En une phrase", who: "Pour qui", why: "Pourquoi ça n'existe pas déjà comme ça",
-        questions: "Encore ouvert", competitors: "Ce qui existe déjà", next: "Prochaine étape : lancer <code>/challenge</code> sur cette idée.",
-        kinds: { product: "Produit", game: "Jeu", skill: "Skill / agent" } },
+  fr: { untitled: "Sans titre", questions: "Pour continuer", done: "Prochaine étape : <code>/challenge</code>." },
+  en: { untitled: "Untitled", questions: "To continue", done: "Next step: <code>/challenge</code>." },
 };
 
 (function render() {
-  const t = T[IDEA.lang] || T.en;
-  const el = (id) => document.getElementById(id);
-  el("status").textContent = IDEA.status === "final" ? t.final : t.draft;
-  const title = el("title");
+  const t = T[IDEA.lang] || T.fr;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const title = document.getElementById("title");
   title.textContent = IDEA.title || t.untitled;
-  title.classList.toggle("empty", !IDEA.title);
-  el("kind").textContent = IDEA.kind ? (t.kinds[IDEA.kind] || IDEA.kind) : "";
-
-  const slots = [
-    [t.one, IDEA.oneSentence, "big"],
-    [t.who, IDEA.forWhom],
-    [t.why, IDEA.whyNotExisting],
-    ...IDEA.specific.map((s) => [s.label, s.value]),
-  ];
-  el("napkin").innerHTML = slots.map(([label, value, extra]) => {
-    const empty = !value;
-    return `<div class="slot"><div class="label">${esc(label)}</div>` +
-      `<div class="value ${empty ? "empty" : ""} ${extra || ""}">${esc(value)}</div></div>`;
-  }).join("");
-
-  const qs = IDEA.openQuestions.filter(Boolean);
-  el("questions-section").hidden = qs.length === 0;
-  el("questions-title").textContent = t.questions;
-  el("questions").innerHTML = qs.map((q) => `<li>${esc(q)}</li>`).join("");
-
-  const cs = IDEA.competitors.filter((c) => c && c.name);
-  el("competitors-section").hidden = cs.length === 0;
-  el("competitors-title").textContent = t.competitors;
-  el("competitors").innerHTML = cs.map((c) =>
-    `<div class="competitor"><div class="name">${esc(c.name)}</div>` +
-    `<div><div>${esc(c.does)}</div><div class="misses">${esc(c.misses)}</div></div></div>`).join("");
-
-  el("next").hidden = IDEA.status !== "final";
-  el("next").innerHTML = t.next;
-
-  function esc(s) { return String(s ?? "").replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch])); }
+  title.classList.toggle("untitled", !IDEA.title);
+  document.getElementById("idea").innerHTML = IDEA.lines.filter(Boolean).map((l) => `<p>${esc(l)}</p>`).join("");
+  const qs = IDEA.questions.filter(Boolean);
+  document.getElementById("questions").hidden = qs.length === 0;
+  document.getElementById("questions-label").textContent = t.questions;
+  document.getElementById("qs").innerHTML = qs.map((q, i) => `<div class="q"><span class="n">${i + 1}</span><span>${esc(q)}</span></div>`).join("");
+  const done = document.getElementById("done");
+  done.hidden = !IDEA.done;
+  done.innerHTML = t.done;
 })();
 </script>
