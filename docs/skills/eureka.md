@@ -31,7 +31,7 @@ Kind-specific slots appear once the kind is known. Extensible with new kinds lat
 
 ## Live artifact
 
-Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences. Nothing else: no questions, no slots, no transcript, no timeline.
+Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences. Nothing else: no questions, no competitive study, no slots, no transcript, no timeline.
 
 ## Questions
 

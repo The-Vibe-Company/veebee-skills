@@ -85,7 +85,7 @@ Number with 1️⃣ 2️⃣ 3️⃣. Two to four options in the quoted list, eac
 
 ## The competitive study
 
-Offer it once, when the frame is mostly filled, or earlier if the "why it does not already exist" slot stays empty, since the study is often what fills it: "Would you like a quick look at what already exists?" Never impose it: they may have done it already, and forcing it would make them stop listening. If they say yes, search the web and list three to five existing solutions, one line each, linked to its source: what it does, what it misses for this audience. Add it as a `## What already exists` section of the Idea; on the canvas, one sentence naming the closest existing solutions and their gap is enough.
+Offer it once, when the frame is mostly filled, or earlier if the "why it does not already exist" slot stays empty, since the study is often what fills it: "Would you like a quick look at what already exists?" Never impose it: they may have done it already, and forcing it would make them stop listening. If they say yes, search the web and list three to five existing solutions, one line each, linked to its source: what it does, what it misses for this audience. Add it as a `## What already exists` section of the Idea on disk. It stays off the canvas: the page shows the Idea, and the study is context around it, not part of it.
 
 No pricing tables, no market sizes. This study exists to answer one question: does this Idea already exist as such?
 
