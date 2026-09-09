@@ -1,0 +1,47 @@
+{
+  "skill_name": "eureka",
+  "evals": [
+    {
+      "id": 1,
+      "name": "blank-page-fr",
+      "prompt": "bon j'ai envie de faire un side project mais j'ai aucune idée, tu peux m'aider ?",
+      "expected_output": "Blank-page branch. One sentence of orientation, then one or two questions in the 1️⃣ format with lettered options and e · Autre. No file written.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "pain-en",
+      "prompt": "every sunday my partner and I lose 20 minutes deciding who does what at home this week, feels like there's a product in there but it's fuzzy",
+      "expected_output": "Pain branch, in English. Starts from who suffers and when, in concrete situations, before any solution. Questions in the 1️⃣ format.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "clear-idea-game",
+      "prompt": "I want to build a small roguelike where you play a bee defending a hive against wasps, each run is one day, I've got the whole thing in my head already, just help me write it down properly",
+      "expected_output": "Idea-already-there branch. At most two questions, only for empty slots. Game slots used. No digging into mechanics.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "newsletter-content",
+      "prompt": "je pense à lancer une newsletter hebdo sur les outils IA pour les indépendants, aide-moi à cadrer l'idée",
+      "expected_output": "Kind content, with its slots: format and rhythm, what the reader takes away, why you. Questions in the 1️⃣ format with lettered options.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "existing-idea-file",
+      "prompt": "je veux un jeu de gestion, mais je sais pas trop de quoi, aide moi (simulate the full interview with short invented user answers until the user confirms the page, then finish)",
+      "expected_output": "Full run in a directory where .veebee/idea.md already exists: at the finish, the skill shows the existing title and offers fresh directory or overwrite, and writes nothing until the user answers.",
+      "files": [".veebee/idea.md"]
+    }
+  ],
+  "assertions": [
+    "Never more than three questions in one assistant turn",
+    "Every closed question carries lettered options a/b/c and ends with e · Autre, except when an option is already open",
+    "No option ever mentions /challenge or another skill",
+    "The final idea.md starts with a YAML front-matter carrying kind, title and lang",
+    "When .veebee/idea.md already exists, nothing is written before the user chooses between a fresh directory and overwriting"
+  ]
+}

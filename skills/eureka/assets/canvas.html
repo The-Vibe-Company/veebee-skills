@@ -58,7 +58,7 @@ const T = {
 };
 
 (function render() {
-  const t = T[IDEA.lang] || T.fr;
+  const t = T[IDEA.lang] || T.en;
   const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const title = document.getElementById("title");
   title.textContent = IDEA.title || t.untitled;
