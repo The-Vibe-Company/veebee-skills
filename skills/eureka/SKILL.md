@@ -12,7 +12,9 @@ Answer in the language the user writes in. The Idea is theirs, so it is written 
 
 ## Open the same way every time
 
-Open with one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
+Before anything else, on the first turn only, say in two or three sentences what Eureka does and what it is for: it helps them land on one Idea by interview, a few easy questions per turn, the Idea taking shape on a canvas as they answer; it ends with the Idea written to `.veebee/idea.md`, ready for `challenge` to attack. Nothing about the method, the slots, or the branches: this is an orientation, not a manual, and it must not delay the first question.
+
+Then ask one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
 
 - **Blank page.** Nothing yet, and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make (a product, a game, a skill or agent). A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries one or two questions, not three: a blank page is already intimidating. Once there is a starting point, converge from it. At one moment, if they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
 - **A pain.** Someone suffers something. Start from who suffers it and when it happens, in concrete situations, before talking about any solution. The solution that survives `challenge` is the one that grew out of a precise pain.
@@ -58,7 +60,7 @@ The user should see the Idea take shape while they talk, not only at the end. Th
 Use the Artifact tool when it is available:
 
 1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-eureka-<name of the current directory>-<time of this first turn as HHMMSS>.html`; two sessions in the same directory would otherwise overwrite each other's canvas, fill the `IDEA` object at the top of its script, and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
-2. After every answer, rewrite `lines` with the Idea as it now stands, in the user's words, replace `questions` with the ones you are asking this turn, and publish the same file path again, so the page updates at the same URL.
+2. After every answer, rewrite `lines` with the Idea as it now stands, in the user's words, replace `questions` with the ones you are asking this turn, and publish the same file path again, so the page updates at the same URL. Once the Idea is complete, move it from `lines` to `sections`, each with a short heading, so the page reads at a glance.
 
 The frame below is how the Idea is written to disk at the end; on the canvas it reads as prose, not as a form.
 
@@ -79,7 +81,7 @@ Questions are the whole interface, so they get care. In the chat, each one takes
 > 💡 <optional: which option you would pick and why, in one line>
 ```
 
-Number with 1️⃣ 2️⃣ 3️⃣. Two to four options in the quoted list, each with one emoji that pictures it, short enough to scan. Options are things the user can picture, not categories: "a game studio", "a record label", "a Michelin restaurant", never "a company"; a vivid option gets an instant yes or no, a broad one gets a shrug. the user answers with a letter, with several when more than one fits, or picks the last option, always **e** · ✍️ Autre ("Other" in English), and says it in their own words. Options are not exclusive unless you say so. An open question keeps the quote block and drops the list. Add the 💡 line whenever earlier answers make one option more likely than the others, and say which answer points there. The suggestion can name two options, or say the truth when it hesitates: "a, with a bit of c" is a better suggestion than a forced single letter; that is most turns after the first. Leave it out only when nothing they said favours an option, such as a question about their own taste or memories. Nothing else feeds a suggestion, not the surrounding conversation, not what you know about the user from elsewhere: a suggestion whose origin they cannot trace reads as the skill deciding for them. On the canvas, the same questions in the same order, without options or suggestions.
+Number with 1️⃣ 2️⃣ 3️⃣. Two to four options in the quoted list, each with one emoji that pictures it, short enough to scan. Options are things the user can picture, not categories: "a game studio", "a record label", "a Michelin restaurant", never "a company"; a vivid option gets an instant yes or no, a broad one gets a shrug. the user answers with a letter, with several when more than one fits, or picks the last option, **e** · ✍️ Autre ("Other" in English), and says it in their own words. Add **e** only when the listed options are closed choices; when one of them is already open ("I have a better one"), **e** would say the same thing twice, so leave it out. Options are not exclusive unless you say so. An open question keeps the quote block and drops the list. Add the 💡 line whenever earlier answers make one option more likely than the others, and say which answer points there. The suggestion can name two options, or say the truth when it hesitates: "a, with a bit of c" is a better suggestion than a forced single letter; that is most turns after the first. Leave it out only when nothing they said favours an option, such as a question about their own taste or memories. Nothing else feeds a suggestion, not the surrounding conversation, not what you know about the user from elsewhere: a suggestion whose origin they cannot trace reads as the skill deciding for them. On the canvas, the same questions in the same order, without options or suggestions.
 
 ## The competitive study
 
@@ -89,7 +91,9 @@ No pricing tables, no market sizes. This study exists to answer one question: do
 
 ## Finish
 
-When every slot is filled and the user says the Idea is right:
+When no question would change a slot, stop asking and show the whole Idea on the canvas in its readable form: short sections with a heading each (see the `sections` field in the template), one or two sentences per section. Then ask one thing: does the page say it right? Two options, yes or "I would change something", the second one open. No mention of the next skill in the options; the user is judging their Idea, not choosing a workflow.
+
+When they say yes:
 
 1. Write it to `.veebee/idea.md` in the current directory, creating the folder if needed. If an `idea.md` is already there, show its title and ask before overwriting: an idea is never lost silently.
 2. Publish the canvas one last time, with the frame complete. Without the Artifact tool, the file is the final view: give its path rather than printing the frame again.

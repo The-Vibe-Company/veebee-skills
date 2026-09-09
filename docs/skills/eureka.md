@@ -9,7 +9,7 @@ Finds one Idea, from a blank page or from a pain. Step 1 of the chain.
 
 ## Conversation
 
-- Always opens with the same question: where are you with your idea?
+- First turn opens with two or three sentences on what Eureka does and what it is for (one Idea by interview, a canvas that fills as the user answers, `.veebee/idea.md` at the end, ready for `challenge`), then always the same question: where are you with your idea?
 - Three branches:
   - **Blank page**: start from domains that interest the user and the kind of thing they want to make (product, game, skill). May propose three directions at some point to get a reaction, but converges on one Idea. Never delivers a list.
   - **A pain**: start from who suffers it and when.
@@ -35,9 +35,10 @@ Publishes an Artifact page at the first turn and republishes it to the same URL 
 
 ## Questions
 
-In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus a last one, always e · Autre, so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer. On the canvas, same questions, same order, no options.
+In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus e · Autre when the options are closed choices, so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer. On the canvas, same questions, same order, no options.
 
 ## Output
 
 - `.veebee/idea.md` in the current directory, created if missing. If an idea already exists there, ask before overwriting.
-- Ends when every slot is filled and the user confirms. Writes the file, republishes the artifact one last time, says one sentence: next step is `/challenge`. Never launches it itself.
+- When nothing is left to ask, the canvas switches to short headed sections and the skill asks one thing: does the page say it right? Yes, or an open "I would change something". Never a workflow choice in the options.
+- Ends when the user confirms. Writes the file, republishes the artifact one last time, says one sentence: next step is `/challenge`. Never launches it itself.

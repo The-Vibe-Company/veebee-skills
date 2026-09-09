@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `eureka`: the first turn opens with two or three sentences on what the skill does and what it is for, before the first question.
+
 ## 0.2.0
 
 - `eureka`: blank-sheet canvas ("Sans titre", the idea in prose, this turn's questions at the bottom).

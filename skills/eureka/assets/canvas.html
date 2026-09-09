@@ -22,6 +22,9 @@
   h1 { font-weight: 500; font-size: 40px; line-height: 1.1; margin: 0 0 40px; letter-spacing: -.01em; }
   h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
   .idea p { font-size: 19px; line-height: 1.6; margin: 0 0 18px; }
+  .section { margin: 0 0 26px; }
+  .section h2 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 600; }
+  .section p { font-size: 18px; line-height: 1.55; margin: 0; }
   .idea p.pending { color: var(--muted); }
   .questions { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
   .questions .label { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
@@ -46,12 +49,15 @@
 // Edit only this object.
 // - title: "" until the idea has a name; the page shows "Sans titre" / "Untitled" meanwhile.
 // - lines: the idea so far, as short sentences in the user's words, one string per paragraph. Empty at the start.
+// - sections: the complete idea, once there is nothing left to ask: { heading, text } each, one or two sentences per text.
+//   When sections is non-empty it replaces lines on the page.
 // - questions: the questions you are asking this turn. Replace them every turn. Empty when the idea is done.
 // - done: true on the last turn only.
 const IDEA = {
   lang: "fr",
   title: "",
   lines: [],
+  sections: [],
   questions: [],
   done: false,
 };
@@ -67,7 +73,10 @@ const T = {
   const title = document.getElementById("title");
   title.textContent = IDEA.title || t.untitled;
   title.classList.toggle("untitled", !IDEA.title);
-  document.getElementById("idea").innerHTML = IDEA.lines.filter(Boolean).map((l) => `<p>${esc(l)}</p>`).join("");
+  const sections = (IDEA.sections || []).filter((x) => x && x.text);
+  document.getElementById("idea").innerHTML = sections.length
+    ? sections.map((x) => `<div class="section"><h2>${esc(x.heading)}</h2><p>${esc(x.text)}</p></div>`).join("")
+    : IDEA.lines.filter(Boolean).map((l) => `<p>${esc(l)}</p>`).join("");
   const qs = IDEA.questions.filter(Boolean);
   document.getElementById("questions").hidden = qs.length === 0;
   document.getElementById("questions-label").textContent = t.questions;
