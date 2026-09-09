@@ -3,6 +3,8 @@
 ## 0.2.1
 
 - `eureka`: the first turn opens with two or three sentences on what the skill does and what it is for, before the first question.
+- `eureka`: once nothing is left to ask, the canvas shows the Idea in short headed sections and the skill asks one thing: does the page say it right?
+- `eureka`: **e · Autre** only when the listed options are closed choices; never a workflow choice in the options.
 
 ## 0.2.0
 
