@@ -72,7 +72,7 @@ Questions are the whole interface, so they get care. In the chat, each one takes
 💡 <optional: a suggested answer in one line, for the user to take or push against>
 ```
 
-Number with 1️⃣ 2️⃣ 3️⃣. Add the 💡 line only when a suggestion carries real information: a guess drawn from what they already said, or a default worth pushing against. A question about their own taste or their own life ("which game did you love?") gets no suggestion; guessing there is noise. On the canvas, the same questions in the same order, without the suggestions.
+Number with 1️⃣ 2️⃣ 3️⃣. Add the 💡 line only when a suggestion carries real information: a guess drawn from what they said earlier in this interview, or a default worth pushing against. Nothing else feeds a suggestion, not the surrounding conversation, not what you know about the user from elsewhere: a suggestion whose origin they cannot trace reads as the skill deciding for them. A question about their own taste or their own life ("which game did you love?") gets no suggestion; guessing there is noise. On the canvas, the same questions in the same order, without the suggestions.
 
 ## The competitive study
 
