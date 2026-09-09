@@ -35,7 +35,7 @@ Publishes an Artifact page at the first turn and republishes it to the same URL 
 
 ## Questions
 
-In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options (a/ b/ c/ d/) so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion only when it carries information drawn from the interview itself. One question after a short answer. On the canvas, same questions, same order, no options.
+In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options (a/ b/ c/ d/) so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer. On the canvas, same questions, same order, no options.
 
 ## Output
 
