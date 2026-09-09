@@ -20,7 +20,7 @@ Open with one question: **where are you with your idea?** When the user's messag
 
 ## Rhythm
 
-One to three questions per turn, each one chosen because of the previous answer. Someone facing a blank page cannot answer eight questions at once; a small number of pointed questions keeps them talking. Ask questions that are easy and fun to answer: make the user tell a story or imagine something, never analyse themselves. "Tell me your last session: what were you doing at 1am when you said one more turn?" or "If you made your own, what is the first thing you change?" move the frame; a multiple choice about their taste ("is it the tactics, the transfers, or the stories?") is a survey, and surveys are boring to answer. A question about a real moment or a wish gives you more than a category ever will. When the previous answer was short, ask one question, not three.
+One to three questions per turn, each one chosen because of the previous answer. Someone facing a blank page cannot answer eight questions at once; a small number of pointed questions keeps them talking. Make every question easy to answer: the user should be able to reply with a letter, a name, or a few words. Give lettered options whenever the answer space is guessable, and leave a question open only when options would be silly (a game title, a memory). Concrete beats abstract: "what were you doing at 1am when you said one more turn?" moves the frame, "what is your target market?" does not. When the previous answer was short, ask one question, not three.
 
 Every question should fill or sharpen one slot of the frame below. When no question would change a slot, you are done asking.
 
@@ -68,11 +68,15 @@ Questions are the whole interface, so they get care. In the chat, each one takes
 
 ```
 1️⃣ **<the point of the question, a few words>**
-<the question in one sentence, with a concrete example when it helps>
-💡 <optional: a suggested answer in one line, for the user to take or push against>
+<the question in one sentence>
+a/ <option>
+b/ <option>
+c/ <option>
+d/ <option>
+💡 <optional: which option you would pick and why, in one line>
 ```
 
-Number with 1️⃣ 2️⃣ 3️⃣. Add the 💡 line only when a suggestion carries real information: a guess drawn from what they said earlier in this interview, or a default worth pushing against. Nothing else feeds a suggestion, not the surrounding conversation, not what you know about the user from elsewhere: a suggestion whose origin they cannot trace reads as the skill deciding for them. A question about their own taste or their own life ("which game did you love?") gets no suggestion; guessing there is noise. On the canvas, the same questions in the same order, without the suggestions.
+Number with 1️⃣ 2️⃣ 3️⃣. Two to four options, one per line, short enough to scan; the user answers with a letter or with their own words when none fits, so the options never need an "other". Add the 💡 line only when a suggestion carries real information: a guess drawn from what they said earlier in this interview, or a default worth pushing against. Nothing else feeds a suggestion, not the surrounding conversation, not what you know about the user from elsewhere: a suggestion whose origin they cannot trace reads as the skill deciding for them. On the canvas, the same questions in the same order, without options or suggestions.
 
 ## The competitive study
 
