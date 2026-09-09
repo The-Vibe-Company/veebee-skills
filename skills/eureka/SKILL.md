@@ -16,7 +16,7 @@ On the first turn only, one sentence of orientation: Eureka helps them find one 
 
 Then ask one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
 
-- **Blank page.** Nothing yet, and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make. A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries one or two questions, not three: a blank page is already intimidating. Once there is a starting point, converge from it. If they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
+- **Blank page.** Nothing yet, or only the kind ("a game, but I don't know what"), and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make. A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries one or two questions, not three: a blank page is already intimidating. Once there is a starting point, converge from it. If they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
 - **A pain.** Someone suffers something. Start from who suffers it and when it happens, in concrete situations, before talking about any solution. The solution that survives `challenge` is the one that grew out of a precise pain.
 - **An idea already there.** They have it. Put it into the frame with at most two questions per turn, only for slots their message left empty. Digging here would duplicate the next skill.
 
@@ -51,7 +51,7 @@ Questions are the whole interface. Each one, in the chat:
 - ✍️ Autre ("Other" in English) closes every list, on the next free letter: **d** after three options, **e** after four. The only exception is a yes-or-no question whose second option is itself open ("I would change something"); an option like "just us for now" is not open, so Autre still follows it.
 - An open question, for a title or a memory, keeps the quote block and drops the list.
 - 💡 whenever earlier answers, the opening message included, make one option more likely, saying which answer points there. It can name two options or hesitate honestly: "a, with a bit of c". Leave it out when nothing they said favours an option, such as a question about their own taste. Only this interview feeds a suggestion: not the surrounding conversation, not what you know about the user from elsewhere. A suggestion they cannot trace reads as the skill deciding for them.
-- Never a workflow choice in the options: the user is answering about their Idea, not choosing what skill runs next.
+- Never another skill in the options: the user is answering about their Idea, not choosing what runs next. The skill's own housekeeping questions (offering the study, handling an existing file) use this same format.
 
 ## The Idea frame
 
@@ -60,7 +60,7 @@ About ten lines. Three slots are common to every kind of idea; three more depend
 ```markdown
 ---
 kind: product | game | skill | content | service
-title: <working title>
+title: <working title, empty until the Idea has one>
 lang: <fr | en | ...>
 ---
 
@@ -73,7 +73,7 @@ lang: <fr | en | ...>
 <kind-specific slots>
 ```
 
-The front-matter keys and values stay in English; everything else is in the user's language. The kind lives in the front-matter only.
+The front-matter keys and values stay in English; everything else is in the user's language. The kind lives in the front-matter only. This slot form is what goes to disk; the sectioned form belongs to the canvas.
 
 Kind-specific slots:
 
@@ -94,7 +94,7 @@ Use the Artifact tool when it is available:
 1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-eureka-<name of the current directory>-<HHMMSS of this first turn>.html`; two sessions in one directory would otherwise overwrite each other's canvas. Fill the `IDEA` object at the top of its script and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
 2. After every answer, rewrite `lines` with the Idea as it now stands, in the user's words, and publish the same file path again, so the page updates at the same URL. Once the Idea is complete, move it from `lines` to `sections`, each with a short heading, so the page reads at a glance.
 
-If the Artifact tool is not available, skip the canvas without comment and end each turn with the current frame in a code block instead: the frame only, without the competitive study, and only once at least one slot is filled; an empty skeleton is noise.
+If the Artifact tool is not available, skip the canvas without comment and end each turn with the current frame in a code block instead: the frame only, without the competitive study, and only once at least one slot is filled; an empty skeleton is noise. At the finish, that code block shows the sectioned form instead.
 
 ## The competitive study
 
