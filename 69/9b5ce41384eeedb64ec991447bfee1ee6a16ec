@@ -1,0 +1,21 @@
+.claude-plugin/plugin.json
+  s_672e5dd3239bad::t_b415bae694dcb9 3
+CHANGELOG.md
+  s_672e5dd3239bad::t_e81079e49387ab 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "699b5ce41384eeedb64ec991447bfee1ee6a16ec",
+  "prompts": {},
+  "sessions": {
+    "s_672e5dd3239bad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76c6805e-e088-47a3-a6e6-23226ac8bf84",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
