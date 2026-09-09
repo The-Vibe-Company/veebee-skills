@@ -35,7 +35,7 @@ Publishes an Artifact page at the first turn and republishes it to the same URL 
 
 ## Questions
 
-Numbered, the point of each one in bold, then one sentence with a concrete example when it helps. Same questions on the canvas, same order.
+In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then 💡 a one-line suggested answer to take or push against. On the canvas, same questions, same order, no suggestions.
 
 ## Output
 

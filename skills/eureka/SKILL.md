@@ -64,7 +64,15 @@ If the Artifact tool is not available, skip the canvas without comment and end e
 
 ## Asking
 
-Questions are the whole interface, so they get care. Number them, bold the point of each one in a few words, then ask it in one sentence with a concrete example when one helps. One question per line, nothing between them. The same questions go on the canvas, in the same order.
+Questions are the whole interface, so they get care. In the chat, each one takes this shape, one blank line between questions and nothing else around them:
+
+```
+1️⃣ **<the point of the question, a few words>**
+<the question in one sentence, with a concrete example when it helps>
+💡 <a suggested answer in one line, for the user to take or push against>
+```
+
+Number with 1️⃣ 2️⃣ 3️⃣. The suggestion matters: a blank page is easier to fill by reacting to a guess than by inventing from nothing, and a wrong guess makes the user say what they actually want. On the canvas, the same questions in the same order, without the suggestions.
 
 ## The competitive study
 
