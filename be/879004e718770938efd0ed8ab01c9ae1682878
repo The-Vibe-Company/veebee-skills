@@ -1,0 +1,19 @@
+skills/eureka/SKILL.md
+  s_672e5dd3239bad::t_3c20bced6bb609 27-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "be879004e718770938efd0ed8ab01c9ae1682878",
+  "prompts": {},
+  "sessions": {
+    "s_672e5dd3239bad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76c6805e-e088-47a3-a6e6-23226ac8bf84",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
