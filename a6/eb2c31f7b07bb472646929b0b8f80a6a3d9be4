@@ -1,0 +1,35 @@
+skills/eureka/SKILL.md
+  s_672e5dd3239bad::t_b6820ce679fa4f 1-75
+.claude-plugin/marketplace.json
+  s_672e5dd3239bad::t_2098e21189f007 1-17
+.claude-plugin/plugin.json
+  s_672e5dd3239bad::t_ed3c0d23ee5a54 1-16
+.gitignore
+  s_672e5dd3239bad::t_c5491374696756 1-4
+CONTEXT.md
+  s_672e5dd3239bad::t_b1f7ef2600027e 1-43
+LICENSE
+  s_672e5dd3239bad::t_2a411e6c4a45bf 1-21
+README.md
+  s_672e5dd3239bad::t_91dbe91cde47cb 1-44
+docs/skills/eureka.md
+  s_672e5dd3239bad::t_d5d4117ee1701b 1-39
+skills/eureka/assets/canvas.html
+  s_672e5dd3239bad::t_370a8f7032376f 1-141
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "a6eb2c31f7b07bb472646929b0b8f80a6a3d9be4",
+  "prompts": {},
+  "sessions": {
+    "s_672e5dd3239bad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76c6805e-e088-47a3-a6e6-23226ac8bf84",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
