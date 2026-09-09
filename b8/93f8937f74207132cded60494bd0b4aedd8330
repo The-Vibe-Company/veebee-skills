@@ -1,0 +1,23 @@
+.claude-plugin/plugin.json
+  s_672e5dd3239bad::t_9b3d7ef59b18b4 3
+CHANGELOG.md
+  s_672e5dd3239bad::t_4350bab750e9d7 3-14
+skills/eureka/SKILL.md
+  s_672e5dd3239bad::t_36c2e7e6adbdec 19,54,63,76,97
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "b893f8937f74207132cded60494bd0b4aedd8330",
+  "prompts": {},
+  "sessions": {
+    "s_672e5dd3239bad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76c6805e-e088-47a3-a6e6-23226ac8bf84",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
