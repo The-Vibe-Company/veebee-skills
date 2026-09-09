@@ -26,10 +26,6 @@
   .section h2 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 600; }
   .section p { font-size: 18px; line-height: 1.55; margin: 0; }
   .idea p.pending { color: var(--muted); }
-  .questions { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
-  .questions .label { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-  .q { display: flex; gap: 16px; align-items: baseline; padding: 14px 18px; margin-bottom: 10px; background: var(--accent-soft); border-radius: 10px; font-size: 17px; line-height: 1.5; }
-  .q .n { font-family: var(--sans); font-weight: 700; color: var(--accent); font-size: 14px; flex: none; }
   .done { margin-top: 48px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
   .done code { font-family: ui-monospace, Menlo, monospace; color: var(--ink); }
   @media (max-width: 640px) { .sheet { margin: 0; padding: 48px 24px; min-height: 100vh; } h1 { font-size: 32px; } }
@@ -38,10 +34,6 @@
 <div class="sheet">
   <h1 id="title"></h1>
   <div class="idea" id="idea"></div>
-  <div class="questions" id="questions" hidden>
-    <div class="label" id="questions-label"></div>
-    <div id="qs"></div>
-  </div>
   <div class="done" id="done" hidden></div>
 </div>
 
@@ -51,20 +43,18 @@
 // - lines: the idea so far, as short sentences in the user's words, one string per paragraph. Empty at the start.
 // - sections: the complete idea, once there is nothing left to ask: { heading, text } each, one or two sentences per text.
 //   When sections is non-empty it replaces lines on the page.
-// - questions: the questions you are asking this turn. Replace them every turn. Empty when the idea is done.
 // - done: true on the last turn only.
 const IDEA = {
   lang: "fr",
   title: "",
   lines: [],
   sections: [],
-  questions: [],
   done: false,
 };
 
 const T = {
-  fr: { untitled: "Sans titre", questions: "Pour continuer", done: "Prochaine étape : <code>/challenge</code>." },
-  en: { untitled: "Untitled", questions: "To continue", done: "Next step: <code>/challenge</code>." },
+  fr: { untitled: "Sans titre", done: "Prochaine étape : <code>/challenge</code>." },
+  en: { untitled: "Untitled", done: "Next step: <code>/challenge</code>." },
 };
 
 (function render() {
@@ -77,10 +67,6 @@ const T = {
   document.getElementById("idea").innerHTML = sections.length
     ? sections.map((x) => `<div class="section"><h2>${esc(x.heading)}</h2><p>${esc(x.text)}</p></div>`).join("")
     : IDEA.lines.filter(Boolean).map((l) => `<p>${esc(l)}</p>`).join("");
-  const qs = IDEA.questions.filter(Boolean);
-  document.getElementById("questions").hidden = qs.length === 0;
-  document.getElementById("questions-label").textContent = t.questions;
-  document.getElementById("qs").innerHTML = qs.map((q, i) => `<div class="q"><span class="n">${i + 1}</span><span>${esc(q)}</span></div>`).join("");
   const done = document.getElementById("done");
   done.hidden = !IDEA.done;
   done.innerHTML = t.done;

@@ -31,11 +31,11 @@ Kind-specific slots appear once the kind is known. Extensible with new kinds lat
 
 ## Live artifact
 
-Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences, and this turn's questions styled at the bottom. Nothing else: no slots, no transcript, no timeline.
+Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences. Nothing else: no questions, no slots, no transcript, no timeline.
 
 ## Questions
 
-In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus e · Autre when the options are closed choices, so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer. On the canvas, same questions, same order, no options.
+In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus e · Autre when the options are closed choices, so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer.
 
 ## Output
 
