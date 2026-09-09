@@ -55,7 +55,7 @@ The user should see the Idea take shape while they talk, not only at the end. Th
 
 Use the Artifact tool when it is available:
 
-1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a stable path in the OS temporary directory (for example `$TMPDIR/veebee-eureka-<name of the current directory>.html`), fill the `IDEA` object at the top of its script, and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
+1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-eureka-<name of the current directory>-<time of this first turn as HHMMSS>.html`; two sessions in the same directory would otherwise overwrite each other's canvas, fill the `IDEA` object at the top of its script, and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
 2. After every answer, rewrite `lines` with the Idea as it now stands, in the user's words, replace `questions` with the ones you are asking this turn, and publish the same file path again, so the page updates at the same URL.
 
 The frame below is how the Idea is written to disk at the end; on the canvas it reads as prose, not as a form.
