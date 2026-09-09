@@ -20,7 +20,7 @@ Open with one question: **where are you with your idea?** When the user's messag
 
 ## Rhythm
 
-One to three questions per turn, each one chosen because of the previous answer. Someone facing a blank page cannot answer eight questions at once; a small number of pointed questions keeps them talking. Prefer the concrete over the abstract: "who did you last see struggling with that?" moves the frame, "what is your target market?" does not.
+One to three questions per turn, each one chosen because of the previous answer. Someone facing a blank page cannot answer eight questions at once; a small number of pointed questions keeps them talking. Ask questions that are easy and fun to answer: make the user tell a story or imagine something, never analyse themselves. "Tell me your last session: what were you doing at 1am when you said one more turn?" or "If you made your own, what is the first thing you change?" move the frame; a multiple choice about their taste ("is it the tactics, the transfers, or the stories?") is a survey, and surveys are boring to answer. A question about a real moment or a wish gives you more than a category ever will. When the previous answer was short, ask one question, not three.
 
 Every question should fill or sharpen one slot of the frame below. When no question would change a slot, you are done asking.
 

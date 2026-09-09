@@ -35,6 +35,8 @@ Publishes an Artifact page at the first turn and republishes it to the same URL 
 
 ## Questions
 
+Easy and fun to answer: stories and wishes, never self-analysis or multiple choice about taste. One question after a short answer.
+
 In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then, only when it carries real information, 💡 a one-line suggested answer to take or push against. No suggestion on questions about their own taste or life. On the canvas, same questions, same order, no suggestions.
 
 ## Output
