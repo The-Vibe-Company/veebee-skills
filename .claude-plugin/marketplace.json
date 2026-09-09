@@ -1,0 +1,17 @@
+{
+  "name": "veebee",
+  "owner": {
+    "name": "The Vibe Company",
+    "url": "https://thevibecompany.co"
+  },
+  "description": "Veebee Skills: build a product from a blank page to a shipped PR, one skill per step.",
+  "plugins": [
+    {
+      "name": "veebee-skills",
+      "source": "./",
+      "description": "Find an idea, challenge it, brief the design, review it, set up the stack, cut tickets, ship.",
+      "category": "productivity",
+      "keywords": ["product", "ideation", "design", "tickets", "ship"]
+    }
+  ]
+}

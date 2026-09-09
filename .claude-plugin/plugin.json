@@ -1,0 +1,16 @@
+{
+  "name": "veebee-skills",
+  "version": "0.1.0",
+  "description": "Veebee's skills for building a product from a blank page to a shipped PR: find an idea, challenge it, brief the design, review it, set up the stack, cut tickets, ship.",
+  "author": {
+    "name": "The Vibe Company",
+    "url": "https://thevibecompany.co"
+  },
+  "homepage": "https://github.com/The-Vibe-Company/veebee-skills",
+  "repository": "https://github.com/The-Vibe-Company/veebee-skills",
+  "license": "MIT",
+  "keywords": ["product", "skills", "ideation", "design", "tickets", "ship", "veebee"],
+  "skills": [
+    "./skills/eureka"
+  ]
+}
