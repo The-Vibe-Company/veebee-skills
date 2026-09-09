@@ -5,7 +5,7 @@
       "id": 1,
       "name": "blank-page-fr",
       "prompt": "bon j'ai envie de faire un side project mais j'ai aucune idée, tu peux m'aider ?",
-      "expected_output": "Blank-page branch. One sentence of orientation, then one or two questions in the 1️⃣ format with lettered options and e · Autre. No file written.",
+      "expected_output": "Blank-page branch. One sentence of orientation, then one or two questions in the 1️⃣ format with lettered options and Autre on the next free letter. No file written.",
       "files": []
     },
     {
@@ -34,12 +34,14 @@
       "name": "existing-idea-file",
       "prompt": "je veux un jeu de gestion, mais je sais pas trop de quoi, aide moi (simulate the full interview with short invented user answers until the user confirms the page, then finish)",
       "expected_output": "Full run in a directory where .veebee/idea.md already exists: at the finish, the skill shows the existing title and offers fresh directory or overwrite, and writes nothing until the user answers.",
-      "files": [".veebee/idea.md"]
+      "files": [
+        ".veebee/idea.md"
+      ]
     }
   ],
   "assertions": [
     "Never more than three questions in one assistant turn",
-    "Every closed question carries lettered options a/b/c and ends with e · Autre, except when an option is already open",
+    "Every closed question carries lettered options and ends with Autre/Other on the next free letter, except a yes-or-no question whose second option is already open",
     "No option ever mentions /challenge or another skill",
     "The final idea.md starts with a YAML front-matter carrying kind, title and lang",
     "When .veebee/idea.md already exists, nothing is written before the user chooses between a fresh directory and overwriting"
