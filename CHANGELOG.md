@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.1
 
 - `eureka`: the first turn opens with two or three sentences on what the skill does and what it is for, before the first question.
 
