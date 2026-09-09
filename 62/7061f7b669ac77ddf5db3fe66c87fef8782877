@@ -1,0 +1,26 @@
+skills/eureka/assets/canvas.html
+  s_672e5dd3239bad::t_70b773e14f83c6 4-5,11-12,16-17,19-32,35,37-43,46-50,52,54-56,60-61,65-67,69-77
+skills/eureka/SKILL.md
+  s_672e5dd3239bad::t_ff522b7d5063d9 54,56,58-61,65-67
+  s_672e5dd3239bad::t_fd250081d7b9d8 68,71
+.claude-plugin/plugin.json
+  s_672e5dd3239bad::t_7e18b9fc5e1754 3
+docs/skills/eureka.md
+  s_672e5dd3239bad::t_c3ccd8ed6ec78f 34-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "627061f7b669ac77ddf5db3fe66c87fef8782877",
+  "prompts": {},
+  "sessions": {
+    "s_672e5dd3239bad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76c6805e-e088-47a3-a6e6-23226ac8bf84",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
