@@ -12,7 +12,7 @@ Answer in the language the user writes in. The Idea is theirs, so it is written 
 
 ## Open the same way every time
 
-Open with one question: **where are you with your idea?** When the user's message already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
+Open with one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
 
 - **Blank page.** Nothing yet, and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make (a product, a game, a skill or agent). A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries one or two questions, not three: a blank page is already intimidating. Once there is a starting point, converge from it. At one moment, if they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
 - **A pain.** Someone suffers something. Start from who suffers it and when it happens, in concrete situations, before talking about any solution. The solution that survives `challenge` is the one that grew out of a precise pain.
@@ -43,7 +43,7 @@ The frame is about ten lines. Four slots are common to every kind of idea; the r
 
 Kind-specific slots:
 
-- **Product or tool**: `**The pain**`, `**What changes for them**`.
+- **Product or tool**: `**The pain**`, `**What changes for them**` (the outcome in their life, not how the product does it: mechanisms belong to `challenge`).
 - **Game**: `**The player's goal**`, `**The universe**`, `**The loop, in one sentence**`.
 - **Skill or agent**: `**The task it automates**`, `**Before**`, `**After**`.
 
@@ -58,11 +58,11 @@ The user should see the Idea take shape while they talk, not only at the end. Us
 
 The canvas shows the frame with its slots, empty then filled, the open questions at the bottom, and once it exists, the competitive study. Nothing else: no transcript, no timeline. The user is looking at their Idea, not at the process.
 
-If the Artifact tool is not available, skip the canvas without comment and end each turn with the current frame in a short code block instead.
+If the Artifact tool is not available, skip the canvas without comment and end each turn with the current frame in a code block instead: the frame only, without the competitive study, which is shown once when it is produced.
 
 ## The competitive study
 
-Offer it once, when the frame is mostly filled: "Would you like a quick look at what already exists?" Never impose it: they may have done it already, and forcing it would make them stop listening. If they say yes, search the web and list three to five existing solutions, one line each: what it does, what it misses for this audience. Add it as a `## What already exists` section of the Idea and to the canvas.
+Offer it once, when the frame is mostly filled, or earlier if the "why it does not already exist" slot stays empty, since the study is often what fills it: "Would you like a quick look at what already exists?" Never impose it: they may have done it already, and forcing it would make them stop listening. If they say yes, search the web and list three to five existing solutions, one line each, linked to its source: what it does, what it misses for this audience. Add it as a `## What already exists` section of the Idea and to the canvas.
 
 No pricing tables, no market sizes. This study exists to answer one question: does this Idea already exist as such?
 
@@ -71,5 +71,5 @@ No pricing tables, no market sizes. This study exists to answer one question: do
 When every slot is filled and the user says the Idea is right:
 
 1. Write it to `.veebee/idea.md` in the current directory, creating the folder if needed. If an `idea.md` is already there, show its title and ask before overwriting: an idea is never lost silently.
-2. Publish the canvas one last time, with the frame complete.
+2. Publish the canvas one last time, with the frame complete. Without the Artifact tool, the file is the final view: give its path rather than printing the frame again.
 3. Say one sentence: the next step is `/challenge`. Do not launch it. Moving from one skill to the next is the user's decision, or `ask-veebee`'s.
