@@ -1,0 +1,21 @@
+CONTEXT.md
+  s_672e5dd3239bad::t_e7cfa6a8bb9c39 38,41-48
+README.md
+  s_672e5dd3239bad::t_2ea791c0eebc12 10,19,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "bf045a9e7c867ff966e0d4021a0791564a89d5e2",
+  "prompts": {},
+  "sessions": {
+    "s_672e5dd3239bad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "76c6805e-e088-47a3-a6e6-23226ac8bf84",
+        "model": "unknown"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
