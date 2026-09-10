@@ -12,7 +12,7 @@ Answer in the language the user writes in. The Idea is theirs, so it is written 
 
 ## Open the same way every time
 
-On the first turn only, one sentence of orientation: Eureka helps them find one idea, a few easy questions per turn, and the idea writes itself on the page next to the chat (or, without the Artifact tool, at the bottom of each reply). Nothing more; it must not delay the first question.
+On the first turn only, one sentence of orientation: Eureka helps them find one idea, a few easy questions per turn, and the idea writes itself on a page while they answer, or at the bottom of each reply when no page can be shown. Nothing more; it must not delay the first question.
 
 Then ask one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
 
@@ -32,7 +32,23 @@ Fill slots only with what the user said. When their message implies a slot witho
 
 ## Asking
 
-Questions are the whole interface. Each one, in the chat:
+Questions are the whole interface. Ask through the runtime's structured question tool when there is one (`AskUserQuestion` in Claude Code, `request_user_input` in Codex, or the equivalent elsewhere); otherwise write the questions in the chat. Decide once, on the first turn, and keep the same way for the whole interview. Whatever goes with the question (the orientation sentence, a one-line reflection of what the user just said, the canvas link) is written in the chat first; the question follows.
+
+Whatever the way, a question is:
+
+- **the point of the question**, a few words;
+- **the question**, in one sentence;
+- **two to four options**, one emoji each, short enough to scan. Options are things the user can picture, not categories: "a game studio", "a record label", never "a company". Options are not exclusive unless you say so; the user may pick one, several, or answer in their own words;
+- **an open way out**: the user can always answer something else;
+- **💡 a suggestion**, whenever earlier answers, the opening message included, make one option more likely, saying which answer points there. It can name two options or hesitate honestly: "a, with a bit of c". Leave it out when nothing they said favours an option, such as a question about their own taste. Only this interview feeds a suggestion: not the surrounding conversation, not what you know about the user from elsewhere. A suggestion they cannot trace reads as the skill deciding for them.
+
+Never another skill in the options: the user is answering about their Idea, not choosing what runs next. The skill's own housekeeping questions (offering the study, handling an existing file, the final check) are asked the same way as the others. An open question, for a title or a memory, is always asked in the chat: it has no options.
+
+### With the question tool
+
+One call per turn carrying this turn's questions when the tool accepts several; otherwise one call per question, in order. Per question: the point as the short header, the sentence as the question, the options as labels with their emoji, and one line each as description. The suggestion goes on the suggested option: put it first, append "(Recommended)" to its label in the user's language, and give the reason in its description; no other option gets it. Do not add an "Other" option: the tool offers free text on its own. If the tool is missing at call time or the call fails, ask that question in the chat and stay in the chat afterwards.
+
+### In the chat
 
 ```
 1️⃣ **<the point of the question, a few words>**
@@ -47,11 +63,9 @@ Questions are the whole interface. Each one, in the chat:
 ```
 
 - Number with 1️⃣ 2️⃣ 3️⃣, one blank line between questions, nothing between the question blocks.
-- Two to four options, one emoji each, short enough to scan. Options are things the user can picture, not categories: "a game studio", "a record label", never "a company". Options are not exclusive unless you say so; the user answers with one letter, several, or their own words.
 - ✍️ Autre ("Other" in English) closes every list, on the next free letter: **d** after three options, **e** after four. The only exception is a yes-or-no question whose second option is itself open ("I would change something"); an option like "just us for now" is not open, so Autre still follows it.
-- An open question, for a title or a memory, keeps the quote block and drops the list.
-- 💡 whenever earlier answers, the opening message included, make one option more likely, saying which answer points there. It can name two options or hesitate honestly: "a, with a bit of c". Leave it out when nothing they said favours an option, such as a question about their own taste. Only this interview feeds a suggestion: not the surrounding conversation, not what you know about the user from elsewhere. A suggestion they cannot trace reads as the skill deciding for them.
-- Never another skill in the options: the user is answering about their Idea, not choosing what runs next. The skill's own housekeeping questions (offering the study, handling an existing file) use this same format.
+- An open question keeps the quote block and drops the list.
+- 💡 on its own line under the options, only when there is a suggestion.
 
 ## The Idea frame
 
@@ -89,12 +103,13 @@ The kind-specific slots appear once the kind is known. If an idea fits none of t
 
 The user should see the Idea take shape while they talk. The canvas is a blank sheet: a title that reads "Sans titre" until the Idea has a name, and the Idea written underneath in a few plain sentences. Nothing else: no questions, no slots, no study, no transcript. The questions live in the chat; the page holds only the Idea.
 
-Use the Artifact tool when it is available:
+The canvas is [assets/canvas.html](assets/canvas.html): the `IDEA` object at the top of its script holds the title, the Idea so far as `lines`, and, once complete, `sections`. Copy it on the first turn to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-eureka-<name of the current directory>-<HHMMSS of this first turn>.html`; two sessions in one directory would otherwise overwrite each other's canvas. Then show it one of three ways, chosen on the first turn:
 
-1. On your first turn, copy [assets/canvas.html](assets/canvas.html) to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-eureka-<name of the current directory>-<HHMMSS of this first turn>.html`; two sessions in one directory would otherwise overwrite each other's canvas. Fill the `IDEA` object at the top of its script and publish it with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open.
-2. After every answer, rewrite `lines` with the Idea as it now stands, in the user's words, and publish the same file path again, so the page updates at the same URL. Once the Idea is complete, move it from `lines` to `sections`, each with a short heading, so the page reads at a glance.
+1. **The Artifact tool**, when available. Fill `IDEA` and publish the file with the Artifact tool (favicon `💡`, title "Eureka"). Give the user the link and tell them to keep it open. After every answer, rewrite `IDEA` and publish the same path again, so the page updates at the same URL.
+2. **The browser**, when there is no Artifact tool but a shell (Codex, for instance). Fill `IDEA` and open the file once in the default browser (`open` on macOS, `xdg-open` on Linux, `start` on Windows). Tell the user the page stays open next to the chat. After every answer, rewrite the file at the same path and nothing else: opened from disk, the page reloads itself every few seconds. Never open it a second time.
+3. **The chat**, when neither exists. Skip the canvas without comment and end each turn with the current frame in a code block instead: the frame only, without the competitive study, and only once at least one slot is filled; an empty skeleton is noise. At the finish, that code block shows the sectioned form instead.
 
-If the Artifact tool is not available, skip the canvas without comment and end each turn with the current frame in a code block instead: the frame only, without the competitive study, and only once at least one slot is filled; an empty skeleton is noise. At the finish, that code block shows the sectioned form instead.
+With a page, once the Idea is complete, move it from `lines` to `sections`, each with a short heading, so the page reads at a glance.
 
 ## The competitive study
 
@@ -109,7 +124,7 @@ When no question would change a slot, stop asking and show the whole Idea on the
 When they say yes:
 
 1. If `.veebee/idea.md` already exists in the current directory, show its title and offer two ways out: run Eureka again from a fresh directory, or overwrite. Write nothing until they answer. Otherwise write the Idea there, creating the folder if needed.
-2. Publish the canvas one last time. Without the Artifact tool, give the file's path rather than printing the frame again.
+2. Update the canvas one last time. Without a page, give the file's path rather than printing the frame again.
 3. Say one sentence: their Idea is in `.veebee/idea.md`. Nothing else: moving to another skill is the user's decision.
 
 <!-- When `challenge` ships, step 3 becomes: "Say one sentence: the next step is `/challenge`. Do not launch it." -->

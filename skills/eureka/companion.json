@@ -1,0 +1,69 @@
+{
+  "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
+  "name": "eureka",
+  "version": "0.3.1",
+  "icon": "sparkles",
+  "title": "Eureka",
+  "description": "Find one clear idea by interview, from a blank page or from a pain, for a product, a game, a skill, a piece of content, or a service.",
+  "notes": "## Eureka\n\nFirst skill of the Veebee chain (open source, MIT): from a blank page to a shipped product, one skill per step.\n\n- Interviews the user one to three questions per turn, with lettered options and a 💡 suggestion drawn from earlier answers.\n- Shows the Idea taking shape on a live page (Artifact tool) while the conversation goes on.\n- Offers an optional quick competitive study (web search).\n- Writes the finished Idea to `.veebee/idea.md` in the current directory, ready for the next skill, `challenge`.\n\nTriggers: \"je cherche une idée\", \"j'ai pas d'idée\", \"trouve-moi un projet\", \"I need an idea\", \"what should I build\". Not for an idea the user already has and wants to refine.\n\nNo secrets, no environment variables. Source: https://github.com/The-Vibe-Company/veebee-skills",
+  "metadata": {
+    "companionSkillId": "013ce125-b748-40a2-81b6-16d835c476a9",
+    "changelog": [
+      {
+        "version": "0.3.1",
+        "date": "2026-09-10",
+        "changes": [
+          "Works outside Claude Code: canvas shown through the Artifact tool, or opened once from disk in the default browser and reloading itself (Codex and any runtime with a shell), or a code block.",
+          "Asks through the runtime's structured question tool when there is one (AskUserQuestion, request_user_input); the suggestion becomes the first, recommended option. Chat format kept as fallback.",
+          "Canvas declares UTF-8 and its finishing line points to .veebee/idea.md."
+        ]
+      },
+      {
+        "version": "0.3.0",
+        "date": "2026-09-09",
+        "changes": [
+          "Grilled and retested on five evals.",
+          "Fires on blank-page phrases only; a rough idea is left to challenge.",
+          "Two new kinds, content and service, with their slots.",
+          "idea.md opens with a YAML front-matter: kind, title, lang.",
+          "Stop word and a ten-turn checkpoint.",
+          "One-sentence orientation on the first turn.",
+          "Existing idea.md: fresh directory or overwrite, nothing written before the answer."
+        ]
+      },
+      {
+        "version": "0.2.1",
+        "date": "2026-09-09",
+        "changes": [
+          "The first turn opens with what the skill does before the first question.",
+          "The canvas shows the Idea in short headed sections at the end and asks whether the page says it right.",
+          "Autre only when the listed options are closed choices; never a workflow choice in the options."
+        ]
+      },
+      {
+        "version": "0.2.0",
+        "date": "2026-09-09",
+        "changes": [
+          "Blank-sheet canvas with the idea in prose.",
+          "Questions numbered with lettered, vivid options and a 💡 suggestion drawn from earlier answers.",
+          "A loved reference is a taste signal, not a template.",
+          "Canvas path unique per session."
+        ]
+      },
+      {
+        "version": "0.1.0",
+        "date": "2026-09-09",
+        "changes": [
+          "First release: finds one idea by interview, from a blank page or a pain."
+        ]
+      }
+    ]
+  },
+  "environment": {
+    "env": {},
+    "secrets": {}
+  },
+  "dependencies": {},
+  "commands": [],
+  "checks": {}
+}

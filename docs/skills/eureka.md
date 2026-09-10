@@ -31,19 +31,19 @@ Common to every kind: kind of idea, one sentence, for whom, why it does not alre
 
 Kind-specific slots appear once the kind is known. The file opens with a YAML front-matter: `kind`, `title`, `lang`, keys in English. Extensible with new kinds later.
 
-## Live artifact
+## Live canvas
 
-Publishes an Artifact page at the first turn and republishes it to the same URL after every answer. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences. Nothing else: no questions, no competitive study, no slots, no transcript, no timeline.
+One page, `assets/canvas.html`, shown one of three ways chosen on the first turn: published with the Artifact tool and republished to the same URL after every answer; or, without that tool but with a shell (Codex), opened once from disk in the default browser and rewritten after every answer, the page reloading itself every few seconds; or, without either, the current frame in a code block at the end of each reply. A blank sheet: "Sans titre" as the title until the Idea has a name, the Idea underneath in a few plain sentences. Nothing else: no questions, no competitive study, no slots, no transcript, no timeline.
 
 ## Questions
 
-In the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus e · Autre when the options are closed choices, so a letter is enough to answer. Open question only when options would be silly. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer.
+Through the runtime's structured question tool when there is one (`AskUserQuestion` in Claude Code, `request_user_input` in Codex): the point as header, the question in one sentence, two to four options with an emoji and a one-line description, the suggested option first with "(Recommended)" and its reason, no "Other" option since the tool offers free text itself. One call per turn, or one per question when the tool takes only one. Otherwise in the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus Autre on the next free letter when the options are closed choices, so a letter is enough to answer. Open questions (title, memory) always in the chat. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. One question after a short answer.
 
 ## Output
 
 - `.veebee/idea.md` in the current directory, created if missing. If an idea already exists there, show its title and offer two ways out, a fresh directory or overwrite, and write nothing until the user answers.
 - When nothing is left to ask, the canvas switches to short headed sections and the skill asks one thing: does the page say it right? Yes, or an open "I would change something". Never a workflow choice in the options.
-- Ends when the user confirms. Writes the file, republishes the artifact one last time, says one sentence: the Idea is in `.veebee/idea.md`. (Points to `/challenge` once that skill ships.) Never launches another skill.
+- Ends when the user confirms. Writes the file, updates the canvas one last time, says one sentence: the Idea is in `.veebee/idea.md`. (Points to `/challenge` once that skill ships.) Never launches another skill.
 
 ## Tests
 

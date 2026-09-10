@@ -1,3 +1,6 @@
+<!-- Eureka canvas. Works two ways with the same file: published with an Artifact tool, or opened
+     from disk in a browser, where it reloads itself every few seconds so each rewrite shows up. -->
+<meta charset="utf-8">
 <title>Eureka</title>
 <style>
   :root {
@@ -53,8 +56,8 @@ const IDEA = {
 };
 
 const T = {
-  fr: { untitled: "Sans titre", done: "Prochaine étape : <code>/challenge</code>." },
-  en: { untitled: "Untitled", done: "Next step: <code>/challenge</code>." },
+  fr: { untitled: "Sans titre", done: "L'idée est dans <code>.veebee/idea.md</code>." },
+  en: { untitled: "Untitled", done: "The idea is in <code>.veebee/idea.md</code>." },
 };
 
 (function render() {
@@ -71,4 +74,7 @@ const T = {
   done.hidden = !IDEA.done;
   done.innerHTML = t.done;
 })();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
 </script>

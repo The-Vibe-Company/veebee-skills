@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- `eureka` works outside Claude Code. The canvas has three transports: Artifact tool, default browser (Codex and any runtime with a shell: the page is opened once from disk and reloads itself), or a code block.
+- `eureka` asks through the runtime's structured question tool when there is one (`AskUserQuestion`, `request_user_input`), one call per turn or per question; the 💡 suggestion becomes the first, recommended option. The chat format stays the fallback.
+- Canvas: UTF-8 declared, finishing line points to `.veebee/idea.md`.
+
 ## 0.3.0
 
 - `eureka` grilled and retested on five evals (`skills/eureka/evals/evals.json`).
