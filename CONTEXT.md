@@ -35,8 +35,16 @@ Exigence Level for something too big for one chain. Must be split into sub-produ
 _Avoid_: Epic, program
 
 **Idea**:
-The output of `eureka`: one clear idea, written in a short fixed frame that depends on its kind (a game needs a goal and a universe; a product needs a pain and who suffers it). Just enough for `challenge` to attack.
+The output of `eureka`: one clear idea, written in a short fixed frame that depends on its kind (a game needs a goal and a universe; a product needs a pain and who suffers it). Just enough for `crash-test` to attack.
 _Avoid_: Concept, pitch, vision
+
+**Crash-test**:
+The skill that attacks an Idea until only what holds is left, and writes the Product Brief. Fixes the Exigence Level with the user.
+_Avoid_: Challenge, grill, roast, review
+
+**Product Brief**:
+The output of `crash-test`, `.veebee/product.md`: everything the next skills need, from the essence to the never-list and the milestones. The single source of truth for what the product is.
+_Avoid_: Spec, PRD, requirements, product.md (in prose)
 
 **Ticket**:
 A tracker-agnostic unit of work produced by the library. The host agent pushes it into whatever tracker it has access to (Linear, GitHub Issues, files).

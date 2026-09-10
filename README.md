@@ -7,7 +7,7 @@ Open-source Claude Code skills by The Vibe Company. From a blank page to a shipp
 | # | Skill | Reads | Writes |
 |---|---|---|---|
 | 1 | `eureka` | where you are with your idea, even a blank page | one Idea in a short frame |
-| 2 | `challenge` | an idea | `product.md` with the essence and the Exigence Level |
+| 2 | `crash-test` | an idea | `product.md`, the Product Brief, with the essence, the Exigence Level and the milestones |
 | 3 | `design-brief` | `product.md` + your art direction | a prompt for Claude Design |
 | 4 | `design-review` | the design back from Claude Design | verdict + list of deviations |
 | 5 | `setup` | `product.md` | a challenged stack, an initialised repo |
@@ -16,7 +16,7 @@ Open-source Claude Code skills by The Vibe Company. From a blank page to a shipp
 
 `ask-veebee` sits above the chain: tell it where you are, it names the skill you need and hands over between skills.
 
-Names are provisional until each skill has been grilled. Settled so far: `eureka`.
+Names are provisional until each skill has been grilled. Settled so far: `eureka`, `crash-test`.
 
 ## Install
 
@@ -41,4 +41,4 @@ The other skills are defined step by step, each one grilled before it is written
 
 ## Exigence Level
 
-Set by `challenge`, read by everyone: **Sketch**, **Product**, **Platform**. See [CONTEXT.md](./CONTEXT.md).
+Set by `crash-test`, read by everyone: **Sketch**, **Product**, **Platform**. See [CONTEXT.md](./CONTEXT.md).
