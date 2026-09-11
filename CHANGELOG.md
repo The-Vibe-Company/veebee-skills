@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+- `eureka` in Codex: the question tool is used only when it is really in the toolset, and asking always ends the turn (Codex improvised answers in Default mode, where `request_user_input` only exists with `default_mode_request_user_input = true`).
+- `eureka`: a picked option plus free text refines the pick instead of replacing it.
+- `eureka` without the Artifact tool: chat-only interview, the Idea shown in the chat at the checkpoint and at the finish, the browser page opened once at the finish instead of at the first turn.
+
 ## 0.3.1
 
 - `eureka` works outside Claude Code. The canvas has three transports: Artifact tool, default browser (Codex and any runtime with a shell: the page is opened once from disk and reloads itself), or a code block.

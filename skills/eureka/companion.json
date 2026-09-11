@@ -1,7 +1,7 @@
 {
   "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
   "name": "eureka",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "icon": "sparkles",
   "title": "Eureka",
   "description": "Find one clear idea by interview, from a blank page or from a pain, for a product, a game, a skill, a piece of content, or a service.",
@@ -9,6 +9,15 @@
   "metadata": {
     "companionSkillId": "013ce125-b748-40a2-81b6-16d835c476a9",
     "changelog": [
+      {
+        "version": "0.3.2",
+        "date": "2026-09-11",
+        "changes": [
+          "Question tool used only when really in the toolset; asking always ends the turn (Codex Default mode improvised answers).",
+          "A picked option plus free text refines the pick instead of replacing it.",
+          "Without the Artifact tool: chat-only interview, Idea shown in the chat at the checkpoint and the finish, browser page opened once at the finish."
+        ]
+      },
       {
         "version": "0.3.1",
         "date": "2026-09-10",

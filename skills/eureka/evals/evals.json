@@ -45,6 +45,8 @@
     "No option ever mentions /challenge or another skill",
     "The final idea.md starts with a YAML front-matter carrying kind, title and lang",
     "When .veebee/idea.md already exists, nothing is written before the user chooses between a fresh directory and overwriting",
-    "Without the Artifact tool but with a shell, the canvas is opened once from disk in the default browser and only rewritten afterwards"
+    "Without the Artifact tool, nothing is opened during the interview; the Idea is shown in the chat as headed sections at the finish, and the browser page is opened at most once, then",
+    "Every turn that asks a question ends with the question; the skill never continues as if the user had answered",
+    "A picked option followed by free text is read as that option refined by the text, not as a different answer"
   ]
 }
