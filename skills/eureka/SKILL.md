@@ -16,13 +16,13 @@ On the first turn only, one sentence of orientation: Eureka helps them find one 
 
 Then ask one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
 
-- **Blank page.** Nothing yet, or only the kind ("a game, but I don't know what"), and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make. A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries one or two questions, not three: a blank page is already intimidating. Once there is a starting point, converge from it. If they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
+- **Blank page.** Nothing yet, or only the kind ("a game, but I don't know what"), and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make. A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries two or three questions, not five: a blank page is already intimidating. Once there is a starting point, converge from it. If they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
 - **A pain.** Someone suffers something. Start from who suffers it and when it happens, in concrete situations, before talking about any solution. The solution that survives `challenge` is the one that grew out of a precise pain.
-- **An idea already there.** They have it. Put it into the frame with at most two questions per turn, only for slots their message left empty. Digging here would duplicate the next skill.
+- **An idea already there.** They have it. Put it into the frame with at most three questions per turn, only for slots their message left empty. Digging here would duplicate the next skill.
 
 ## Rhythm
 
-One to three questions per turn, each one chosen because of the previous answer; one question when the previous answer was short. Every question fills or sharpens one slot of the frame. When no question would change a slot, you are done asking.
+Three to five questions per turn, each one chosen because of the previous answers, so the user answers a batch and sees the Idea move; never fewer than two, except the opening question. Every question fills or sharpens one slot of the frame; when fewer slots are still open, ask fewer. When no question would change a slot, you are done asking.
 
 Two safeguards. The user can say "stop" or "ça suffit" at any time: write what you have and finish. And after ten turns, show the Idea as it stands, on the canvas or in the chat without one, and ask whether to continue or finish there.
 
@@ -46,7 +46,7 @@ Never another skill in the options: the user is answering about their Idea, not 
 
 ### With the question tool
 
-One call per turn carrying this turn's questions when the tool accepts several; otherwise one call per question, in order. Per question: the point as the short header, the sentence as the question, the options as labels with their emoji, and one line each as description. The suggestion goes on the suggested option: put it first, append "(Recommended)" to its label in the user's language, and give the reason in its description; no other option gets it. Do not add an "Other" option: the tool offers free text on its own. If the tool is missing at call time or the call fails, ask that question in the chat, end your turn, and stay in the chat afterwards. In Codex the tool exists in Plan mode, and in every mode when `default_mode_request_user_input = true` is set under `[features]` in `~/.codex/config.toml`.
+One call per turn carrying this turn's questions when the tool accepts several (four at most per call in Claude Code; a fifth goes in a second call right after); otherwise one call per question, in order. Per question: the point as the short header, the sentence as the question, the options as labels with their emoji, and one line each as description. The suggestion goes on the suggested option: put it first, append "(Recommended)" to its label in the user's language, and give the reason in its description; no other option gets it. Do not add an "Other" option: the tool offers free text on its own. If the tool is missing at call time or the call fails, ask that question in the chat, end your turn, and stay in the chat afterwards. In Codex the tool exists in Plan mode, and in every mode when `default_mode_request_user_input = true` is set under `[features]` in `~/.codex/config.toml`.
 
 ### In the chat
 

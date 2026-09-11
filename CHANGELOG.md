@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- `eureka` asks three to five questions per turn instead of one to three; two or three on a blank first turn.
+
 ## 0.3.2
 
 - `eureka` in Codex: the question tool is used only when it is really in the toolset, and asking always ends the turn (Codex improvised answers in Default mode, where `request_user_input` only exists with `default_mode_request_user_input = true`).

@@ -5,7 +5,7 @@
       "id": 1,
       "name": "blank-page-fr",
       "prompt": "bon j'ai envie de faire un side project mais j'ai aucune idée, tu peux m'aider ?",
-      "expected_output": "Blank-page branch. One sentence of orientation, then one or two questions through the question tool (or the 1️⃣ chat format without one) with lettered options and Autre on the next free letter. No file written.",
+      "expected_output": "Blank-page branch. One sentence of orientation, then two or three questions through the question tool (or the 1️⃣ chat format without one) with lettered options and Autre on the next free letter. No file written.",
       "files": []
     },
     {
@@ -19,7 +19,7 @@
       "id": 3,
       "name": "clear-idea-game",
       "prompt": "I want to build a small roguelike where you play a bee defending a hive against wasps, each run is one day, I've got the whole thing in my head already, just help me write it down properly",
-      "expected_output": "Idea-already-there branch. At most two questions, only for empty slots. Game slots used. No digging into mechanics.",
+      "expected_output": "Idea-already-there branch. At most three questions, only for empty slots. Game slots used. No digging into mechanics.",
       "files": []
     },
     {
@@ -40,7 +40,7 @@
     }
   ],
   "assertions": [
-    "Never more than three questions in one assistant turn",
+    "Never more than five questions in one assistant turn, never fewer than two after the opening question, except when fewer slots are still open",
     "Every closed question is asked through the structured question tool when one exists (no Other option added, suggested option first and recommended); in the chat, it carries lettered options and ends with Autre/Other on the next free letter, except a yes-or-no question whose second option is already open",
     "No option ever mentions /challenge or another skill",
     "The final idea.md starts with a YAML front-matter carrying kind, title and lang",
