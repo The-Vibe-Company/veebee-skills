@@ -46,6 +46,10 @@ _Avoid_: Challenge, grill, roast, review
 The output of `crash-test`, `.veebee/product.md`: everything the next skills need, from the essence to the never-list and the milestones. The single source of truth for what the product is.
 _Avoid_: Spec, PRD, requirements, product.md (in prose)
 
+**Milestone**:
+A deliverable slice of a product with its own essence, living in `.veebee/milestones/<slug>/`, crash-tested on its own. Platform products must be split into milestones; Product ones may be; Sketch ones never are.
+_Avoid_: Sub-product, phase, epic, sprint
+
 **Ticket**:
 A tracker-agnostic unit of work produced by the library. The host agent pushes it into whatever tracker it has access to (Linear, GitHub Issues, files).
 _Avoid_: Issue, task, story
