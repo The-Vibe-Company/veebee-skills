@@ -1,0 +1,30 @@
+CHANGELOG.md
+  s_ba8bc67b2ef742::t_a2431fd4f81684 3-8
+docs/skills/eureka.md
+  s_ba8bc67b2ef742::t_a2431fd4f81684 34,36,40
+skills/eureka/evals/evals.json
+  s_ba8bc67b2ef742::t_a2431fd4f81684 48-50
+.claude-plugin/plugin.json
+  s_ba8bc67b2ef742::t_a2431fd4f81684 3
+skills/eureka/companion.json
+  s_ba8bc67b2ef742::t_a2431fd4f81684 4,12-20
+skills/eureka/SKILL.md
+  s_ba8bc67b2ef742::t_a2431fd4f81684 27,90
+  s_ba8bc67b2ef742::t_eb3078e6cc13c0 15,35,42,49,102,104,106,108-109,119,124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8a85a48d0010f9691077400fd367d9c8be853c7d",
+  "prompts": {},
+  "sessions": {
+    "s_ba8bc67b2ef742": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ad92ec74-d0c4-4929-967d-5c5f9d5bb27e",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
