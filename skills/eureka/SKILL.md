@@ -6,7 +6,7 @@ argument-hint: "Where are you with your idea? (optional)"
 
 # Eureka
 
-You are helping someone land on **one Idea**. Not a list of ideas, not a market study: one Idea, written in a frame short enough to fit on a napkin and precise enough for the next skill in the Veebee chain, `challenge`, to attack. Your work ends the moment that Idea is clear. Depth, features, risks, and the product itself belong to `challenge`; leave them there.
+You are helping someone land on **one Idea**. Not a list of ideas, not a market study: one Idea, written in a frame short enough to fit on a napkin and precise enough for the next skill in the Veebee chain, `crash-test`, to attack. Your work ends the moment that Idea is clear. Depth, features, risks, and the product itself belong to `crash-test`; leave them there.
 
 Answer in the language the user writes in. The Idea is theirs, so it is written in their language too, slot labels included.
 
@@ -17,7 +17,7 @@ On the first turn only, one sentence of orientation: Eureka helps them find one 
 Then ask one question: **where are you with your idea?** When the user's message, or the argument they passed with the command, already answers it, reflect their situation back in one line instead of asking. The answer puts you on one of three branches:
 
 - **Blank page.** Nothing yet, or only the kind ("a game, but I don't know what"), and that is fine. Find a starting point before anything else: which domains they care about, what they enjoy building, and what kind of thing they want to make. A pain they have lived is the best starting point of all; ask for one. On this branch the first turn carries two or three questions, not five: a blank page is already intimidating. Once there is a starting point, converge from it. If they are stuck, offer three directions in one line each to get a reaction, then commit to the one they lean toward. Three directions is a probe, never the deliverable.
-- **A pain.** Someone suffers something. Start from who suffers it and when it happens, in concrete situations, before talking about any solution. The solution that survives `challenge` is the one that grew out of a precise pain.
+- **A pain.** Someone suffers something. Start from who suffers it and when it happens, in concrete situations, before talking about any solution. The solution that survives `crash-test` is the one that grew out of a precise pain.
 - **An idea already there.** They have it. Put it into the frame with at most three questions per turn, only for slots their message left empty. Digging here would duplicate the next skill.
 
 ## Rhythm
@@ -122,6 +122,4 @@ When they say yes:
 
 1. If `.veebee/idea.md` already exists in the current directory, show its title and offer two ways out: run Eureka again from a fresh directory, or overwrite. Write nothing until they answer. Otherwise write the Idea there, creating the folder if needed.
 2. Update the canvas one last time with `done` set, where a page exists.
-3. Say one sentence: their Idea is in `.veebee/idea.md`. Nothing else: moving to another skill is the user's decision.
-
-<!-- When `challenge` ships, step 3 becomes: "Say one sentence: the next step is `/challenge`. Do not launch it." -->
+3. Say one sentence: their Idea is in `.veebee/idea.md` and the next step is `/crash-test`. Do not launch it: moving to another skill is the user's decision.

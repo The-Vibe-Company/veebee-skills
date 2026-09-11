@@ -2,6 +2,8 @@
 
 ## 0.4.0
 
+- New skill `crash-test`: `/grill-me` for a product. Rounds of ❓/➡️ questions until nothing is left open, Exigence Level as the first decision, milestones when the product is too big, one folder per milestone under `.veebee/milestones/`, and the Product Brief in `product.md`. Five evals.
+- `eureka` now points to `/crash-test` at the finish.
 - `eureka` asks three to five questions per turn instead of one to three; two or three on a blank first turn.
 
 ## 0.3.2

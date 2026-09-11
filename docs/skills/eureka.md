@@ -5,15 +5,15 @@ Finds one Idea, from a blank page or from a pain. Step 1 of the chain.
 ## Trigger
 
 - `/eureka`
-- Model-invoked on blank-page phrases only: "je cherche une idée", "j'ai pas d'idée", "trouve-moi un projet", "I need an idea", "what should I build". Never on "I have a rough idea": that is `challenge`'s territory.
+- Model-invoked on blank-page phrases only: "je cherche une idée", "j'ai pas d'idée", "trouve-moi un projet", "I need an idea", "what should I build". Never on "I have a rough idea": that is `crash-test`'s territory.
 
 ## Conversation
 
-- First turn opens with two or three sentences on what Eureka does and what it is for (one Idea by interview, a canvas that fills as the user answers, `.veebee/idea.md` at the end, ready for `challenge`), then always the same question: where are you with your idea?
+- First turn opens with two or three sentences on what Eureka does and what it is for (one Idea by interview, a canvas that fills as the user answers, `.veebee/idea.md` at the end, ready for `crash-test`), then always the same question: where are you with your idea?
 - Three branches:
   - **Blank page**: start from domains that interest the user and the kind of thing they want to make (product, game, skill). May propose three directions at some point to get a reaction, but converges on one Idea. Never delivers a list.
   - **A pain**: start from who suffers it and when.
-  - **An idea already clear**: put it into the frame and point to `challenge` without digging.
+  - **An idea already clear**: put it into the frame and point to `crash-test` without digging.
 - Three to five questions per turn, adapted to the previous answers, never fewer than two after the opening one; two or three on a blank first turn. No numbered rounds. The user can say stop at any time; after ten turns the skill shows the page and asks whether to continue. Blank page: one or two on the first turn. Idea already there: at most two per turn, only for empty slots.
 - Slots hold only what the user said. An inferred slot is marked "(to confirm)". The assistant proposes a working title as soon as the one-sentence slot exists.
 - Reply, Idea and slot labels in the user's language.
@@ -43,7 +43,7 @@ Through the runtime's structured question tool when it is really in the toolset 
 
 - `.veebee/idea.md` in the current directory, created if missing. If an idea already exists there, show its title and offer two ways out, a fresh directory or overwrite, and write nothing until the user answers.
 - When nothing is left to ask, the canvas switches to short headed sections and the skill asks one thing: does the page say it right? Yes, or an open "I would change something". Never a workflow choice in the options.
-- Ends when the user confirms. Writes the file, updates the canvas one last time, says one sentence: the Idea is in `.veebee/idea.md`. (Points to `/challenge` once that skill ships.) Never launches another skill.
+- Ends when the user confirms. Writes the file, updates the canvas one last time, says one sentence: the Idea is in `.veebee/idea.md`. and the next step is `/crash-test`. Never launches another skill.
 
 ## Tests
 

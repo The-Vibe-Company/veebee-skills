@@ -1,0 +1,143 @@
+<!-- Crash-test canvas. Works two ways with the same file: published with an Artifact tool, or opened
+     from disk in a browser, where it reloads itself every few seconds so each rewrite shows up. -->
+<meta charset="utf-8">
+<title>Crash-test</title>
+<style>
+  :root {
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479; --faint: #c9c3b6;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  .sheet { max-width: 680px; min-height: 80vh; margin: 40px auto; padding: 64px 64px 72px; background: var(--paper);
+           box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 40px rgba(0,0,0,.08); }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .level { font-family: var(--sans); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .level.empty { background: transparent; color: var(--faint); border: 1px dashed var(--faint); }
+  h1 { font-weight: 500; font-size: 38px; line-height: 1.1; margin: 0 0 36px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+  .section { margin: 0 0 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .section:last-child { border-bottom: 0; }
+  .section h2 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; font-weight: 600; }
+  .section h2.empty { color: var(--faint); }
+  .section p { font-size: 17px; line-height: 1.55; margin: 0 0 8px; white-space: pre-line; }
+  .section .placeholder { height: 1.1em; border-bottom: 1px dashed var(--faint); width: 60%; }
+  .sub { font-family: var(--sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  ul { margin: 0; padding-left: 20px; } li { margin: 4px 0; font-size: 16px; line-height: 1.5; }
+  .tree { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--ink); background: var(--bg); padding: 14px 18px; border-radius: 8px; white-space: pre; overflow-x: auto; }
+  .tree .todo { color: var(--muted); }
+  .done { margin-top: 40px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
+  .done code { font-family: var(--mono); color: var(--ink); }
+  @media (max-width: 680px) { .sheet { margin: 0; padding: 40px 22px; min-height: 100vh; } h1 { font-size: 30px; } }
+</style>
+
+<div class="sheet">
+  <header><div class="level" id="level"></div></header>
+  <h1 id="title"></h1>
+  <div id="sections"></div>
+  <div class="done" id="done" hidden></div>
+</div>
+
+<script>
+// Edit only this object. Every section is always shown; an empty text draws a placeholder.
+// - level: "" | "sketch" | "product" | "platform"
+// - sections: fixed order, keys below; text may contain line breaks. For "features", use the three lists.
+// - milestones: [] or [{ slug, title, essence, status }] where status is "todo" | "done" (crash-tested).
+// - done: true on the last turn only.
+const BRIEF = {
+  lang: "fr",
+  title: "",
+  level: "",
+  sections: {
+    essence: "",
+    problem: "",
+    forWhom: "",
+    level: "",
+    features: { launch: [], later: [], never: [] },
+    journeys: "",
+    risks: "",
+    proof: "",
+    openQuestions: [],
+  },
+  milestones: [],
+  done: false,
+};
+
+const T = {
+  fr: { untitled: "Sans titre", noLevel: "niveau à fixer", levels: { sketch: "Sketch", product: "Product", platform: "Platform" },
+        headings: { essence: "Essence", problem: "Le problème", forWhom: "Pour qui", level: "Niveau d'exigence", features: "Features",
+                    journeys: "Parcours clés", risks: "Risques et paris", proof: "Ce qui prouvera que ça marche", openQuestions: "Questions ouvertes", milestones: "Jalons" },
+        launch: "Au lancement", later: "Plus tard", never: "Jamais", oneGo: "Se livre d'un coup.",
+        done: "Le Brief est dans <code>product.md</code>." },
+  en: { untitled: "Untitled", noLevel: "level to set", levels: { sketch: "Sketch", product: "Product", platform: "Platform" },
+        headings: { essence: "Essence", problem: "Problem", forWhom: "For whom", level: "Exigence Level", features: "Features",
+                    journeys: "Journeys", risks: "Risks and bets", proof: "Proof", openQuestions: "Open questions", milestones: "Milestones" },
+        launch: "At launch", later: "Later", never: "Never", oneGo: "Ships in one go.",
+        done: "The Brief is in <code>product.md</code>." },
+};
+
+(function render() {
+  const t = T[BRIEF.lang] || T.en;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const lvl = document.getElementById("level");
+  lvl.textContent = BRIEF.level ? t.levels[BRIEF.level] || BRIEF.level : t.noLevel;
+  lvl.classList.toggle("empty", !BRIEF.level);
+  const title = document.getElementById("title");
+  title.textContent = BRIEF.title || t.untitled;
+  title.classList.toggle("untitled", !BRIEF.title);
+
+  const text = (v) => v ? `<p>${esc(v)}</p>` : `<div class="placeholder"></div>`;
+  const list = (arr) => arr && arr.length ? `<ul>${arr.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="placeholder"></div>`;
+  const S = BRIEF.sections;
+  const parts = [];
+  const sec = (key, body, filled) => parts.push(`<div class="section"><h2 class="${filled ? "" : "empty"}">${esc(t.headings[key])}</h2>${body}</div>`);
+
+  sec("essence", text(S.essence), !!S.essence);
+  sec("problem", text(S.problem), !!S.problem);
+  sec("forWhom", text(S.forWhom), !!S.forWhom);
+  sec("level", text(S.level), !!S.level);
+  const f = S.features || {};
+  const anyF = (f.launch||[]).length || (f.later||[]).length || (f.never||[]).length;
+  sec("features", `<div class="sub">${t.launch}</div>${list(f.launch)}<div class="sub">${t.later}</div>${list(f.later)}<div class="sub">${t.never}</div>${list(f.never)}`, anyF);
+  sec("journeys", text(S.journeys), !!S.journeys);
+  sec("risks", text(S.risks), !!S.risks);
+  sec("proof", text(S.proof), !!S.proof);
+  if ((S.openQuestions||[]).length) sec("openQuestions", list(S.openQuestions), true);
+
+  const ms = BRIEF.milestones || [];
+  let tree;
+  if (!ms.length) tree = BRIEF.level && BRIEF.level !== "platform" && S.essence ? `<p>${t.oneGo}</p>` : `<div class="placeholder"></div>`;
+  else {
+    const lines = [".veebee/", "├── product.md", "└── milestones/"];
+    ms.forEach((m, i) => {
+      const last = i === ms.length - 1;
+      const cls = m.status === "done" ? "" : "todo";
+      lines.push(`    ${last ? "└──" : "├──"} <span class="${cls}">${esc(m.slug)}/</span>  ${esc(m.title)}${m.essence ? " — " + esc(m.essence) : ""}`);
+      lines.push(`    ${last ? "   " : "│  "} ├── idea.md`);
+      lines.push(`    ${last ? "   " : "│  "} └── <span class="${cls}">product.md${m.status === "done" ? "" : "  ← /crash-test " + esc(m.slug)}</span>`);
+    });
+    tree = `<div class="tree">${lines.join("\n")}</div>`;
+  }
+  sec("milestones", tree, ms.length > 0);
+
+  document.getElementById("sections").innerHTML = parts.join("");
+  const done = document.getElementById("done");
+  done.hidden = !BRIEF.done;
+  done.innerHTML = t.done;
+})();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
+</script>

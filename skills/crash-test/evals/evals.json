@@ -1,0 +1,48 @@
+{
+  "skill_name": "crash-test",
+  "evals": [
+    {
+      "id": 1,
+      "name": "sketch-game-from-idea-file",
+      "prompt": "/crash-test (a .veebee/idea.md for a small bee-vs-wasps roguelike is present; the user says: c'est juste un proto pour le week-end)",
+      "expected_output": "Round 1 in ❓/➡️ format, opening with the Exigence Level question recommending Sketch. Reads the idea file rather than asking what the idea is. No milestones branch.",
+      "files": [".veebee/idea.md"]
+    },
+    {
+      "id": 2,
+      "name": "product-from-loose-idea",
+      "prompt": "j'ai une idée : une app qui répartit les tâches de la semaine entre deux partenaires à partir de l'historique, challenge-la",
+      "expected_output": "No idea file: reflects the idea back in one line, then round 1 with the level question (Product recommended) and the rest of the frontier, at most fifteen questions, each with a ➡️ recommendation.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "platform-splits-into-milestones",
+      "prompt": "on veut construire une plateforme complète pour les agences : CRM, facturation, gestion de projet, portail client, tout intégré (simulate the full interview with short invented user answers; the user accepts Platform and the proposed split, and confirms the Brief)",
+      "expected_output": "Platform level, milestones proposed as a question with an alternative cut, then product.md written with a Milestones section and one .veebee/milestones/NN-slug/idea.md per milestone, numbered in delivery order, each with a front-matter and the Idea frame. Final sentence names /crash-test <first slug>.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "level-disagreement",
+      "prompt": "je veux faire un marketplace de freelances avec paiement intégré, escrow, litiges, avis, mais c'est un sketch, un truc vite fait pour tester (simulate: the skill recommends Product or Platform, the user insists on Sketch)",
+      "expected_output": "The skill says why it disagrees once, then follows the user: level sketch in the front-matter, and the reserve written in the Exigence Level section. No blocking, no repeated argument.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "existing-product-md",
+      "prompt": "/crash-test in a folder where .veebee/product.md already exists (the user then chooses 'resume')",
+      "expected_output": "Shows the existing Brief's title and offers three ways out: fresh directory, overwrite, resume. Writes nothing before the answer. On resume, takes the existing Brief as settled answers and opens a round on what is still weak.",
+      "files": [".veebee/product.md"]
+    }
+  ],
+  "assertions": [
+    "Every round uses the ❓ **Qn** - **title** / ➡️ recommendation format, with at most fifteen questions",
+    "The first question of the first round is the Exigence Level",
+    "product.md starts with a YAML front-matter carrying kind, title, lang and level, and has every section of the Brief",
+    "A Platform run writes one milestones/NN-slug/idea.md per milestone, in delivery order, and idea.md at the root is untouched",
+    "A level disagreement leaves the user's level with a written reserve, and nothing blocks",
+    "When product.md already exists, nothing is written before the user picks fresh directory, overwrite, or resume"
+  ]
+}

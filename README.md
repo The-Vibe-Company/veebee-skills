@@ -37,6 +37,8 @@ claude --plugin-dir /path/to/veebee-skills
 
 - **`/eureka`**: find one clear idea by interview, from a blank page or from a pain. Shows the idea taking shape on a live page while you talk, and writes `.veebee/idea.md` when it is done. Definition in [docs/skills/eureka.md](./docs/skills/eureka.md).
 
+- **`/crash-test`**: `/grill-me` for a product. Interviews you in rounds until nothing is left open, sizes the project (Sketch, Product, Platform), splits it into milestones when it is too big, and writes `.veebee/product.md`, the Product Brief. Run it again on each milestone with `/crash-test <slug>`. Definition in [docs/skills/crash-test.md](./docs/skills/crash-test.md).
+
 The other skills are defined step by step, each one grilled before it is written. Track progress in [docs/skills/](./docs/skills/).
 
 ## Exigence Level
