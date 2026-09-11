@@ -1,0 +1,39 @@
+docs/skills/crash-test.md
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 1-59
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 5-6
+skills/eureka/assets/canvas.html
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 59-60
+skills/crash-test/evals/evals.json
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 1-48
+skills/crash-test/SKILL.md
+  s_b3d6a1a02e1a09::t_10bdfa1b6e3ae0 15,22,27,29,53,102,108,111
+  s_b3d6a1a02e1a09::t_ad71d2d9cd30b2 1-14,16,19-21,23-26,28,30-52,54-68,70-101,103-107,109-110,112-158
+  s_b3d6a1a02e1a09::t_5b56d2e8c783a7 17-18,69
+README.md
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 40-41
+skills/eureka/SKILL.md
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 9,20,125
+docs/skills/eureka.md
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 8,12,16,46
+skills/crash-test/assets/canvas.html
+  s_b3d6a1a02e1a09::t_21792226b1fc0d 1-143
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_fc34dbbd8abf35 3,22-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c51896027bba3d6a22fc23e8485e0651e955a0a7",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
