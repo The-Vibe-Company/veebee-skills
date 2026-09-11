@@ -20,7 +20,7 @@ Then find your input, in this order:
 
 1. **A milestone slug was passed** (`/crash-test 02-payments`): you work inside `.veebee/milestones/<slug>/`. Read the root `.veebee/product.md` for context and the milestone's `idea.md` as the Idea. The Brief you write is the milestone's own `product.md`, at Product level by default.
 2. **`.veebee/idea.md` exists**: read it. Its front-matter gives the kind; its slots give the first answers. Reflect what you read in one line, so they know what you start from.
-3. **Nothing on disk**: the Idea is what the user says, or the argument they passed. Reflect it back in one line and start.
+3. **Nothing on disk**: the Idea is what the user says, or the argument they passed. Reflect it back in one line and start. Infer the kind (product, game, skill, content, service) from what they said; ask only when it is genuinely ambiguous.
 
 ## The design tree
 
@@ -142,7 +142,7 @@ level: sketch | product | platform
 <what was stopped on, or left undecided, as questions>
 
 ## Milestones
-<ordered list: slug, title, essence in one line; or "ships in one go">
+<ordered list: slug, title, essence in one line; or "ships in one go". The alternative cut that was set aside, in one line, and why: it is the history of the decision>
 ```
 
 Headings in the user's language, taken from the `T` table of [assets/canvas.html](assets/canvas.html) so every Brief uses the same words; front-matter keys and values in English. Everything the next skills need is here, nothing about the stack: that is `setup`'s fight. `idea.md` is never rewritten: it is the history, the Brief is the truth.
