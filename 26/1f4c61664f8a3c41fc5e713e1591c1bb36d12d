@@ -1,0 +1,19 @@
+CONTEXT.md
+  s_b3d6a1a02e1a09::t_45241ca82bd6ce 49-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "261f4c61664f8a3c41fc5e713e1591c1bb36d12d",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
