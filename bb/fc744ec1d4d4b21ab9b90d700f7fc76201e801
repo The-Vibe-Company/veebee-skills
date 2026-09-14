@@ -1,0 +1,29 @@
+skills/crash-test/SKILL.md
+  s_b3d6a1a02e1a09::t_276364cbd52032 3,21,25-26,33-34,39,41,43-44,46-47,49,51,53,55-67,69-70,96
+  s_b3d6a1a02e1a09::t_52d44f5610f147 45,68
+  s_b3d6a1a02e1a09::t_723cf62cd4d1ca 97
+docs/skills/crash-test.md
+  s_b3d6a1a02e1a09::t_a8fe81e669f537 8,12,18-20,28,61
+skills/crash-test/evals/evals.json
+  s_b3d6a1a02e1a09::t_a8fe81e669f537 9-11,39-51,55,60-61,63
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_89a820879dc1ab 3
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_9d49965331a852 3-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "bbfc744ec1d4d4b21ab9b90d700f7fc76201e801",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
