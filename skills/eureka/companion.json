@@ -1,7 +1,7 @@
 {
   "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
   "name": "eureka",
-  "version": "0.3.2",
+  "version": "0.4.1",
   "icon": "sparkles",
   "title": "Eureka",
   "description": "Find one clear idea by interview, from a blank page or from a pain, for a product, a game, a skill, a piece of content, or a service.",
@@ -9,6 +9,23 @@
   "metadata": {
     "companionSkillId": "013ce125-b748-40a2-81b6-16d835c476a9",
     "changelog": [
+      {
+        "version": "0.4.1",
+        "date": "2026-09-14",
+        "changes": [
+          "Merged with the repository: three to five questions per turn (two or three on a blank first turn), and the finish points to /crash-test.",
+          "Keeps 0.3.3: blocking question tool only, asynchronous tools never, missing card recovered in chat."
+        ]
+      },
+      {
+        "version": "0.3.3",
+        "date": "2026-09-14",
+        "changes": [
+          "Use structured questions only when callable in the current mode and blocking until the user answers.",
+          "Keep complete questions and options in the final chat reply when only asynchronous tools are available.",
+          "Recover a missing question card by repeating the original choices in chat without advancing the interview."
+        ]
+      },
       {
         "version": "0.3.2",
         "date": "2026-09-11",
@@ -73,6 +90,5 @@
     "secrets": {}
   },
   "dependencies": {},
-  "commands": [],
-  "checks": {}
+  "commands": []
 }

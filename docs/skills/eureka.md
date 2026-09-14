@@ -14,7 +14,7 @@ Finds one Idea, from a blank page or from a pain. Step 1 of the chain.
   - **Blank page**: start from domains that interest the user and the kind of thing they want to make (product, game, skill). May propose three directions at some point to get a reaction, but converges on one Idea. Never delivers a list.
   - **A pain**: start from who suffers it and when.
   - **An idea already clear**: put it into the frame and point to `crash-test` without digging.
-- Three to five questions per turn, adapted to the previous answers, never fewer than two after the opening one; two or three on a blank first turn. No numbered rounds. The user can say stop at any time; after ten turns the skill shows the page and asks whether to continue. Blank page: one or two on the first turn. Idea already there: at most two per turn, only for empty slots.
+- Three to five questions per turn, adapted to the previous answers, never fewer than two after the opening one; two or three on a blank first turn. No numbered rounds. The user can say stop at any time; after ten turns the skill shows the page and asks whether to continue. Idea already there: at most three per turn, only for empty slots.
 - Slots hold only what the user said. An inferred slot is marked "(to confirm)". The assistant proposes a working title as soon as the one-sentence slot exists.
 - Reply, Idea and slot labels in the user's language.
 - Competitive study is offered, never imposed. If yes: three to five existing solutions, what they do, what they miss for the target audience, one line each. No pricing, no market share.
@@ -37,13 +37,13 @@ One page, `assets/canvas.html`. With the Artifact tool, published at the first t
 
 ## Questions
 
-Through the runtime's structured question tool when it is really in the toolset (`AskUserQuestion` in Claude Code, `request_user_input` in Codex: Plan mode, or every mode with `default_mode_request_user_input = true`): the point as header, the question in one sentence, two to four options with an emoji and a one-line description, the suggested option first with "(Recommended)" and its reason, no "Other" option since the tool offers free text itself. One call per turn, or one per question when the tool takes only one. Otherwise in the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus Autre on the next free letter when the options are closed choices, so a letter is enough to answer. Open questions (title, memory) always in the chat. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. Asking ends the turn: the skill never answers for the user. A picked option plus free text: the text refines the pick, it does not replace it.
+Through the runtime's structured question tool only when it is callable in the current mode and blocks until the user answers (`AskUserQuestion` in Claude Code; `request_user_input` in Codex, Plan mode or every mode with `default_mode_request_user_input = true`); an asynchronous tool such as `request_user_input_async` is never used, its card can vanish when the turn ends. If a card disappears, the same question and options are repeated in the chat: the point as header, the question in one sentence, two to four options with an emoji and a one-line description, the suggested option first with "(Recommended)" and its reason, no "Other" option since the tool offers free text itself. One call per turn, or one per question when the tool takes only one. Otherwise in the chat: 1️⃣ 2️⃣ 3️⃣, the point in bold, the question in one sentence, then two to four lettered options plus Autre on the next free letter when the options are closed choices, so a letter is enough to answer. Open questions (title, memory) always in the chat. 💡 suggestion whenever earlier answers favour an option, naming the answer that points there; none on questions about taste or memories. Asking ends the turn: the skill never answers for the user. A picked option plus free text: the text refines the pick, it does not replace it.
 
 ## Output
 
 - `.veebee/idea.md` in the current directory, created if missing. If an idea already exists there, show its title and offer two ways out, a fresh directory or overwrite, and write nothing until the user answers.
 - When nothing is left to ask, the canvas switches to short headed sections and the skill asks one thing: does the page say it right? Yes, or an open "I would change something". Never a workflow choice in the options.
-- Ends when the user confirms. Writes the file, updates the canvas one last time, says one sentence: the Idea is in `.veebee/idea.md`. and the next step is `/crash-test`. Never launches another skill.
+- Ends when the user confirms. Writes the file, updates the canvas one last time, says one sentence: the Idea is in `.veebee/idea.md` and the next step is `/crash-test`. Never launches another skill.
 
 ## Tests
 

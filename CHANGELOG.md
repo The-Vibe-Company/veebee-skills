@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `eureka` merged with Companion 0.3.3 (Victor Nivault): the question tool is used only when callable in the current mode and blocking; asynchronous question tools are never used; a question whose card disappeared is repeated in full in the chat. Two evals added. Companion version 0.4.1.
+
 ## 0.4.1
 
 - `crash-test` grilled: same question interface as `eureka` (question tool when present, else 1️⃣ blocks with lettered options and a recommendation on every question); written sizing heuristics (how long, how many people, how many essences); skipped questions asked again once then parked; a milestone run inherits everything the root Brief settles and touches only its own folder plus the root Milestones section; an existing project in the directory is read as facts; triggers narrowed to explicit asks. Sixth eval on a milestone run.

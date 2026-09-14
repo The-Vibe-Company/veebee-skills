@@ -37,11 +37,25 @@
       "files": [
         ".veebee/idea.md"
       ]
+    },
+    {
+      "id": 6,
+      "name": "async-card-persistence",
+      "prompt": "Runtime: Default mode, request_user_input is Plan-only, request_user_input_async returns immediately. User: my shopping list is useless. Ask the next question.",
+      "expected_output": "Do not invoke either question tool. Final reply includes the full question, concrete lettered options, and Other. Stop and await the answer.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "missing-card-recovery",
+      "prompt": "Previous question: What is hardest? a choosing meals, b remembering ingredients, c shopping time, d Other. User: the question card disappeared.",
+      "expected_output": "Repeat that same question and all four options in the final chat reply, preserving their order. No temporary card, no assumed answer or interview progression.",
+      "files": []
     }
   ],
   "assertions": [
     "Never more than five questions in one assistant turn, never fewer than two after the opening question, except when fewer slots are still open",
-    "Every closed question is asked through the structured question tool when one exists (no Other option added, suggested option first and recommended); in the chat, it carries lettered options and ends with Autre/Other on the next free letter, except a yes-or-no question whose second option is already open",
+    "Every closed question uses a callable blocking question tool only when allowed in the current mode (no Other option added, suggested option first and recommended); otherwise the complete question and lettered options appear in the final chat reply, ending with Autre/Other unless the second yes/no option is open. Asynchronous question tools are not used.",
     "No option ever mentions /challenge or another skill",
     "The final idea.md starts with a YAML front-matter carrying kind, title and lang",
     "When .veebee/idea.md already exists, nothing is written before the user chooses between a fresh directory and overwriting",

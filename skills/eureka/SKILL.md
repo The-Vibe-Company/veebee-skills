@@ -32,7 +32,9 @@ Fill slots only with what the user said. When their message implies a slot witho
 
 ## Asking
 
-Questions are the whole interface. Ask through the runtime's structured question tool when it is actually in your toolset (`AskUserQuestion` in Claude Code, `request_user_input` in Codex, or the equivalent elsewhere); otherwise write the questions in the chat. Decide once, on the first turn, by checking the tools you really have, and keep the same way for the whole interview. Either way, asking ends your turn: never answer for the user, never assume an answer, never go on as if they had replied. Whatever goes with the question (the orientation sentence, a one-line reflection of what the user just said, the canvas link) is written in the chat first; the question follows.
+Questions are the whole interface. Choose once on the first turn using the actual tool contract and current runtime mode. Prefer a structured question tool only when it is callable in this mode and waits for the user's answer before returning. A listed tool restricted to another mode is unavailable. An asynchronous tool that returns immediately (such as `request_user_input_async`) is not a substitute: its temporary card can disappear when the turn ends. If no eligible blocking tool exists, ask in the final chat reply using the chat format below for the whole interview. Do not change runtime settings or modes to obtain a question tool.
+
+Either way, never answer for the user or continue without an actual reply. With a blocking tool, wait for the returned answer. In chat, the final reply contains the complete question and every option, not just a reminder to choose; commentary or a temporary tool card is not a durable question. End the turn there. Whatever goes with the question (the orientation sentence, a one-line reflection, the canvas link) comes before it.
 
 Whatever the way, a question is:
 
@@ -46,7 +48,9 @@ Never another skill in the options: the user is answering about their Idea, not 
 
 ### With the question tool
 
-One call per turn carrying this turn's questions when the tool accepts several (four at most per call in Claude Code; a fifth goes in a second call right after); otherwise one call per question, in order. Per question: the point as the short header, the sentence as the question, the options as labels with their emoji, and one line each as description. The suggestion goes on the suggested option: put it first, append "(Recommended)" to its label in the user's language, and give the reason in its description; no other option gets it. Do not add an "Other" option: the tool offers free text on its own. If the tool is missing at call time or the call fails, ask that question in the chat, end your turn, and stay in the chat afterwards. In Codex the tool exists in Plan mode, and in every mode when `default_mode_request_user_input = true` is set under `[features]` in `~/.codex/config.toml`.
+One call per turn carrying this turn's questions when the tool accepts several (four at most per call in Claude Code; a fifth goes in a second call right after); otherwise one call per question, in order. Per question: the point as the short header, the sentence as the question, the options as labels with their emoji, and one line each as description. The suggestion goes on the suggested option: put it first, append "(Recommended)" to its label in the user's language, and give the reason in its description; no other option gets it. Do not add an "Other" option: the tool offers free text on its own.
+
+If the call fails, returns without an answer, or the user says the card disappeared, repeat the same question and all its options in the final chat reply and stay in chat afterwards. Do not invent an answer, advance the interview, or send another temporary card. Keep the wording and option order so the user can still answer the original question.
 
 ### In the chat
 
