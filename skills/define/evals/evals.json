@@ -53,7 +53,7 @@
     "No question comes from a fixed topic list: each one traces back to an earlier answer, the idea file, or a fact the skill found",
     "A branch with many questions behind it is opened only after asking the user whether to go deep",
     "A contradiction between two answers is put back in the round it appears, never resolved by the skill, and lands in decisions/",
-    "Every question is preceded by a plain explanation of what is at stake and what the answer changes; options are two to five words and carry no justification, no label and no parenthesis",
+    "Every question is preceded by a plain explanation of what is at stake and what the answer changes; options are two to five words and carry no justification, no label and no parenthesis; the question names its subject in full and stands alone without the text above",
     "The finish writes CONTEXT.md and the .veebee document folder, product.md carrying front-matter kind, title, lang, size",
     "Before the final check, sections still empty are named and the user chooses to fill them or leave them empty",
     "The finish shows the whole project milestone tree, read from disk, marking each one defined or to define",

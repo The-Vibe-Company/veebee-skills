@@ -30,7 +30,7 @@ Facts are the skill's job (web, filesystem, sub-agents). Stop word and a ten-rou
 
 Say what is at stake before asking, in the chat above the question, in four movements: what you are about to settle, why it matters and what changes downstream, what bothers you in what they said, then the question. Talk as if the user had just walked in: they do not know the vocabulary and cannot guess what a word costs them later.
 
-Options are two to five words, in the user's language, and hold nothing but the option. No "(Recommandé)", no "(exclusifs)", no parenthesis bolted onto the question. Your own opinion goes in the text above, in the first person. The sizes are said as *un week-end*, *un mois de soirées*, *plusieurs mois*; `sketch`, `product` and `platform` are internal names for the documents, never spoken.
+The question names its subject in full, with no pronoun pointing back at the explanation: it is often read alone in a card by someone who skipped the text above. Options are two to five words, in the user's language, and hold nothing but the option. No "(Recommandé)", no "(exclusifs)", no parenthesis bolted onto the question. Your own opinion goes in the text above, in the first person. The sizes are said as *un week-end*, *un mois de soirées*, *plusieurs mois*; `sketch`, `product` and `platform` are internal names for the documents, never spoken.
 
 ## Sizing
 

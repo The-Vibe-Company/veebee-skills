@@ -67,6 +67,8 @@ The same interface as `eureka`: the structured question tool when it is really i
 3. What bothers you in what they said, when something does: the contradiction, the thing that does not add up.
 4. Then the question itself, and the options.
 
+The question names its subject in full, every time. *Combien de temps tu comptes passer sur Bourg ?*, never *Tu y passes combien de temps ?*. No `y`, no `ça`, no pronoun pointing back at the explanation: the question is often read on its own, in a card, by someone who skipped the text above, and it has to hold up there.
+
 Talk as if they had just walked in. They do not know your vocabulary, they have not read the skill, and they cannot guess what a word costs them later. A question that needs no explanation is rare; write the explanation rather than assume it.
 
 Then the options:
@@ -83,7 +85,7 @@ In the chat, when there is no question tool, the explanation is written the same
 ```
 <the explanation, the four movements above>
 
-**<the question, one sentence>**
+**<the question, one full sentence naming its subject>**
 → <option>
 → <option>
 → <option>
