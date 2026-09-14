@@ -1,0 +1,26 @@
+skills/define/companion.json
+  s_b3d6a1a02e1a09::t_97a2ac20d78976 1-24,27-36
+  s_b3d6a1a02e1a09::t_e016a37250e90b 25-26
+skills/define/SKILL.md
+  s_b3d6a1a02e1a09::t_a80addb911c5ee 3
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_5c95418dab65d2 3
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_15310c6c038d0e 3-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d3233715f6ef2627382b19790a24472477a67fca",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
