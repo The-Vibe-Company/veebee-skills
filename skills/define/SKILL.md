@@ -1,6 +1,6 @@
 ---
 name: define
-description: Define a product precisely, by a long interview that settles every decision one at a time, then write the documents that describe it. Use when the user wants an idea turned into something buildable: "définis mon produit", "fais-moi le cadrage", "on creuse mon idée", "cadre ce projet", "define this", "spec this out", "what exactly are we building". Also runs on one milestone: `/define <slug>`. Not for finding an idea from nothing: that is `eureka`.
+description: Define a product precisely, by a long interview that settles every decision one at a time, then write the documents that describe it. Use when the user wants an idea turned into something buildable, in French ("définis mon produit", "fais-moi le cadrage", "on creuse mon idée", "cadre ce projet") or English ("define this", "spec this out", "what exactly are we building"). Also runs on a single milestone with /define <slug>. Not for finding an idea from nothing, which is eureka.
 argument-hint: "[milestone slug] or the idea in one line (optional)"
 ---
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1
+
+- `define`: the description in the frontmatter no longer breaks strict YAML parsers; it carried unquoted colons.
+- `define` is published on Companion, next to `eureka`, with `eureka` declared as its dependency.
+
 ## 0.6.0
 
 - `crash-test` is renamed **`define`**, and rewritten. The name promised a demolition and delivered a spec; the skill defines a product, so it says so.
