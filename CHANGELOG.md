@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.0
+
+- `crash-test` is renamed **`define`**, and rewritten. The name promised a demolition and delivered a spec; the skill defines a product, so it says so.
+- **No topic list.** The design tree is now the only engine: every question comes from something the user just said, so a game and a newsletter never get the same interview. The nine mandatory branches are gone.
+- **Going deep is the user's call.** When an answer opens ten questions behind it, the skill asks before diving. A yes buys rounds of edge cases; a no prunes the branch.
+- **Contradictions are put back immediately**, both sides quoted, never resolved by the skill, and written to `.veebee/decisions/`.
+- **No question limit**: it runs as long as it takes, with a stop word and a ten-round checkpoint.
+- **A folder of documents** instead of one Brief: `CONTEXT.md` at the root for the vocabulary, and `product.md`, `features.md`, `rules.md`, `journeys.md`, `decisions/`, `milestones/` under `.veebee/`.
+- **Questions written the way you talk**: one short sentence, options that name the thing and stop, no justification inside an option, one 💡 line at most and only when it changes the pick.
+- The finish names the sections still empty before writing, so empty on purpose is an answer and empty by accident is caught.
+
 ## 0.5.0
 
 - `crash-test` ends every run by showing the project's whole milestone tree, at any depth, marking each one validated (it has a `product.md`) or still to validate, with the command to run next. The tree is read from disk by `scripts/milestones.py`, so it can never claim a milestone is done when it is not. The canvas renders nested milestones with the same marks.

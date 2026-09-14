@@ -13,7 +13,7 @@
         "version": "0.4.1",
         "date": "2026-09-14",
         "changes": [
-          "Merged with the repository: three to five questions per turn (two or three on a blank first turn), and the finish points to /crash-test.",
+          "Merged with the repository: three to five questions per turn (two or three on a blank first turn), and the finish points to /define.",
           "Keeps 0.3.3: blocking question tool only, asynchronous tools never, missing card recovered in chat."
         ]
       },

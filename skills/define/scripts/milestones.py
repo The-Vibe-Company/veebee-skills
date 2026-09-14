@@ -2,13 +2,13 @@
 """Read the milestone tree of a Veebee project from disk.
 
 A milestone is a directory under `.veebee/milestones/`; it may hold its own
-`milestones/` in turn. A milestone is crash-tested when it has a `product.md`.
+`milestones/` in turn. A milestone is defined when it has a `product.md`.
 
     python3 milestones.py [project-root]           # text tree
     python3 milestones.py [project-root] --json    # nested JSON for the canvas
 
 Nothing is written. The tree is always read from disk, so it cannot drift from
-what has actually been crash-tested.
+what has actually been defined.
 """
 import json
 import os
@@ -53,7 +53,7 @@ def lines(nodes, prefix=""):
     for index, node in enumerate(nodes):
         last = index == len(nodes) - 1
         mark = "✓" if node["status"] == "done" else "○"
-        tail = "" if node["status"] == "done" else f"   ← /crash-test {node['slug']}"
+        tail = "" if node["status"] == "done" else f"   ← /define {node['slug']}"
         out.append(f"{prefix}{'└── ' if last else '├── '}{mark} {node['slug']}  {node['title']}{tail}")
         out += lines(node["children"], prefix + ("    " if last else "│   "))
     return out
@@ -86,7 +86,7 @@ def main():
         print(line)
     done, total = count(tree)
     if total:
-        print(f"\n{done}/{total} crash-testés   ✓ validé   ○ à valider")
+        print(f"\n{done}/{total} définis   ✓ défini   ○ à définir")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,190 @@
+<!-- Define canvas: the documents taking shape. Works two ways with the same file: published with an
+     Artifact tool, or opened from disk in a browser, where it reloads itself every few seconds. -->
+<meta charset="utf-8">
+<title>Define</title>
+<style>
+  :root {
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479; --faint: #c9c3b6;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  main { max-width: 700px; margin: 0 auto; padding: 44px 24px 80px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .size { font-family: var(--sans); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .size.empty { background: transparent; color: var(--faint); border: 1px dashed var(--faint); }
+  h1 { font-weight: 500; font-size: 38px; line-height: 1.1; margin: 6px 0 32px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+
+  .doc { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; margin: 0 0 18px; overflow: hidden; }
+  .doc > .name { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 10px 20px; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .doc > .name .count { float: right; }
+  .doc > .body { padding: 18px 20px 20px; }
+  .doc.empty > .name { color: var(--faint); }
+
+  .field { margin: 0 0 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field > .label { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+  .field > .label.empty { color: var(--faint); }
+  .field p { font-size: 16.5px; line-height: 1.55; margin: 0 0 6px; white-space: pre-line; }
+  .field p:last-child { margin-bottom: 0; }
+  .placeholder { height: 1em; border-bottom: 1px dashed var(--faint); width: 55%; }
+  ul { margin: 0; padding-left: 20px; } li { margin: 3px 0; font-size: 15.5px; line-height: 1.5; }
+  dl { margin: 0; } dt { font-weight: 600; font-size: 15.5px; margin-top: 8px; } dd { margin: 0; font-size: 15.5px; color: var(--muted); line-height: 1.5; }
+  .tree { font-family: var(--mono); font-size: 13px; line-height: 1.7; white-space: pre; overflow-x: auto; }
+  .tree .ok { color: var(--accent); } .tree .todo { color: var(--muted); } .tree .here { font-weight: 700; }
+  .legend { font-family: var(--sans); font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .done { margin-top: 32px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
+  .done code { font-family: var(--mono); color: var(--ink); }
+  @media (max-width: 700px) { main { padding: 28px 16px 60px; } h1 { font-size: 30px; } .doc > .body { padding: 14px 16px 16px; } }
+</style>
+
+<main>
+  <header><div class="size" id="size"></div></header>
+  <h1 id="title"></h1>
+  <div id="docs"></div>
+  <div class="done" id="done" hidden></div>
+</main>
+
+<script>
+// Edit only this object. Every document is always shown; what is empty draws a dashed line,
+// so the user sees the road left. Build `milestones` with scripts/milestones.py --json, and put
+// "current": true on the milestone this run is about.
+const DOCS = {
+  lang: "fr",
+  title: "",
+  size: "",                                  // "" | "sketch" | "product" | "platform"
+  product: { essence: "", problem: "", forWhom: "", size: "", bets: "", proof: "" },
+  features: { launch: [], later: [], never: [] },
+  rules: [],                                 // strings: one behaviour or edge case per line
+  journeys: [],                              // { heading, text }
+  vocabulary: [],                            // { term, definition } -> CONTEXT.md
+  decisions: [],                             // { n, title, chosen }
+  openQuestions: [],
+  milestones: [],                            // { slug, title, status, current, children }
+  done: false,
+};
+
+const T = {
+  fr: { untitled: "Sans titre", noSize: "taille à fixer",
+        sizes: { sketch: "Sketch", product: "Product", platform: "Platform" },
+        essence: "Essence", problem: "Le problème", forWhom: "Pour qui", size: "La taille", bets: "Paris et risques", proof: "La preuve",
+        launch: "Au lancement", later: "Plus tard", never: "Jamais",
+        rules: "Comment ça se comporte", journeys: "Les parcours", vocabulary: "Les mots du produit",
+        decisions: "Contradictions tranchées", open: "Questions ouvertes", milestones: "Jalons",
+        oneGo: "Se livre d'un coup.", tested: "définis", validated: "défini", toValidate: "à définir",
+        done: "Les documents sont dans <code>.veebee/</code>." },
+  en: { untitled: "Untitled", noSize: "size to set",
+        sizes: { sketch: "Sketch", product: "Product", platform: "Platform" },
+        essence: "Essence", problem: "Problem", forWhom: "For whom", size: "Size", bets: "Bets and risks", proof: "Proof",
+        launch: "At launch", later: "Later", never: "Never",
+        rules: "How it behaves", journeys: "Journeys", vocabulary: "The product's words",
+        decisions: "Arbitrated contradictions", open: "Open questions", milestones: "Milestones",
+        oneGo: "Ships in one go.", tested: "defined", validated: "defined", toValidate: "to define",
+        done: "The documents are in <code>.veebee/</code>." },
+};
+
+(function render() {
+  const t = T[DOCS.lang] || T.en;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const size = document.getElementById("size");
+  size.textContent = DOCS.size ? t.sizes[DOCS.size] || DOCS.size : t.noSize;
+  size.classList.toggle("empty", !DOCS.size);
+  const title = document.getElementById("title");
+  title.textContent = DOCS.title || t.untitled;
+  title.classList.toggle("untitled", !DOCS.title);
+
+  const blank = `<div class="placeholder"></div>`;
+  const field = (label, body, filled) =>
+    `<div class="field"><div class="label ${filled ? "" : "empty"}">${esc(label)}</div>${filled ? body : blank}</div>`;
+  const text = (label, v) => field(label, `<p>${esc(v)}</p>`, !!v);
+  const list = (label, arr) => field(label, `<ul>${(arr || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`, (arr || []).length > 0);
+
+  const docs = [];
+  const doc = (name, body, filled, count) => docs.push(
+    `<div class="doc ${filled ? "" : "empty"}"><div class="name">${esc(name)}` +
+    `${count ? `<span class="count">${esc(count)}</span>` : ""}</div><div class="body">${body}</div></div>`);
+
+  // CONTEXT.md
+  const v = DOCS.vocabulary || [];
+  doc("CONTEXT.md",
+    v.length ? `<dl>${v.map((x) => `<dt>${esc(x.term)}</dt><dd>${esc(x.definition)}</dd>`).join("")}</dl>`
+             : field(t.vocabulary, "", false),
+    v.length > 0, v.length ? `${v.length}` : "");
+
+  // product.md
+  const P = DOCS.product || {};
+  doc(".veebee/product.md",
+    text(t.essence, P.essence) + text(t.problem, P.problem) + text(t.forWhom, P.forWhom) +
+    text(t.size, P.size) + text(t.bets, P.bets) + text(t.proof, P.proof),
+    !!(P.essence || P.problem || P.forWhom || P.size || P.bets || P.proof));
+
+  // features.md
+  const F = DOCS.features || {};
+  const anyF = (F.launch || []).length + (F.later || []).length + (F.never || []).length;
+  doc(".veebee/features.md", list(t.launch, F.launch) + list(t.later, F.later) + list(t.never, F.never), anyF > 0);
+
+  // rules.md
+  const R = DOCS.rules || [];
+  doc(".veebee/rules.md", R.length ? `<ul>${R.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : blank,
+    R.length > 0, R.length ? `${R.length}` : "");
+
+  // journeys.md
+  const J = DOCS.journeys || [];
+  doc(".veebee/journeys.md",
+    J.length ? J.map((x) => text(x.heading, x.text)).join("") : field(t.journeys, "", false),
+    J.length > 0);
+
+  // decisions/
+  const D = DOCS.decisions || [];
+  doc(".veebee/decisions/",
+    D.length ? `<ul>${D.map((x) => `<li>${esc(String(x.n).padStart(4, "0"))} — ${esc(x.title)} → <em>${esc(x.chosen)}</em></li>`).join("")}</ul>` : blank,
+    D.length > 0, D.length ? `${D.length}` : "");
+
+  // milestones/
+  const ms = DOCS.milestones || [];
+  let tree;
+  if (!ms.length) {
+    tree = DOCS.size && DOCS.size !== "platform" && P.essence ? `<p>${t.oneGo}</p>` : blank;
+  } else {
+    const rows = (nodes, prefix) => nodes.flatMap((m, i) => {
+      const last = i === nodes.length - 1;
+      const ok = m.status === "done";
+      const cls = (ok ? "ok" : "todo") + (m.current ? " here" : "");
+      const tail = ok ? "" : `<span class="todo">   ← /define ${esc(m.slug)}</span>`;
+      return [`${prefix}${last ? "└── " : "├── "}<span class="${cls}">${ok ? "✓" : "○"} ${esc(m.slug)}</span>  ${esc(m.title)}${tail}`,
+              ...rows(m.children || [], prefix + (last ? "    " : "│   "))];
+    });
+    const tally = (nodes) => nodes.reduce((a, m) => {
+      const s = tally(m.children || []);
+      return [a[0] + (m.status === "done" ? 1 : 0) + s[0], a[1] + 1 + s[1]];
+    }, [0, 0]);
+    const [ok, all] = tally(ms);
+    tree = `<div class="tree">${rows(ms, "").join("\n")}</div>` +
+           `<div class="legend">${ok}/${all} ${t.tested} &nbsp;·&nbsp; ✓ ${t.validated} &nbsp;·&nbsp; ○ ${t.toValidate}</div>`;
+  }
+  doc(".veebee/milestones/", tree, ms.length > 0);
+
+  if ((DOCS.openQuestions || []).length) doc("?", list(t.open, DOCS.openQuestions), true);
+
+  document.getElementById("docs").innerHTML = docs.join("");
+  const done = document.getElementById("done");
+  done.hidden = !DOCS.done;
+  done.innerHTML = t.done;
+})();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
+</script>

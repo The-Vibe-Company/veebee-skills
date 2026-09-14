@@ -7,7 +7,7 @@ Open-source Claude Code skills by The Vibe Company. From a blank page to a shipp
 | # | Skill | Reads | Writes |
 |---|---|---|---|
 | 1 | `eureka` | where you are with your idea, even a blank page | one Idea in a short frame |
-| 2 | `crash-test` | an idea | `product.md`, the Product Brief, with the essence, the Exigence Level and the milestones |
+| 2 | `define` | an idea | the documents: `CONTEXT.md`, and `product.md`, `features.md`, `rules.md`, `journeys.md`, `decisions/`, `milestones/` |
 | 3 | `design-brief` | `product.md` + your art direction | a prompt for Claude Design |
 | 4 | `design-review` | the design back from Claude Design | verdict + list of deviations |
 | 5 | `setup` | `product.md` | a challenged stack, an initialised repo |
@@ -16,7 +16,7 @@ Open-source Claude Code skills by The Vibe Company. From a blank page to a shipp
 
 `ask-veebee` sits above the chain: tell it where you are, it names the skill you need and hands over between skills.
 
-Names are provisional until each skill has been grilled. Settled so far: `eureka`, `crash-test`.
+Names are provisional until each skill has been grilled. Settled so far: `eureka`, `define`.
 
 ## Install
 
@@ -37,10 +37,10 @@ claude --plugin-dir /path/to/veebee-skills
 
 - **`/eureka`**: find one clear idea by interview, from a blank page or from a pain. Shows the idea taking shape on a live page while you talk, and writes `.veebee/idea.md` when it is done. Definition in [docs/skills/eureka.md](./docs/skills/eureka.md).
 
-- **`/crash-test`**: `/grill-me` for a product. Interviews you in rounds until nothing is left open, sizes the project (Sketch, Product, Platform), splits it into milestones when it is too big, and writes `.veebee/product.md`, the Product Brief. Run it again on each milestone with `/crash-test <slug>`. Definition in [docs/skills/crash-test.md](./docs/skills/crash-test.md).
+- **`/define`**: a long interview that settles every decision about the product one at a time, then writes the documents that describe it. No topic list: every question comes from something you just said. It asks before going deep on a subject, puts your contradictions back in your face, sizes the project and cuts it into milestones. Definition in [docs/skills/define.md](./docs/skills/define.md).
 
 The other skills are defined step by step, each one grilled before it is written. Track progress in [docs/skills/](./docs/skills/).
 
-## Exigence Level
+## Size
 
-Set by `crash-test`, read by everyone: **Sketch**, **Product**, **Platform**. See [CONTEXT.md](./CONTEXT.md).
+Set by `define`, read by everyone: **Sketch**, **Product**, **Platform**. See [CONTEXT.md](./CONTEXT.md).

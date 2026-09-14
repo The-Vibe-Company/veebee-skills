@@ -20,8 +20,8 @@ _Avoid_: Pipeline, workflow
 The router skill. Given where the user is in their thinking, it names the single most appropriate skill.
 _Avoid_: Help, menu, index
 
-**Exigence Level**:
-The first thing a chain settles with the user: how big and how serious the product is. Every downstream skill adapts its rigor to it. Three values: Sketch, Product, Platform.
+**Size**:
+The first thing `define` settles with the user: how big and how serious the product is. Every downstream skill adapts its rigor to it. Three values: Sketch, Product, Platform.
 _Avoid_: Mode, size, complexity, level 1/2/3
 
 **Sketch**:
@@ -35,7 +35,7 @@ Exigence Level for something too big for one chain. Must be split into sub-produ
 _Avoid_: Epic, program
 
 **Idea**:
-The output of `eureka`: one clear idea, written in a short fixed frame that depends on its kind (a game needs a goal and a universe; a product needs a pain and who suffers it). Just enough for `crash-test` to attack.
+The output of `eureka`: one clear idea, written in a short fixed frame that depends on its kind (a game needs a goal and a universe; a product needs a pain and who suffers it). Just enough for `define` to attack.
 _Avoid_: Concept, pitch, vision
 
 **Crash-test**:
@@ -43,11 +43,11 @@ The skill that attacks an Idea until only what holds is left, and writes the Pro
 _Avoid_: Challenge, grill, roast, review
 
 **Product Brief**:
-The output of `crash-test`, `.veebee/product.md`: everything the next skills need, from the essence to the never-list and the milestones. The single source of truth for what the product is.
+The output of `define`, `.veebee/product.md`: everything the next skills need, from the essence to the never-list and the milestones. The single source of truth for what the product is.
 _Avoid_: Spec, PRD, requirements, product.md (in prose)
 
 **Milestone**:
-A deliverable slice of a product with its own essence, living in `.veebee/milestones/<slug>/`, crash-tested on its own. Platform products must be split into milestones; Product ones may be; Sketch ones never are.
+A deliverable slice of a product with its own essence, living in `.veebee/milestones/<slug>/`, defineed on its own. Platform products must be split into milestones; Product ones may be; Sketch ones never are.
 _Avoid_: Sub-product, phase, epic, sprint
 
 **Ticket**:
