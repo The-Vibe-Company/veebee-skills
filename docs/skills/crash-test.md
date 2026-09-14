@@ -54,7 +54,17 @@ Milestones are crash-tested at Product level by default.
 
 `.veebee/product.md` (or the milestone's): front-matter `kind`, `title`, `lang`, `level`; sections Essence, Problem, For whom, Exigence Level (with reserve), Features (At launch / Later / Never), Journeys, Risks and bets, Proof, Open questions, Milestones. Headings in the user's language. Nothing about the stack. `idea.md` never rewritten.
 
-Finish: show the Brief, ask "does it say it right?", write `product.md` then one `idea.md` per milestone, one sentence pointing to the file and to `/crash-test <first slug>` when there are milestones.
+Finish: show the Brief, ask "does it say it right?", write `product.md` then one `idea.md` per milestone, then show the project's whole milestone tree, read from disk with `scripts/milestones.py` (a milestone is validated when it has a `product.md`), on the canvas and in the Brief. One sentence pointing to the file and to the next `/crash-test <slug>` still to validate.
+
+```
+✓ Bourg
+├── ✓ 01-la-premiere-marche  La première marche
+├── ○ 02-l-echelle  L'échelle   ← /crash-test 02-l-echelle
+├── ○ 03-le-bonheur  Le bonheur   ← /crash-test 03-le-bonheur
+└── ○ 04-la-ville-s-arrange  La ville s'arrange   ← /crash-test 04-la-ville-s-arrange
+
+1/4 crash-testés   ✓ validé   ○ à valider
+```
 
 ## Tests
 

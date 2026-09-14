@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- `crash-test` ends every run by showing the project's whole milestone tree, at any depth, marking each one validated (it has a `product.md`) or still to validate, with the command to run next. The tree is read from disk by `scripts/milestones.py`, so it can never claim a milestone is done when it is not. The canvas renders nested milestones with the same marks.
+
 ## Unreleased
 
 - `eureka` merged with Companion 0.3.3 (Victor Nivault): the question tool is used only when callable in the current mode and blocking; asynchronous question tools are never used; a question whose card disappeared is repeated in full in the chat. Two evals added. Companion version 0.4.1.

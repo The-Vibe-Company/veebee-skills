@@ -126,7 +126,7 @@ The milestone `idea.md` uses the Idea frame of `eureka`: front-matter `kind`, `t
 
 ## The canvas
 
-The page is [assets/canvas.html](assets/canvas.html): the `BRIEF` object at the top of its script holds the title, the level, the sections, and the milestones. Unlike Eureka's blank sheet, every section of the Brief is visible from the first turn, empty, so the user sees the road ahead; a section fills as its answers arrive. The milestones tree is the last section. No questions, no transcript.
+The page is [assets/canvas.html](assets/canvas.html): the `BRIEF` object at the top of its script holds the title, the level, the sections, and the milestones tree. Unlike Eureka's blank sheet, every section of the Brief is visible from the first turn, empty, so the user sees the road ahead; a section fills as its answers arrive. The milestones tree is the last section. No questions, no transcript.
 
 When you write it, copy it to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-crash-test-<name of the current directory>[-<milestone slug>]-<HHMMSS>.html`. Two ways to use it, chosen on the first turn by checking the tools you really have:
 
@@ -177,5 +177,7 @@ When the frontier is empty, show the whole Brief on the canvas, or in the chat w
 When they say yes:
 
 1. Write `product.md` where you are working (the root `.veebee/` or the milestone folder), creating folders as needed. Then write one `idea.md` per milestone under `milestones/`, in delivery order.
-2. Update the canvas one last time with `done` set, where a page exists.
-3. Say one sentence: the Brief is in `product.md`, and, when there are milestones, that each one is crash-tested with `/crash-test <slug>`, starting with the first. Do not launch it.
+2. Read the project's whole milestone tree from disk, root included, with `python3 <skill>/scripts/milestones.py <project root>`: a milestone counts as crash-tested when it has a `product.md`. Put it in the Brief's Milestones section and on the canvas (`--json` gives the nested shape the `BRIEF.milestones` field expects; add `"current": true` on the one this run was about), then update the canvas with `done` set. Without a page, print the text tree in the chat. The tree is read from disk every time, never remembered, so it cannot claim a milestone is done when it is not.
+3. Say one sentence: the Brief is in `product.md`, and, when milestones are still to validate, name the next one to run `/crash-test <slug>` on. Do not launch it.
+
+The tree is the point of the finish: after every crash-test, at any depth, the user sees the whole map, what is validated and what is left.

@@ -38,6 +38,9 @@
   ul { margin: 0; padding-left: 20px; } li { margin: 4px 0; font-size: 16px; line-height: 1.5; }
   .tree { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--ink); background: var(--bg); padding: 14px 18px; border-radius: 8px; white-space: pre; overflow-x: auto; }
   .tree .todo { color: var(--muted); }
+  .tree .ok { color: var(--accent); }
+  .tree .here { font-weight: 700; }
+  .legend { font-family: var(--sans); font-size: 11px; color: var(--muted); margin-top: 10px; }
   .done { margin-top: 40px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
   .done code { font-family: var(--mono); color: var(--ink); }
   @media (max-width: 680px) { .sheet { margin: 0; padding: 40px 22px; min-height: 100vh; } h1 { font-size: 30px; } }
@@ -54,7 +57,9 @@
 // Edit only this object. Every section is always shown; an empty text draws a placeholder.
 // - level: "" | "sketch" | "product" | "platform"
 // - sections: fixed order, keys below; text may contain line breaks. For "features", use the three lists.
-// - milestones: [] or [{ slug, title, essence, status }] where status is "todo" | "done" (crash-tested).
+// - milestones: [] or [{ slug, title, essence, status, current, children }]. status is "todo" | "done"
+//   (done = that milestone has its own product.md). `children` nests sub-milestones, same shape.
+//   `current: true` marks the milestone this run is about. Build it with scripts/milestones.py --json.
 // - done: true on the last turn only.
 const BRIEF = {
   lang: "fr",
@@ -80,11 +85,13 @@ const T = {
         headings: { essence: "Essence", problem: "Le problème", forWhom: "Pour qui", level: "Niveau d'exigence", features: "Features",
                     journeys: "Parcours clés", risks: "Risques et paris", proof: "Ce qui prouvera que ça marche", openQuestions: "Questions ouvertes", milestones: "Jalons" },
         launch: "Au lancement", later: "Plus tard", never: "Jamais", oneGo: "Se livre d'un coup.",
+        tested: "crash-testés", validated: "validé", toValidate: "à valider",
         done: "Le Brief est dans <code>product.md</code>." },
   en: { untitled: "Untitled", noLevel: "level to set", levels: { sketch: "Sketch", product: "Product", platform: "Platform" },
         headings: { essence: "Essence", problem: "Problem", forWhom: "For whom", level: "Exigence Level", features: "Features",
                     journeys: "Journeys", risks: "Risks and bets", proof: "Proof", openQuestions: "Open questions", milestones: "Milestones" },
         launch: "At launch", later: "Later", never: "Never", oneGo: "Ships in one go.",
+        tested: "crash-tested", validated: "validated", toValidate: "to validate",
         done: "The Brief is in <code>product.md</code>." },
 };
 
@@ -118,17 +125,26 @@ const T = {
 
   const ms = BRIEF.milestones || [];
   let tree;
-  if (!ms.length) tree = BRIEF.level && BRIEF.level !== "platform" && S.essence ? `<p>${t.oneGo}</p>` : `<div class="placeholder"></div>`;
-  else {
-    const lines = [".veebee/", "├── product.md", "└── milestones/"];
-    ms.forEach((m, i) => {
-      const last = i === ms.length - 1;
-      const cls = m.status === "done" ? "" : "todo";
-      lines.push(`    ${last ? "└──" : "├──"} <span class="${cls}">${esc(m.slug)}/</span>  ${esc(m.title)}${m.essence ? " — " + esc(m.essence) : ""}`);
-      lines.push(`    ${last ? "   " : "│  "} ├── idea.md`);
-      lines.push(`    ${last ? "   " : "│  "} └── <span class="${cls}">product.md${m.status === "done" ? "" : "  ← /crash-test " + esc(m.slug)}</span>`);
+  if (!ms.length) {
+    tree = BRIEF.level && BRIEF.level !== "platform" && S.essence ? `<p>${t.oneGo}</p>` : `<div class="placeholder"></div>`;
+  } else {
+    const rows = (nodes, prefix) => nodes.flatMap((m, i) => {
+      const last = i === nodes.length - 1;
+      const done = m.status === "done";
+      const mark = done ? "✓" : "○";
+      const cls = (done ? "ok" : "todo") + (m.current ? " here" : "");
+      const tail = done ? "" : `   ← /crash-test ${esc(m.slug)}`;
+      const line = `${prefix}${last ? "└── " : "├── "}<span class="${cls}">${mark} ${esc(m.slug)}</span>  ${esc(m.title)}` +
+                   `${m.essence ? " — " + esc(m.essence) : ""}<span class="todo">${tail}</span>`;
+      return [line, ...rows(m.children || [], prefix + (last ? "    " : "│   "))];
     });
-    tree = `<div class="tree">${lines.join("\n")}</div>`;
+    const tally = (nodes) => nodes.reduce((acc, m) => {
+      const sub = tally(m.children || []);
+      return [acc[0] + (m.status === "done" ? 1 : 0) + sub[0], acc[1] + 1 + sub[1]];
+    }, [0, 0]);
+    const [done, total] = tally(ms);
+    tree = `<div class="tree">${rows(ms, "").join("\n")}</div>` +
+           `<div class="legend">${done}/${total} ${t.tested} &nbsp;·&nbsp; ✓ ${t.validated} &nbsp;·&nbsp; ○ ${t.toValidate}</div>`;
   }
   sec("milestones", tree, ms.length > 0);
 

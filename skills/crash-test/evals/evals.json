@@ -58,6 +58,7 @@
     "A Platform run writes one milestones/NN-slug/idea.md per milestone, in delivery order, and idea.md at the root is untouched",
     "A level disagreement leaves the user's level with a written reserve, and nothing blocks",
     "When product.md already exists, nothing is written before the user picks fresh directory, overwrite, or resume",
-    "A milestone run asks nothing the root Brief already settles, and writes only inside its own folder (plus, at most, the root Milestones section)"
+    "A milestone run asks nothing the root Brief already settles, and writes only inside its own folder (plus, at most, the root Milestones section)",
+    "At the finish, the whole project milestone tree is shown, read from disk, marking each milestone validated (it has a product.md) or to validate"
   ]
 }
