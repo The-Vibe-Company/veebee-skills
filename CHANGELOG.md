@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- `crash-test` grilled: same question interface as `eureka` (question tool when present, else 1️⃣ blocks with lettered options and a recommendation on every question); written sizing heuristics (how long, how many people, how many essences); skipped questions asked again once then parked; a milestone run inherits everything the root Brief settles and touches only its own folder plus the root Milestones section; an existing project in the directory is read as facts; triggers narrowed to explicit asks. Sixth eval on a milestone run.
+
 ## 0.4.0
 
 - New skill `crash-test`: `/grill-me` for a product. Rounds of ❓/➡️ questions until nothing is left open, Exigence Level as the first decision, milestones when the product is too big, one folder per milestone under `.veebee/milestones/`, and the Product Brief in `product.md`. Five evals.

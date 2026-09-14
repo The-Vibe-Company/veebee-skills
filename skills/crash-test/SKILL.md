@@ -1,6 +1,6 @@
 ---
 name: crash-test
-description: Stress-test an idea by relentless interview until nothing is left unanswered, size it (Sketch, Product, Platform), split it into milestones when it is too big, and write the Product Brief. Use whenever the user has an idea and wants it challenged, sized, or turned into a brief, in French ("challenge mon idée", "est-ce que ça tient", "j'ai une idée de produit", "crash-test", "découpe mon projet") or English ("I have an idea for", "does this hold up", "stress-test this", "size this project"). Also runs on one milestone: `/crash-test <slug>`. Not for finding an idea from nothing: that is `eureka`.
+description: Stress-test an idea by relentless interview until nothing is left unanswered, size it (Sketch, Product, Platform), split it into milestones when it is too big, and write the Product Brief. Use when the user asks for their idea to be challenged, sized, cut into milestones, or turned into a brief, in French ("challenge mon idée", "est-ce que ça tient", "crash-test", "découpe mon projet", "fais-moi le brief") or English ("challenge this", "does this hold up", "stress-test this", "size this project", "split this up"). Merely mentioning an idea is not a request: wait for the ask. Also runs on one milestone: `/crash-test <slug>`. Not for finding an idea from nothing: that is `eureka`.
 argument-hint: "[milestone slug] or the idea in one line (optional)"
 ---
 
@@ -18,9 +18,11 @@ Then, before anything else, look where you are about to write: if a `product.md`
 
 Then find your input, in this order:
 
-1. **A milestone slug was passed** (`/crash-test 02-payments`): you work inside `.veebee/milestones/<slug>/`. Read the root `.veebee/product.md` for context and the milestone's `idea.md` as the Idea. The Brief you write is the milestone's own `product.md`, at Product level by default.
+1. **A milestone slug was passed** (`/crash-test 02-payments`): you work inside `.veebee/milestones/<slug>/`. Read the root `.veebee/product.md` and the milestone's `idea.md`. Everything the root Brief settles is inherited and not asked again: persona, who pays, the never-list, the bets, the level of the whole. The interview covers only what is specific to the slice: its essence, its launch list, its journeys, its proof, and whether it splits further. The Brief you write is the milestone's own `product.md`, at Product level by default. You may update one thing at the root, the Milestones section of the root Brief, when the slice turns out to split or the order must change; nothing else at the root is yours to touch.
 2. **`.veebee/idea.md` exists**: read it. Its front-matter gives the kind; its slots give the first answers. Reflect what you read in one line, so they know what you start from.
 3. **Nothing on disk**: the Idea is what the user says, or the argument they passed. Reflect it back in one line and start. Infer the kind (product, game, skill, content, service) from what they said; ask only when it is genuinely ambiguous.
+
+In every case, if the directory holds a project already (a README, a `CONTEXT.md`, code), read what describes it before the first round and treat it as facts: what exists is never a question for the user.
 
 ## The design tree
 
@@ -28,25 +30,44 @@ Every decision about the product branches into the decisions that hang off it. T
 
 Finding facts is your job, never the user's: what exists on the market, what the codebase already does, what a tool costs. Use the web, the filesystem, or a sub-agent, and do not block the round on it: ask the rest of the frontier now, and the questions downstream of the fact wait for the next round; deferring is the normal path, not a failure. A fact goes into the question that needs it, with one link to its source inline; no sources block under the round. When a fact cannot be fetched, say what you believe and mark it "to verify" in the Brief, or leave the question for the next round. The decisions are the user's: put each to them and wait.
 
+A question the user skips stays open: ask it again in the next round, once; skipped twice, it goes to the Brief's Open questions and is not asked again. Never take your own recommendation as their answer.
+
 Three safeguards. The user can say "stop" or "ça suffit" at any time: write what you have. Sections hold only what they settled; your unanswered recommendations go under Open questions, not into the sections, so the Brief never looks more settled than it is. After ten rounds, show the Brief as it stands and ask whether to continue or finish there. And never answer for the user: asking ends your turn.
 
 ## Asking
 
-The format of `/grill-me`, in the chat:
+The same interface as `eureka`, so a user who chains the two skills never changes language. Ask through the runtime's structured question tool when it is actually in your toolset (`AskUserQuestion` in Claude Code, `request_user_input` in Codex, or the equivalent elsewhere); otherwise write the questions in the chat. Decide once, on the first turn, by checking the tools you really have, and keep the same way for the whole interview. Either way, asking ends your turn: never answer for the user, never assume an answer. Whatever goes with the round (the orientation sentence, the one-line reflection, the canvas link, a fact you found) is written in the chat first; the questions follow.
+
+Whatever the way, a question is:
+
+- **the point of the decision**, a few words;
+- **the question**, in one sentence;
+- **two to four options** plus the open way out, one emoji each, things the user can picture, not categories (the Exigence Level question is the one exception: its options are the three levels, each described in one concrete line); say in the question sentence whether they exclude each other;
+- **an open way out**: the user can always answer something else;
+- **the recommendation**, on every question: which option you would pick and why, drawn from this interview (the Idea on disk, earlier answers, facts you found), never from what you know about the user elsewhere. When you hesitate, say so: "a, or b if the first users are not developers". On a question about their own taste or constraints, admit it is a guess.
+
+Never another skill in the options. The user is deciding about their product, not choosing what runs next. The skill's housekeeping questions (an existing Brief, the final check) are asked the same way. A question with no guessable answers (a title, a memory, a number) is asked in the chat, without options, with the recommendation as a suggested answer.
+
+### With the question tool
+
+Calls of up to four questions when the tool accepts several, in order, until the round is asked; otherwise one call per question. Per question: the point as the short header, the sentence as the question, the options as labels with their emoji, one line each as description. The recommendation goes on the recommended option: put it first, append "(Recommended)" to its label in the user's language, and give the reason in its description; no other option gets it. Do not add an "Other" option: the tool offers free text on its own. If the tool is missing at call time or the call fails, ask that question in the chat, end your turn, and stay in the chat afterwards.
+
+### In the chat
 
 ```
-❓ **Q1** - **<title of the decision>**: <the question; when the answers are guessable, list them as a/ b/ c/, and say whether they exclude each other>
-
-➡️ <your recommended answer, and the earlier answer or fact that leads you there>
-
----
-
-❓ **Q2** - ...
+1️⃣ **<the point of the decision, a few words>**
+> <the question in one sentence>
+> - **a** · <emoji> <option>
+> - **b** · <emoji> <option>
+> - **c** · <emoji> <option>
+> - **d** · ✍️ Autre
+>
+> 💡 <the recommendation: which option and why, in one or two lines>
 ```
 
-The recommendation is not optional: every question carries one. It comes from this interview (the Idea on disk, earlier answers, facts you found), never from what you know about the user elsewhere. When you hesitate, say so: "a, or b if the first users are not developers". When a question is about the user's own taste or constraints, the recommendation says which option you would pick in their place and why, and admits it is a guess.
-
-Never another skill in the options. The user is deciding about their product, not choosing what runs next.
+- Number with 1️⃣ 2️⃣ 3️⃣ up to 🔟, then plain bold numbers (**11**, **12**), one blank line between questions, nothing between the question blocks.
+- ✍️ Autre ("Other" in English) closes every list, on the next free letter. The only exception is a yes-or-no question whose second option is itself open.
+- An open question keeps the quote block, drops the list, and keeps the 💡 line.
 
 ## What the tree must visit
 
@@ -71,6 +92,8 @@ The first question of the first round, always, except on resume where the Brief 
 - **Sketch**: a prototype, one session, shipped without tickets or PR.
 - **Product**: a real product, tickets, PRs, review, design check.
 - **Platform**: too big for one chain; must be split into milestones, each running its own chain.
+
+Three questions size it: how long, how many people, how many essences. Sketch when it fits one session and one person, with no real user and no real money. Product when one team ships one essence in a few weeks. Platform as soon as there are several independent essences, or several teams, or months. Borderline cases are yours to judge, from that frame.
 
 Propose one with your reason, drawn from the Idea and what they said, even when they already named a level themselves: the recommendation on this question is your one chance to disagree. They decide. When they pick a level you think is wrong, acknowledge it in one line, do not argue again, and write their level in the Brief with your reserve next to it. A skill that blocks gets uninstalled.
 
