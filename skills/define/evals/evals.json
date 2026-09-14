@@ -6,7 +6,9 @@
       "name": "questions-come-from-answers",
       "prompt": "/define (a .veebee/idea.md for a weekly newsletter about AI tools for freelancers is present) — simulate three rounds with short invented answers",
       "expected_output": "Round 1 opens on the size. Every later question traces back to something the user said in an earlier round, not to a fixed list of topics. A game and a newsletter would not get the same questions.",
-      "files": [".veebee/idea.md"]
+      "files": [
+        ".veebee/idea.md"
+      ]
     },
     {
       "id": 2,
@@ -26,7 +28,7 @@
       "id": 4,
       "name": "natural-question-style",
       "prompt": "/define on a loose idea: 'un outil qui range mes captures d'écran toutes seules'",
-      "expected_output": "Questions read like someone talking: one short sentence, options that name the thing and stop, no justification inside an option, no reference or second sentence. At most one 💡 line per question, and only where it would change the pick.",
+      "expected_output": "Before each question the chat carries the explanation in four movements: what is being settled, why it matters and what changes downstream, what bothers the skill in what the user said, then the question. Options are two to five words and hold nothing else. No (Recommandé), no (exclusifs), no parenthesis on the question. The opinion is given in the first person above the question. Sizes spoken as un week-end / un mois de soirées / plusieurs mois.",
       "files": []
     },
     {
@@ -41,16 +43,20 @@
       "name": "milestone-run-inherits",
       "prompt": "/define 01-la-premiere-marche in a project whose root documents exist and describe four milestones",
       "expected_output": "Works inside the milestone folder. Persona, never-list, bets and size of the whole are inherited and never re-asked; inherited sections are one line pointing at the root. Writes only inside the milestone folder, plus the root milestone list if the order changed. Ends by showing the whole project tree read from disk.",
-      "files": [".veebee/product.md", ".veebee/milestones/01-la-premiere-marche/idea.md"]
+      "files": [
+        ".veebee/product.md",
+        ".veebee/milestones/01-la-premiere-marche/idea.md"
+      ]
     }
   ],
   "assertions": [
     "No question comes from a fixed topic list: each one traces back to an earlier answer, the idea file, or a fact the skill found",
     "A branch with many questions behind it is opened only after asking the user whether to go deep",
     "A contradiction between two answers is put back in the round it appears, never resolved by the skill, and lands in decisions/",
-    "Options name the thing and stop: no justification, reference or second sentence inside an option; at most one 💡 line per question",
+    "Every question is preceded by a plain explanation of what is at stake and what the answer changes; options are two to five words and carry no justification, no label and no parenthesis",
     "The finish writes CONTEXT.md and the .veebee document folder, product.md carrying front-matter kind, title, lang, size",
     "Before the final check, sections still empty are named and the user chooses to fill them or leave them empty",
-    "The finish shows the whole project milestone tree, read from disk, marking each one defined or to define"
+    "The finish shows the whole project milestone tree, read from disk, marking each one defined or to define",
+    "Sizes are spoken in plain words (un week-end, un mois de soirées, plusieurs mois); sketch/product/platform appear only in the documents"
   ]
 }

@@ -28,15 +28,17 @@ Facts are the skill's job (web, filesystem, sub-agents). Stop word and a ten-rou
 
 ## Style
 
-Questions read like someone talking across a table. One short sentence. Options that name the thing and stop, with no justification, reference or second sentence inside them; an option that needs explaining is two options. At most one 💡 line per question, only where it would change the pick. Concrete over abstract, always.
+Say what is at stake before asking, in the chat above the question, in four movements: what you are about to settle, why it matters and what changes downstream, what bothers you in what they said, then the question. Talk as if the user had just walked in: they do not know the vocabulary and cannot guess what a word costs them later.
+
+Options are two to five words, in the user's language, and hold nothing but the option. No "(Recommandé)", no "(exclusifs)", no parenthesis bolted onto the question. Your own opinion goes in the text above, in the first person. The sizes are said as *un week-end*, *un mois de soirées*, *plusieurs mois*; `sketch`, `product` and `platform` are internal names for the documents, never spoken.
 
 ## Sizing
 
-First question, always. Sketch, Product, Platform, sized by how long, how many people, how many essences. The skill says which it would pick, even when the user named one: that is its one chance to disagree. The user decides; a disagreement is written as a reserve.
+First question, always, asked as *how long do you want to spend on this* rather than *what size is your project*. A weekend cuts most of the idea now; a month keeps it and cuts the work into milestones; several months means several products. The skill gives its own reading first, in the first person, even when the user already named a duration: that is its one chance to disagree. The user decides; a disagreement is written as a reserve. `sketch`, `product` and `platform` are what lands in the front-matter.
 
 ## Milestones
 
-A deliverable slice with its own essence. None in Sketch, proposed in Product when the launch list does not ship in one go, mandatory in Platform. Two to six, ordered, slug + title + one line, with an alternative cut. First one = smallest thing that proves the bet. Each gets a folder with an `idea.md` in `eureka`'s frame; `/define <slug>` writes its documents.
+A deliverable slice with its own essence. None for a weekend, proposed for a month when the launch list does not ship in one go, mandatory for several months. Two to six, ordered, slug + title + one line, with an alternative cut. First one = smallest thing that proves the bet. Each gets a folder with an `idea.md` in `eureka`'s frame; `/define <slug>` writes its documents.
 
 ## The documents
 

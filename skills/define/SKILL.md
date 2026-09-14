@@ -60,44 +60,54 @@ Each arbitration becomes a file in `.veebee/decisions/`, numbered, ten lines: th
 
 The same interface as `eureka`: the structured question tool when it is really in your toolset (`AskUserQuestion` in Claude Code, `request_user_input` in Codex), the chat otherwise. Decide once, on the first turn, and keep it.
 
-Write the way you would talk to someone across a table.
+**Say what is at stake before you ask.** Write it in the chat, above the question, in four short movements:
 
-- One short sentence per question. *Tu poses une maison, il se passe quoi ?*, not *Quel retour le système fournit-il lorsqu'un bâtiment est placé ?*
-- An option names the thing and stops. No justification inside it, no reference, no second sentence. An option that needs explaining is two options.
-- Two to four options, plus the way out for an answer you did not think of. Say in the question whether they exclude each other.
-- The reason goes on one line, marked 💡, once per question at most, and only when it would change what they pick. A round where nothing is obvious carries none.
-- Concrete beats abstract every time. *Un chemin apparaît vers la maison d'à côté* beats *le système génère des liaisons*.
+1. What you are about to settle, in one sentence, in plain words.
+2. Why it matters, and what will change downstream depending on their answer. This is the part that is always missing.
+3. What bothers you in what they said, when something does: the contradiction, the thing that does not add up.
+4. Then the question itself, and the options.
+
+Talk as if they had just walked in. They do not know your vocabulary, they have not read the skill, and they cannot guess what a word costs them later. A question that needs no explanation is rare; write the explanation rather than assume it.
+
+Then the options:
+
+- Two to five words each, in their language. *Un mois de soirées*, not *Product : quelques semaines de soirées, une essence, une équipe*.
+- Nothing inside an option but the option. No justification, no reference, no second sentence: all of that was said above, once.
+- No labels: never "(Recommandé)", never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in a sentence above.
+- Your own opinion goes in the text above, in the first person, before the question: *moi je partirais sur le mois*. Give it whenever you have one, which is most of the time.
+- Plain words, not product-manager English. The sizes are *un week-end*, *un mois de soirées*, *plusieurs mois*; Sketch, Product and Platform are internal names for the documents, never said out loud.
 - Never another skill in the options: they are deciding about their product, not choosing what runs next.
 
-In the chat, when there is no question tool:
+In the chat, when there is no question tool, the explanation is written the same way and the question follows:
 
 ```
-1️⃣ **<the point, a few words>**
-> <the question, one sentence>
-> - **a** · <emoji> <option>
-> - **b** · <emoji> <option>
-> - **c** · ✍️ Autre
->
-> 💡 <the reason, one line, only when it helps>
+<the explanation, the four movements above>
+
+**<the question, one sentence>**
+→ <option>
+→ <option>
+→ <option>
 ```
 
-Number 1️⃣ 2️⃣ 3️⃣ up to 🔟, then **11**, **12**. Autre closes every list on the next free letter, except a yes-or-no whose second option is already open. A question with no guessable answers (a name, a number) drops the list and keeps the 💡 as a suggested answer.
+Numbered rounds when several questions go together: **1.** **2.** **3.**, each with its own explanation above it.
 
 ## Sizing
 
-The first question, always, except on resume. Three sizes:
+The first question, always, except on resume. Ask it as *how long do you want to spend on this*, never as *what size is your project*: the time is what they can answer, the size is what you deduce.
 
-- **Sketch**: a prototype, one session, shipped without tickets or PR.
-- **Product**: a real product, tickets, PRs, review.
-- **Platform**: too big for one chain, split into milestones that each run their own.
+Say what it commands before asking. A weekend means you will cut most of the idea now and only ask what changes the prototype; a month means everything stays and the work gets cut into milestones; several months means the product is several products.
 
-Three questions size it: how long, how many people, how many essences. Sketch fits one session and one person, with no real user and no real money. Product is one team, one essence, a few weeks. Platform is several independent essences, or several teams, or months.
+| They say | You write |
+|---|---|
+| a weekend, one person, nobody else uses it, no real money | `sketch` |
+| a month of evenings, one team, one thing | `product` |
+| several months, several teams, several independent things | `platform` |
 
-Say which one you would pick and why, even when they named a size themselves: this question is your one chance to disagree. Then they decide. If they pick one you think is wrong, say so once, drop it, and write their size with your reserve beside it.
+Give your own reading first, in the first person, even when they already named a duration: this question is your one chance to disagree, and their idea often weighs more than they think. Then they decide. If they pick a duration you think is wrong, say so once, drop it, and write their choice with your reserve beside it.
 
 ## Milestones
 
-A milestone is a deliverable slice with its own essence, never a date. Sketch has none. Product gets a split proposed when the launch list does not ship in one go. Platform must be split before the documents are finished.
+A milestone is a deliverable slice with its own essence, never a date. A weekend has none. A month gets a split proposed when the launch list does not ship in one go. Several months must be split before the documents are finished.
 
 Propose it like any other question: two to six milestones in delivery order, each with a slug, a title, and one line, plus one real alternative cut. The first should be the smallest thing that proves the bet.
 
@@ -114,7 +124,7 @@ Propose it like any other question: two to six milestones in delivery order, eac
         └── idea.md
 ```
 
-The milestone `idea.md` uses `eureka`'s frame: front-matter `kind`, `title`, `lang`, then `In one sentence`, `For whom`, `Why it does not already exist like this`, and the kind-specific slots (product: `The pain`, `What changes for them`; game: `The player's goal`, `The universe`, `The loop, in one sentence`; skill: `The task it automates`, `Before`, `After`; content: `Format and rhythm`, `What the reader takes away`, `Why you`; service: `Who pays`, `What is delivered`, `What changes for them`). Labels in their language, kind inherited. Slugs numbered in delivery order, lowercase ASCII with hyphens. A milestone is defined at Product size by default.
+The milestone `idea.md` uses `eureka`'s frame: front-matter `kind`, `title`, `lang`, then `In one sentence`, `For whom`, `Why it does not already exist like this`, and the kind-specific slots (product: `The pain`, `What changes for them`; game: `The player's goal`, `The universe`, `The loop, in one sentence`; skill: `The task it automates`, `Before`, `After`; content: `Format and rhythm`, `What the reader takes away`, `Why you`; service: `Who pays`, `What is delivered`, `What changes for them`). Labels in their language, kind inherited. Slugs numbered in delivery order, lowercase ASCII with hyphens. A milestone is defined at `product` size by default.
 
 ## The documents
 

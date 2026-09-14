@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0
+
+- `define` asks differently. Every question is now preceded, in the chat, by what is being settled, why it matters, what will change downstream depending on the answer, and what bothers the skill in what the user said. The old version assumed the user already knew what a question was about.
+- Options hold nothing but the option, two to five words. No justification stuffed inside them, no "(Recommandé)", no "(exclusifs)", no parenthesis bolted onto the question. The skill's own opinion is given above the question, in the first person.
+- The size is asked as *how long do you want to spend on this*, in plain words: un week-end, un mois de soirées, plusieurs mois. `sketch`, `product` and `platform` stay internal names for the documents.
+
 ## 0.6.1
 
 - `define`: the description in the frontmatter no longer breaks strict YAML parsers; it carried unquoted colons.
