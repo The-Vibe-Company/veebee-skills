@@ -1,0 +1,44 @@
+skills/eureka/SKILL.md
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 9,20,129
+docs/skills/eureka.md
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 8,12,16,46
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 3-4,23
+skills/eureka/assets/canvas.html
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 59-60
+README.md
+  s_b3d6a1a02e1a09::t_3cd90fdf67aff1 10,40,44
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 19,46
+skills/define/SKILL.md
+  s_b3d6a1a02e1a09::t_041c5086a7ed3c 1-147
+CONTEXT.md
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 23-24,38,46,50
+skills/define/assets/canvas.html
+  s_b3d6a1a02e1a09::t_15480a11aed761 1-190
+skills/define/evals/evals.json
+  s_b3d6a1a02e1a09::t_f51bbb5a755a63 1-56
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_3cd90fdf67aff1 3-13
+skills/define/scripts/milestones.py
+  s_b3d6a1a02e1a09::t_7e68d2918b6dbe 1-93
+docs/skills/define.md
+  s_b3d6a1a02e1a09::t_6b21425a15118e 1-75
+skills/eureka/companion.json
+  s_b3d6a1a02e1a09::t_4f161f51e6d29f 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "4c918c0879e7dabcc7e15d131104dc3e8a3ed8c9",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
