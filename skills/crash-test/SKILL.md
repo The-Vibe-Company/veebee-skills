@@ -14,11 +14,11 @@ Answer in the language the user writes in. The Brief is theirs, written in their
 
 On the first turn only, one sentence of orientation: Crash-test interviews them about their idea in rounds until nothing is left open, sizes it, splits it if it is too big, and writes the Product Brief; the Brief takes shape on a page as they answer, or, without the Artifact tool, is shown in the chat at the checkpoint and at the end. Nothing more.
 
-Then, before anything else, look where you are about to write: if a `product.md` already exists there, show its title and offer three ways out: run from a fresh directory, overwrite, or resume. Write nothing until they answer. On resume, the existing Brief is the set of settled answers: its level stands, its filled sections are not asked again unless a later answer contradicts them, and the first round opens on what is weak, thin, or missing; at the finish the new Brief replaces the old one.
+Then, before anything else, look where you are about to write (the milestone folder on a slug run, `.veebee/` otherwise): if a `product.md` already exists there, show its title and offer three ways out: run from a fresh directory, overwrite, or resume. Write nothing until they answer. On resume, the existing Brief is the set of settled answers: its level stands, its filled sections are not asked again unless a later answer contradicts them, and the first round opens on what is weak, thin, or missing; at the finish the new Brief replaces the old one.
 
 Then find your input, in this order:
 
-1. **A milestone slug was passed** (`/crash-test 02-payments`): you work inside `.veebee/milestones/<slug>/`. Read the root `.veebee/product.md` and the milestone's `idea.md`. Everything the root Brief settles is inherited and not asked again: persona, who pays, the never-list, the bets, the level of the whole. The interview covers only what is specific to the slice: its essence, its launch list, its journeys, its proof, and whether it splits further. The Brief you write is the milestone's own `product.md`, at Product level by default. You may update one thing at the root, the Milestones section of the root Brief, when the slice turns out to split or the order must change; nothing else at the root is yours to touch.
+1. **A milestone slug was passed** (`/crash-test 02-payments`): you work inside `.veebee/milestones/<slug>/`. Read the root `.veebee/product.md` and the milestone's `idea.md`. Everything the root Brief settles is inherited and not asked again: persona, who pays, the never-list, the bets, the level of the whole. The interview covers only what is specific to the slice: its own level first (Product by default, Sketch when the slice is only a spike), then its essence, its launch list, its journeys, its proof, what it will never do beyond the inherited list, and whether it splits further. In its Brief, an inherited section is one line pointing at the root Brief, not a copy. The Brief you write is the milestone's own `product.md`. You may update one thing at the root, the Milestones section of the root Brief, when the slice turns out to split or the order must change; nothing else at the root is yours to touch.
 2. **`.veebee/idea.md` exists**: read it. Its front-matter gives the kind; its slots give the first answers. Reflect what you read in one line, so they know what you start from.
 3. **Nothing on disk**: the Idea is what the user says, or the argument they passed. Reflect it back in one line and start. Infer the kind (product, game, skill, content, service) from what they said; ask only when it is genuinely ambiguous.
 
@@ -87,7 +87,7 @@ Beyond that, follow the Idea: a game breaks on its loop and its first ten minute
 
 ## The Exigence Level
 
-The first question of the first round, always, except on resume where the Brief already carries it. Three levels:
+The first question of the first round, always, except on resume where the Brief already carries it; on a milestone run the question is about the slice's own level. Three levels:
 
 - **Sketch**: a prototype, one session, shipped without tickets or PR.
 - **Product**: a real product, tickets, PRs, review, design check.
@@ -128,7 +128,7 @@ The milestone `idea.md` uses the Idea frame of `eureka`: front-matter `kind`, `t
 
 The page is [assets/canvas.html](assets/canvas.html): the `BRIEF` object at the top of its script holds the title, the level, the sections, and the milestones. Unlike Eureka's blank sheet, every section of the Brief is visible from the first turn, empty, so the user sees the road ahead; a section fills as its answers arrive. The milestones tree is the last section. No questions, no transcript.
 
-When you write it, copy it to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-crash-test-<name of the current directory>-<HHMMSS>.html`. Two ways to use it, chosen on the first turn by checking the tools you really have:
+When you write it, copy it to a path in the OS temporary directory that is stable for this session and unique to it, for example `$TMPDIR/veebee-crash-test-<name of the current directory>[-<milestone slug>]-<HHMMSS>.html`. Two ways to use it, chosen on the first turn by checking the tools you really have:
 
 1. **The Artifact tool**, when available: publish on the first turn (favicon `🚗`, title "Crash-test"), give the link, and republish the same path after every round.
 2. **No Artifact tool**: the interview is chat only and nothing is written before the finish. Show the Brief in the chat at the ten-round checkpoint and at the finish, as headed sections in plain Markdown. At the finish, if a shell is available, write the page and open it once in the default browser (`open`, `xdg-open`, or `start`); opened from disk it reloads itself, so later changes only rewrite the file.
@@ -172,7 +172,7 @@ Headings in the user's language, taken from the `T` table of [assets/canvas.html
 
 ## Finish
 
-When the frontier is empty, show the whole Brief on the canvas, or in the chat without it, and ask one thing: does it say it right? Two options, yes or "I would change something", the second one open. Apply the change and ask again.
+When the frontier is empty, show the whole Brief on the canvas, or in the chat without it, and ask one thing: does it say it right? Two options, yes or "I would change something", the second one open, and no recommendation on this one. Apply the change and ask again.
 
 When they say yes:
 
