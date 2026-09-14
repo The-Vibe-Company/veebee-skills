@@ -1,0 +1,31 @@
+skills/crash-test/assets/canvas.html
+  s_b3d6a1a02e1a09::t_239c4d31bf0ee5 41-43,60-62,88,94,128-139,141-147
+skills/crash-test/SKILL.md
+  s_b3d6a1a02e1a09::t_1c4283ec1d643e 129,180-183
+docs/skills/crash-test.md
+  s_b3d6a1a02e1a09::t_1c4283ec1d643e 57-67
+skills/crash-test/scripts/milestones.py
+  s_b3d6a1a02e1a09::t_921d84c335f786 1-93
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_1f847d9a107225 3
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_76beabc6525427 3-6
+skills/crash-test/evals/evals.json
+  s_b3d6a1a02e1a09::t_3a8282187eea62 61-62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "6127c04497130bcbe7962d408868cdefd3ee07b1",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
