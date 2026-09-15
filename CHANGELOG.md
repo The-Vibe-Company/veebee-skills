@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.0
+
+- `define` defines, it no longer plans. The skill was asking how long the work would take, what would ship first, how many evenings it cost: questions for someone about to build, not someone laying out what the product is.
+- The size is now asked as **how many independent pieces the product holds**, not how long it takes. One piece is a `sketch`, several pieces one `product`, several products a `platform`.
+- Milestones are pieces of the product ordered by dependency, and the skill says so: a reading order, not a schedule. The first one is the piece that carries the bet, because its definition constrains the others.
+- Calendar words are out of every question: no *soirées*, no *semaines*, no *livrer*, no *sprint*.
+
 ## 0.8.0
 
 - `define` puts the reasoning inside the question card, not in the chat above it. A card read alone, without scrolling, is now answerable: it carries what is being settled, why it matters, what changes downstream, and what bothers the skill, before the question itself. The chat around the questions holds only transitions.

@@ -16,6 +16,8 @@ Defines a product precisely, by a long interview that settles every decision one
 
 ## Method
 
+Define defines, it never plans. Nothing in the interview is about building: not how long it takes, not what gets done first, not what ships when. A word like *livrer*, *sprint* or *soirées* in a question is the signal the skill has drifted.
+
 The design tree of `/grill-me`, and nothing else. No topic list, no mandatory sections. The frontier is every decision whose prerequisites are settled; you ask all of it each round, and the answers redraw the tree. Done when the frontier is empty.
 
 Three things are specific to this skill:
@@ -34,11 +36,11 @@ Options are two to five words, in the user's language, and hold nothing but the 
 
 ## Sizing
 
-First question, always, asked as *how long do you want to spend on this* rather than *what size is your project*. A weekend cuts most of the idea now; a month keeps it and cuts the work into milestones; several months means several products. The skill gives its own reading first, in the first person, even when the user already named a duration: that is its one chance to disagree. The user decides; a disagreement is written as a reserve. `sketch`, `product` and `platform` are what lands in the front-matter.
+First question, always, asked as *how many independent pieces does this product hold*, never as *how long will you spend on it*. One piece defined in one go is `sketch`; one product made of several pieces is `product`; several products that would live apart is `platform`. The skill gives its own reading first, in the first person: that is its one chance to disagree. The user decides; a disagreement is written as a reserve.
 
 ## Milestones
 
-A deliverable slice with its own essence. None for a weekend, proposed for a month when the launch list does not ship in one go, mandatory for several months. Two to six, ordered, slug + title + one line, with an alternative cut. First one = smallest thing that proves the bet. Each gets a folder with an `idea.md` in `eureka`'s frame; `/define <slug>` writes its documents.
+A piece of the product with its own essence, never a date and never a sprint. None for a `sketch`, proposed for a `product` whose launch list holds more than one essence, mandatory for a `platform`. Two to six, slug + title + one line, ordered by dependency and said to be a reading order rather than a schedule. First one = the piece that carries the bet. Each gets a folder with an `idea.md` in `eureka`'s frame; `/define <slug>` writes its documents.
 
 ## The documents
 

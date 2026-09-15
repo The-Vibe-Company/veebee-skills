@@ -73,11 +73,11 @@ The chat around the questions stays light: a transition, a fact you found, the c
 
 Then the options:
 
-- Two to five words each, in their language. *Un mois de soirées*, not *Product : quelques semaines de soirées, une essence, une équipe*.
+- Two to five words each, in their language. *Plusieurs morceaux*, not *Product : un produit composé de plusieurs essences indépendantes*.
 - Nothing inside an option but the option. No justification, no reference, no second sentence: all of that is in the question.
 - No labels: never "(Recommandé)", never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in the question.
 - Your own opinion goes at the end of the question, in the first person: *moi je partirais sur le mois*. Give it whenever you have one, which is most of the time.
-- Plain words, not product-manager English. The sizes are *un week-end*, *un mois de soirées*, *plusieurs mois*; `sketch`, `product` and `platform` are internal names for the documents, never said out loud.
+- Plain words, not product-manager English. The sizes are said as *une seule chose*, *plusieurs morceaux*, *plusieurs produits*; `sketch`, `product` and `platform` are internal names for the documents, never said out loud. No calendar words at all: no *soirées*, no *semaines*, no *livrer*.
 - Never another skill in the options: they are deciding about their product, not choosing what runs next.
 
 In the chat, when there is no question tool, the same text is written out and the options follow:
@@ -93,23 +93,23 @@ Several questions in one round are numbered **1.** **2.** **3.**, each carrying 
 
 ## Sizing
 
-The first question, always, except on resume. Ask it as *how long do you want to spend on this*, never as *what size is your project*: the time is what they can answer, the size is what you deduce.
+The first question, always, except on resume. Ask it as *how many independent pieces does this product hold*, never as *how long will you spend on it*: the shape of the product is what they can answer here, and the calendar is not this skill's business.
 
-Say what it commands before asking. A weekend means you will cut most of the idea now and only ask what changes the prototype; a month means everything stays and the work gets cut into milestones; several months means the product is several products.
+Say what it commands before asking. One piece means everything is defined in one go, in a single set of documents. Several pieces means each one gets its own essence and its own documents, defined one after another. Several independent products means it is not one product at all, and the first thing to do is separate them.
 
 | They say | You write |
 |---|---|
-| a weekend, one person, nobody else uses it, no real money | `sketch` |
-| a month of evenings, one team, one thing | `product` |
-| several months, several teams, several independent things | `platform` |
+| one thing, defined in one go, thrown away whole if it does not work | `sketch` |
+| one product made of several pieces, each with its own essence | `product` |
+| several products that would live apart from each other | `platform` |
 
-Give your own reading first, in the first person, even when they already named a duration: this question is your one chance to disagree, and their idea often weighs more than they think. Then they decide. If they pick a duration you think is wrong, say so once, drop it, and write their choice with your reserve beside it.
+Give your own reading first, in the first person, even when they already named a shape: this question is your one chance to disagree, and an idea often holds more pieces than its owner thinks. Then they decide. If they pick a shape you think is wrong, say so once, drop it, and write their choice with your reserve beside it.
 
 ## Milestones
 
-A milestone is a deliverable slice with its own essence, never a date. A weekend has none. A month gets a split proposed when the launch list does not ship in one go. Several months must be split before the documents are finished.
+A milestone is a piece of the product with its own essence, never a date and never a sprint. A `sketch` has none. A `product` gets a cut proposed when its launch list holds more than one essence. A `platform` must be cut before the documents are finished.
 
-Propose it like any other question: two to six milestones in delivery order, each with a slug, a title, and one line, plus one real alternative cut. The first should be the smallest thing that proves the bet.
+Propose it like any other question: two to six milestones, each with a slug, a title, and one line, plus one real alternative cut. Order them by dependency, from the piece the others need to the piece that needs the others, and say it is a reading order, not a schedule. The first should be the piece that carries the bet, because its definition constrains every other.
 
 ```
 .veebee/
@@ -124,7 +124,7 @@ Propose it like any other question: two to six milestones in delivery order, eac
         └── idea.md
 ```
 
-The milestone `idea.md` uses `eureka`'s frame: front-matter `kind`, `title`, `lang`, then `In one sentence`, `For whom`, `Why it does not already exist like this`, and the kind-specific slots (product: `The pain`, `What changes for them`; game: `The player's goal`, `The universe`, `The loop, in one sentence`; skill: `The task it automates`, `Before`, `After`; content: `Format and rhythm`, `What the reader takes away`, `Why you`; service: `Who pays`, `What is delivered`, `What changes for them`). Labels in their language, kind inherited. Slugs numbered in delivery order, lowercase ASCII with hyphens. A milestone is defined at `product` size by default.
+The milestone `idea.md` uses `eureka`'s frame: front-matter `kind`, `title`, `lang`, then `In one sentence`, `For whom`, `Why it does not already exist like this`, and the kind-specific slots (product: `The pain`, `What changes for them`; game: `The player's goal`, `The universe`, `The loop, in one sentence`; skill: `The task it automates`, `Before`, `After`; content: `Format and rhythm`, `What the reader takes away`, `Why you`; service: `Who pays`, `What is delivered`, `What changes for them`). Labels in their language, kind inherited. Slugs numbered in dependency order, lowercase ASCII with hyphens. A milestone is defined at `product` size by default, and its own sizing question asks how many pieces it holds, never how long it takes.
 
 ## The documents
 

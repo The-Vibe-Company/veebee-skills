@@ -47,6 +47,13 @@
         ".veebee/product.md",
         ".veebee/milestones/01-la-premiere-marche/idea.md"
       ]
+    },
+    {
+      "id": 7,
+      "name": "never-plans-the-build",
+      "prompt": "/define on any idea, run for three rounds",
+      "expected_output": "No question asks how long the work takes, what gets built first, or when anything ships. The sizing question asks how many independent pieces the product holds. Milestones are presented as pieces ordered by dependency, explicitly not as a schedule.",
+      "files": []
     }
   ],
   "assertions": [
@@ -57,6 +64,6 @@
     "The finish writes CONTEXT.md and the .veebee document folder, product.md carrying front-matter kind, title, lang, size",
     "Before the final check, sections still empty are named and the user chooses to fill them or leave them empty",
     "The finish shows the whole project milestone tree, read from disk, marking each one defined or to define",
-    "Sizes are spoken in plain words (un week-end, un mois de soirées, plusieurs mois); sketch/product/platform appear only in the documents"
+    "Sizes are asked as how many pieces the product holds, never as how long it takes; no question mentions delivery, sprints, weeks or evenings"
   ]
 }
