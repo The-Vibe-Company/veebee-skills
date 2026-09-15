@@ -32,7 +32,7 @@ Facts are the skill's job (web, filesystem, sub-agents). Stop word and a ten-rou
 
 Everything the user needs in order to answer lives inside the question itself, so a card read alone is answerable: what is being settled, why it matters and what changes downstream, what bothers the skill in what they said, then the question naming its subject in full. Three or four sentences. The chat around it stays light, a transition at most; the reasoning is never there.
 
-Options are two to five words, in the user's language, and hold nothing but the option. No "(Recommandé)", no "(exclusifs)", no parenthesis bolted onto the question. The skill's opinion closes the question, in the first person. The sizes are said as *un week-end*, *un mois de soirées*, *plusieurs mois*; `sketch`, `product` and `platform` are internal names for the documents, never spoken.
+Options are two to five words, in the user's language, and hold nothing but the option. No "(Recommandé)", no "(exclusifs)", no parenthesis bolted onto the question. The skill's opinion closes the question, in the first person. The sizes are said as *une seule chose*, *plusieurs morceaux*, *plusieurs produits*; `sketch`, `product` and `platform` are internal names for the documents, never spoken. No calendar words in any question.
 
 ## Sizing
 

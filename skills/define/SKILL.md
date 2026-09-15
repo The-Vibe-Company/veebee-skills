@@ -76,7 +76,7 @@ Then the options:
 - Two to five words each, in their language. *Plusieurs morceaux*, not *Product : un produit composé de plusieurs essences indépendantes*.
 - Nothing inside an option but the option. No justification, no reference, no second sentence: all of that is in the question.
 - No labels: never "(Recommandé)", never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in the question.
-- Your own opinion goes at the end of the question, in the first person: *moi je partirais sur le mois*. Give it whenever you have one, which is most of the time.
+- Your own opinion goes at the end of the question, in the first person: *moi je garderais le catalogue*. Give it whenever you have one, which is most of the time.
 - Plain words, not product-manager English. The sizes are said as *une seule chose*, *plusieurs morceaux*, *plusieurs produits*; `sketch`, `product` and `platform` are internal names for the documents, never said out loud. No calendar words at all: no *soirées*, no *semaines*, no *livrer*.
 - Never another skill in the options: they are deciding about their product, not choosing what runs next.
 
