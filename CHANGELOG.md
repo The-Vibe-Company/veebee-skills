@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+- `define` puts the reasoning inside the question card, not in the chat above it. A card read alone, without scrolling, is now answerable: it carries what is being settled, why it matters, what changes downstream, and what bothers the skill, before the question itself. The chat around the questions holds only transitions.
+
 ## 0.7.0
 
 - `define` asks differently. Every question is now preceded, in the chat, by what is being settled, why it matters, what will change downstream depending on the answer, and what bothers the skill in what the user said. The old version assumed the user already knew what a question was about.

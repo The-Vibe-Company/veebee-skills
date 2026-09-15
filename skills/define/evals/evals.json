@@ -28,7 +28,7 @@
       "id": 4,
       "name": "natural-question-style",
       "prompt": "/define on a loose idea: 'un outil qui range mes captures d'écran toutes seules'",
-      "expected_output": "Before each question the chat carries the explanation in four movements: what is being settled, why it matters and what changes downstream, what bothers the skill in what the user said, then the question. Options are two to five words and hold nothing else. No (Recommandé), no (exclusifs), no parenthesis on the question. The opinion is given in the first person above the question. Sizes spoken as un week-end / un mois de soirées / plusieurs mois.",
+      "expected_output": "The question field itself carries the explanation: what is being settled, why it matters and what changes downstream, what bothers the skill, then the question naming its subject. Three or four sentences, answerable without reading the chat. Options are two to five words and hold nothing else. No (Recommandé), no (exclusifs). The opinion closes the question in the first person.",
       "files": []
     },
     {
@@ -53,7 +53,7 @@
     "No question comes from a fixed topic list: each one traces back to an earlier answer, the idea file, or a fact the skill found",
     "A branch with many questions behind it is opened only after asking the user whether to go deep",
     "A contradiction between two answers is put back in the round it appears, never resolved by the skill, and lands in decisions/",
-    "Every question is preceded by a plain explanation of what is at stake and what the answer changes; options are two to five words and carry no justification, no label and no parenthesis; the question names its subject in full and stands alone without the text above",
+    "Each question card is answerable on its own: it carries what is being settled, why it matters and what changes downstream; the chat above holds no reasoning; options are two to five words with no justification, label or parenthesis",
     "The finish writes CONTEXT.md and the .veebee document folder, product.md carrying front-matter kind, title, lang, size",
     "Before the final check, sections still empty are named and the user chooses to fill them or leave them empty",
     "The finish shows the whole project milestone tree, read from disk, marking each one defined or to define",

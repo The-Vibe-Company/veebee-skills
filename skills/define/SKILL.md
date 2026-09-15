@@ -60,38 +60,36 @@ Each arbitration becomes a file in `.veebee/decisions/`, numbered, ten lines: th
 
 The same interface as `eureka`: the structured question tool when it is really in your toolset (`AskUserQuestion` in Claude Code, `request_user_input` in Codex), the chat otherwise. Decide once, on the first turn, and keep it.
 
-**Say what is at stake before you ask.** Write it in the chat, above the question, in four short movements:
+**Everything the user needs in order to answer lives inside the question itself**, not in the chat above it. A question they read alone, in a card, without scrolling, must be answerable. So the question field carries, in this order:
 
-1. What you are about to settle, in one sentence, in plain words.
+1. What you are about to settle, in plain words.
 2. Why it matters, and what will change downstream depending on their answer. This is the part that is always missing.
 3. What bothers you in what they said, when something does: the contradiction, the thing that does not add up.
-4. Then the question itself, and the options.
+4. The question itself, naming its subject in full. *Tu les mets dans Bourg ?*, never *Tu les mets ?*.
 
-The question names its subject in full, every time. *Combien de temps tu comptes passer sur Bourg ?*, never *Tu y passes combien de temps ?*. No `y`, no `ça`, no pronoun pointing back at the explanation: the question is often read on its own, in a card, by someone who skipped the text above, and it has to hold up there.
+Three or four sentences. Talk as if they had just walked in: they do not know your vocabulary, they have not read the skill, and they cannot guess what a word costs them later.
 
-Talk as if they had just walked in. They do not know your vocabulary, they have not read the skill, and they cannot guess what a word costs them later. A question that needs no explanation is rare; write the explanation rather than assume it.
+The chat around the questions stays light: a transition, a fact you found, the canvas link on the first turn. Never the reasoning, which belongs in the card.
 
 Then the options:
 
 - Two to five words each, in their language. *Un mois de soirées*, not *Product : quelques semaines de soirées, une essence, une équipe*.
-- Nothing inside an option but the option. No justification, no reference, no second sentence: all of that was said above, once.
-- No labels: never "(Recommandé)", never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in a sentence above.
-- Your own opinion goes in the text above, in the first person, before the question: *moi je partirais sur le mois*. Give it whenever you have one, which is most of the time.
-- Plain words, not product-manager English. The sizes are *un week-end*, *un mois de soirées*, *plusieurs mois*; Sketch, Product and Platform are internal names for the documents, never said out loud.
+- Nothing inside an option but the option. No justification, no reference, no second sentence: all of that is in the question.
+- No labels: never "(Recommandé)", never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in the question.
+- Your own opinion goes at the end of the question, in the first person: *moi je partirais sur le mois*. Give it whenever you have one, which is most of the time.
+- Plain words, not product-manager English. The sizes are *un week-end*, *un mois de soirées*, *plusieurs mois*; `sketch`, `product` and `platform` are internal names for the documents, never said out loud.
 - Never another skill in the options: they are deciding about their product, not choosing what runs next.
 
-In the chat, when there is no question tool, the explanation is written the same way and the question follows:
+In the chat, when there is no question tool, the same text is written out and the options follow:
 
 ```
-<the explanation, the four movements above>
-
-**<the question, one full sentence naming its subject>**
+**<the explanation and the question, three or four sentences>**
 → <option>
 → <option>
 → <option>
 ```
 
-Numbered rounds when several questions go together: **1.** **2.** **3.**, each with its own explanation above it.
+Several questions in one round are numbered **1.** **2.** **3.**, each carrying its own explanation.
 
 ## Sizing
 
