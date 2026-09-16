@@ -1,0 +1,192 @@
+<!-- Style canvas: the charter and the prompt to paste. Works two ways with the same file:
+     published with an Artifact tool, or opened from disk in a browser, where it reloads itself. -->
+<meta charset="utf-8">
+<title>Style</title>
+<style>
+  :root {
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479; --faint: #c9c3b6;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  main { max-width: 760px; margin: 0 auto; padding: 44px 24px 80px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .pill { font-family: var(--sans); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .pill.empty { background: transparent; color: var(--faint); border: 1px dashed var(--faint); }
+  h1 { font-weight: 500; font-size: 38px; line-height: 1.1; margin: 6px 0 4px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+  .sub { font-family: var(--sans); font-size: 13.5px; color: var(--muted); margin: 0 0 32px; }
+
+  .doc { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; margin: 0 0 18px; overflow: hidden; }
+  .doc > .name { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 9px 14px 9px 20px; border-bottom: 1px solid var(--line); background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .doc > .body { padding: 18px 20px 20px; }
+  .doc.empty > .name { color: var(--faint); }
+  .copy { font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: .04em; color: var(--accent); background: var(--accent-soft); border: 1px solid transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+  .copy:hover { border-color: var(--accent); }
+  .copy.ok { color: var(--muted); background: transparent; border-color: var(--line); }
+
+  pre { font-family: var(--mono); font-size: 12.5px; line-height: 1.65; margin: 0; white-space: pre-wrap; word-wrap: break-word; max-height: 460px; overflow-y: auto; }
+  .placeholder { height: 1em; border-bottom: 1px dashed var(--faint); width: 55%; }
+  .field { margin: 0 0 16px; } .field:last-child { margin-bottom: 0; }
+  .field > .label { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+  .field > .label.empty { color: var(--faint); }
+  ul { margin: 0; padding-left: 20px; } li { margin: 4px 0; font-size: 15.5px; line-height: 1.5; }
+  li .who { color: var(--muted); }
+  .tree { font-family: var(--mono); font-size: 13px; line-height: 1.7; white-space: pre; overflow-x: auto; }
+  .tree .ok { color: var(--accent); } .tree .todo { color: var(--muted); } .tree .no { color: var(--faint); } .tree .here { font-weight: 700; }
+  .legend { font-family: var(--sans); font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .done { margin-top: 32px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
+  .done code { font-family: var(--mono); color: var(--ink); }
+  @media (max-width: 700px) { main { padding: 28px 16px 60px; } h1 { font-size: 30px; } .doc > .body { padding: 14px 16px 16px; } }
+</style>
+
+<main>
+  <header><div class="pill" id="pill"></div></header>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div id="docs"></div>
+  <div class="done" id="done" hidden></div>
+</main>
+
+<script>
+// Edit only this object. `charter` and `prompt` are the two texts to paste; what is empty
+// draws a dashed line. Build `milestones` and `charterWritten` with scripts/pieces.py --json,
+// and put "current": true on the piece this run is about.
+const PROMPTS = {
+  lang: "fr",
+  title: "",
+  slug: "",                  // the milestone folder, e.g. "02-le-catalogue"; "" at the root
+  piece: "",                 // label of the piece being designed, e.g. "02-le-catalogue — Le catalogue"; "" for the whole product
+  kind: "",                  // "product" | "game" | "skill" | "content" | "service"
+  charter: "",               // the text of .veebee/style.md
+  surfaces: [],              // { name, who, goal }
+  prompt: "",                // the text of prompt.md for this piece
+  milestones: [],            // { slug, title, status, current, children } — status: done | todo | undefined
+  done: false,
+};
+
+const T = {
+  fr: { untitled: "Sans titre", charterTodo: "charte à écrire", charterOk: "charte écrite",
+        wholeProduct: "le produit entier", designing: "On design",
+        charter: "La charte", surfaces: "Ce qui est dessiné", prompt: "Le prompt à coller",
+        tree: "Les morceaux", copy: "Copier", copied: "Copié", designed: "designés",
+        ok: "designé", todo: "à designer", undef: "à définir avant",
+        done: "Colle <code>.veebee/style.md</code> pour créer le design system, puis <code>prompt.md</code> pour les écrans." },
+  en: { untitled: "Untitled", charterTodo: "charter to write", charterOk: "charter written",
+        wholeProduct: "the whole product", designing: "Designing",
+        charter: "The charter", surfaces: "What gets drawn", prompt: "The prompt to paste",
+        tree: "The pieces", copy: "Copy", copied: "Copied", designed: "designed",
+        ok: "designed", todo: "to design", undef: "to define first",
+        done: "Paste <code>.veebee/style.md</code> to create the design system, then <code>prompt.md</code> for the screens." },
+};
+
+(function render() {
+  const t = T[PROMPTS.lang] || T.en;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  const pill = document.getElementById("pill");
+  pill.textContent = PROMPTS.charter ? t.charterOk : t.charterTodo;
+  pill.classList.toggle("empty", !PROMPTS.charter);
+  const title = document.getElementById("title");
+  title.textContent = PROMPTS.title || t.untitled;
+  title.classList.toggle("untitled", !PROMPTS.title);
+  document.getElementById("sub").textContent =
+    `${t.designing} : ${PROMPTS.piece || t.wholeProduct}`;
+
+  const blank = `<div class="placeholder"></div>`;
+  const docs = [];
+  const doc = (name, body, filled, copyId) => docs.push(
+    `<div class="doc ${filled ? "" : "empty"}"><div class="name"><span>${esc(name)}</span>` +
+    `${filled && copyId ? `<button class="copy" data-copy="${copyId}">${esc(t.copy)}</button>` : ""}` +
+    `</div><div class="body">${body}</div></div>`);
+
+  doc(".veebee/style.md",
+    PROMPTS.charter ? `<pre id="text-charter">${esc(PROMPTS.charter)}</pre>` : blank,
+    !!PROMPTS.charter, "charter");
+
+  const S = PROMPTS.surfaces || [];
+  doc(t.surfaces,
+    S.length ? `<ul>${S.map((x) => `<li>${esc(x.name)}${x.who || x.goal
+      ? ` <span class="who">— ${esc([x.who, x.goal].filter(Boolean).join(", "))}</span>` : ""}</li>`).join("")}</ul>` : blank,
+    S.length > 0);
+
+  doc(PROMPTS.slug ? `.veebee/milestones/${PROMPTS.slug}/prompt.md` : ".veebee/prompt.md",
+    PROMPTS.prompt ? `<pre id="text-prompt">${esc(PROMPTS.prompt)}</pre>` : blank,
+    !!PROMPTS.prompt, "prompt");
+
+  const ms = PROMPTS.milestones || [];
+  if (ms.length) {
+    const rows = (nodes, prefix) => nodes.flatMap((m, i) => {
+      const last = i === nodes.length - 1;
+      const mark = { done: "✓", todo: "○", undefined: "◌" }[m.status] || "○";
+      const cls = ({ done: "ok", todo: "todo", undefined: "no" }[m.status] || "todo") + (m.current ? " here" : "");
+      const tail = m.status === "done" ? ""
+        : m.status === "todo" ? `<span class="todo">   ← /style ${esc(m.slug)}</span>`
+        : `<span class="no">   ← /define ${esc(m.slug)}</span>`;
+      return [`${prefix}${last ? "└── " : "├── "}<span class="${cls}">${mark} ${esc(m.slug)}</span>  ${esc(m.title)}${tail}`,
+              ...rows(m.children || [], prefix + (last ? "    " : "│   "))];
+    });
+    const tally = (nodes) => nodes.reduce((a, m) => {
+      const s = tally(m.children || []);
+      return [a[0] + (m.status === "done" ? 1 : 0) + s[0], a[1] + 1 + s[1]];
+    }, [0, 0]);
+    const [ok, all] = tally(ms);
+    doc(".veebee/milestones/",
+      `<div class="tree">${rows(ms, "").join("\n")}</div>` +
+      `<div class="legend">${ok}/${all} ${t.designed} &nbsp;·&nbsp; ✓ ${t.ok} &nbsp;·&nbsp; ○ ${t.todo} &nbsp;·&nbsp; ◌ ${t.undef}</div>`,
+      true);
+  }
+
+  document.getElementById("docs").innerHTML = docs.join("");
+  const done = document.getElementById("done");
+  done.hidden = !PROMPTS.done;
+  done.innerHTML = t.done;
+
+  // Copy: the clipboard API when the frame allows it, execCommand next, and if both are
+  // refused the text is selected so the user only has to press the shortcut.
+  document.querySelectorAll("[data-copy]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const node = document.getElementById("text-" + button.dataset.copy);
+      if (!node) return;
+      const text = node.textContent;
+      let ok = false;
+      try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {}
+      if (!ok) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.style.cssText = "position:fixed;top:-1000px;opacity:0";
+        document.body.appendChild(area);
+        area.select();
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        area.remove();
+      }
+      if (!ok) {
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        return;
+      }
+      button.textContent = t.copied;
+      button.classList.add("ok");
+      setTimeout(() => { button.textContent = t.copy; button.classList.remove("ok"); }, 1600);
+    });
+  });
+})();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
+</script>

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
+  "name": "style",
+  "version": "0.1.0",
+  "icon": "palette",
+  "title": "Style",
+  "description": "Settle how a product looks by an interview about taste, then write the prompt to paste into a design tool, one piece at a time.",
+  "notes": "## Style\n\nThird skill of the Veebee chain (open source, MIT): from a blank page to a shipped product, one skill per step. Takes over from `define`.\n\n**It draws nothing.** The deliverable is a prompt you paste into a design tool.\n\n- **Two levels**, because a design tool keeps brand identity in a design system separate from each screen. A charter is written once for the whole product in `.veebee/style.md`; each piece then gets a `prompt.md` that leans on it, so the milestones cannot drift from each other. The charter interview runs first even when a milestone slug was passed.\n- **The spine is known, unlike `define`'s grill**, because what a design tool needs to know is always the same. Six to ten questions, and only a question whose answer changes the prompt: what the documents already settle is stated, never asked.\n- **It follows the `kind`** written by `eureka`. An interface settles feeling, light, density, typography and movement. A game settles technique and its constraints, perspective, era, palette, and whether the interface sits inside the world or over it. Content settles shape, typography and images. One question is asked in every run whatever the kind: what it must not look like, because an anti-reference cuts more than a reference.\n- **The surfaces are deduced** from `journeys.md` and the launch features, proposed with one line each, and validated before the prompt is written. The empty state, the error and the first time are named out loud, because a design tool never invents them. For a game they are a tileset, sprites, a HUD, a key scene.\n- A reference the user loves is a taste signal, never a template: the skill names the part it kept.\n- The charter says intentions rather than values, because the tool picks better values than the skill does. An existing brand is the exception and is taken as given, exact hexes and exact fonts.\n- **It suggests only when something read points somewhere**, and names what points there. Nothing points anywhere, no suggestion: it is the user's eye, not the skill's.\n- Nothing about the stack in either file, no framework and no component library, and nothing telling the design tool how to behave.\n- Shows the charter and the prompt on a live page with a copy button (Artifact tool), and ends every run on the project tree read from disk: designed, defined but not designed, or not defined yet.\n\nRuns on a missing `define`: it says the prompt will be thinner and goes on from the README or the user's words rather than refusing.\n\nWrites `.veebee/style.md` and one `prompt.md` per piece, beside that piece's `product.md`.\n\nTriggers: \"design mon produit\", \"la direction artistique\", \"un prompt pour Claude Design\", \"a quoi ca ressemble\", \"design this\", \"art direction\", \"write me a design prompt\". Not for defining what the product does: that is `define`.\n\nNo secrets, no environment variables. Source: https://github.com/The-Vibe-Company/veebee-skills",
+  "metadata": {
+    "changelog": [
+      {
+        "version": "0.1.0",
+        "date": "2026-09-16",
+        "changes": [
+          "First Companion release, from repository v0.11.0. Third skill of the chain, after eureka and define.",
+          "Two levels: a charter written once for the whole product, then one prompt per piece that leans on it, so the milestones cannot drift.",
+          "A known spine rather than define's open grill, and only a question whose answer changes the prompt.",
+          "The spine follows the kind written by eureka: an interface, a game and a piece of content do not get the same interview.",
+          "What it must not look like is asked in every run, because an anti-reference cuts more than a reference.",
+          "The surfaces are deduced from the journeys and the launch features, then validated before the prompt is written.",
+          "Suggests only when something read points somewhere, and names what points there.",
+          "Nothing about the stack in the prompt, and nothing telling the design tool how to behave.",
+          "A live page shows the charter and the prompt with a copy button; the finish prints the project tree read from disk."
+        ]
+      }
+    ]
+  },
+  "environment": {
+    "env": {},
+    "secrets": {}
+  },
+  "dependencies": {
+    "define": "097bd720-142a-4963-bc05-7d28a8f8a894"
+  },
+  "commands": []
+}

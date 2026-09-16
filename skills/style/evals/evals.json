@@ -1,0 +1,100 @@
+{
+  "skill_name": "style",
+  "evals": [
+    {
+      "id": 1,
+      "name": "charter-before-any-piece",
+      "prompt": "/style 02-le-catalogue on a project whose .veebee/ holds product.md, features.md, journeys.md and milestones, but no style.md",
+      "expected_output": "The charter interview runs first even though a slug was passed, because a prompt written without a charter drifts from the other pieces. The skill says in one line what it read (the product, its kind, the piece) before asking anything. Once the charter is settled it moves on to that milestone without being asked again.",
+      "files": [
+        ".veebee/product.md",
+        ".veebee/features.md",
+        ".veebee/journeys.md",
+        ".veebee/milestones/02-le-catalogue/product.md"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "charter-is-read-not-redone",
+      "prompt": "/style 03-le-bonheur on the same project after .veebee/style.md already exists",
+      "expected_output": "The existing charter is read, summarised in one line, and not re-interviewed. The run goes straight to the surfaces of that milestone. It is only redone if the user asks.",
+      "files": [
+        ".veebee/style.md"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "only-asks-what-changes-the-prompt",
+      "prompt": "/style on a project whose idea.md says kind: game and whose product.md already says pixel art, isometric, played alone in the evening",
+      "expected_output": "The technique is not asked again: the skill states what it read and asks only what is still open (pixel size, palette size, what the palette is built around, the interface inside the world or over it). Nothing the documents already settle becomes a question.",
+      "files": [
+        ".veebee/idea.md",
+        ".veebee/product.md"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "spine-follows-the-kind",
+      "prompt": "/style run twice, once on a kind: product with an interface and once on a kind: game",
+      "expected_output": "The two runs do not ask the same questions. The interface run settles feeling, light or dark, density, typography and movement; the game run settles technique and its constraints, perspective, era, palette and whether the interface sits inside the world. Both ask what it must not look like.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "anti-reference-and-taste-signal",
+      "prompt": "/style where the user answers 'un peu comme Monument Valley' to the question about the mood",
+      "expected_output": "The reference is treated as a taste signal, not a template: the skill names which part it kept (the palette, the calm, the geometry) and says so out loud. The whole product is never copied into the prompt. The question about what it must not look like is asked in every run and its answer lands in the charter.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "surfaces-deduced-and-validated",
+      "prompt": "/style 02-le-catalogue on a project whose journeys.md and features.md are filled",
+      "expected_output": "The surfaces are deduced from the journeys and the launch features, proposed with one line each, and validated by the user before the prompt is written. Three to eight for a piece; more than ten and the skill says the piece is too big. The empty state, the error and the first time are named out loud. For a kind: game the surfaces are a tileset, sprites, the HUD, a key scene, not screens.",
+      "files": [
+        ".veebee/journeys.md",
+        ".veebee/features.md"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "two-files-written",
+      "prompt": "/style 02-le-catalogue run to the end",
+      "expected_output": "Writes .veebee/style.md (the charter: what the product is, who uses it, the feeling, colour, typography, density, movement, the anti-references, the product's words from CONTEXT.md) and .veebee/milestones/02-le-catalogue/prompt.md (a line pointing at the charter, what the piece is, one block per surface, the constraints of that piece). Both in the user's language. Neither mentions a framework, a component library or CSS, and neither tells the design tool how to behave.",
+      "files": [
+        ".veebee/style.md",
+        ".veebee/milestones/02-le-catalogue/prompt.md"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "suggestion-only-when-something-points",
+      "prompt": "/style asking about light or dark on a product whose product.md says it is used at night, then asking about typography where nothing in the documents points anywhere",
+      "expected_output": "The first question carries a 💡 suggestion naming what points there ('tu as écrit que ça se joue le soir'). The second carries none, because nothing read points anywhere and the skill does not get an opinion about the user's own taste. With the question tool the suggested option is first with (Recommandé) on its label and the reason as its description.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "tree-read-from-disk",
+      "prompt": "/style finished on a project where one milestone has a prompt.md, one has only a product.md, and two have neither",
+      "expected_output": "The finish prints the tree from scripts/pieces.py read from disk, not from memory: ✓ for a piece with a prompt.md, ○ with a /style hint for one that is defined but not designed, ◌ with a /define hint for one that has no product.md yet. A piece that is not defined cannot be designed and the tree says so.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "works-without-define",
+      "prompt": "/style in a directory with no .veebee/product.md at all, just a README",
+      "expected_output": "Says in one line that define has not run and that the prompt will be thinner without it, offers to go on from the README or the user's words, and does go on. It never refuses to work.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "never-overwrites-silently",
+      "prompt": "/style 02-le-catalogue on a milestone that already has a prompt.md",
+      "expected_output": "The first lines of the existing prompt.md are shown and the user is asked before anything is touched: overwrite, or design another piece. Nothing is written until they answer.",
+      "files": [
+        ".veebee/milestones/02-le-catalogue/prompt.md"
+      ]
+    }
+  ]
+}

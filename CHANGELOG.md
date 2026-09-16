@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.11.0
+
+- New skill: **`style`**, step 3 of the chain. It settles how the product looks, then writes the prompt to paste into a design tool. It draws nothing itself: the prompt is the deliverable.
+- Two levels, because a design tool keeps brand identity in a design system separate from each screen. A charter is written once for the whole product in `.veebee/style.md`; each piece then gets a `prompt.md` that leans on it, so the milestones cannot drift from each other.
+- The interview is not `define`'s grill: the spine is known in advance, because what a design tool needs is always the same. Six to ten questions, and only a question whose answer changes the prompt. What the documents already settle is stated, never asked.
+- The spine follows the `kind` from `eureka`: feeling, light, density, typography and movement for an interface; technique, perspective, era, palette and diegetic interface for a game; shape, typography and images for content. One question is asked every time, whatever the kind: what it must not look like.
+- The surfaces are deduced from `journeys.md` and the launch features, proposed with one line each, and validated before the prompt is written. The empty state, the error and the first time are named out loud. For a game they are a tileset, sprites, a HUD, a key scene.
+- A reference the user loves is a taste signal, never a template: the skill names the part it kept.
+- The charter says intentions rather than values, because the tool picks better values; an existing brand is the exception and is taken as given.
+- Suggests only when something read points somewhere, and names what points there. Nothing points anywhere, no suggestion: it is their eye.
+- Nothing about the stack in either file, and nothing telling the design tool how to behave.
+- `assets/canvas.html` shows the charter and the prompt in blocks with a copy button, with a clipboard fallback that selects the text when the frame refuses the API. `scripts/pieces.py` reads from disk which pieces are designed, which are defined but not designed, and which are not defined yet.
+
 ## 0.10.0
 
 - `define` suggests, like `eureka`. Almost every question now carries a 💡 suggestion: the option the skill would pick and why, in one line, in the first person, with a reason the user can trace to something they said or a fact the skill found. With the question tool the suggested option comes first with "(Recommandé)" on its label and the reason as its description; in the chat a 💡 line closes the options. The opinion that used to close the question text moves there, so the card carries the reasoning and the suggestion carries the pick.
