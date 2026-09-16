@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.0
+
+- `define` suggests, like `eureka`. Almost every question now carries a 💡 suggestion: the option the skill would pick and why, in one line, in the first person, with a reason the user can trace to something they said or a fact the skill found. With the question tool the suggested option comes first with "(Recommandé)" on its label and the reason as its description; in the chat a 💡 line closes the options. The opinion that used to close the question text moves there, so the card carries the reasoning and the suggestion carries the pick.
+- No suggestion on the final check, on the offer to go deep, or on a question of taste.
+
 ## 0.9.0
 
 - `define` defines, it no longer plans. The skill was asking how long the work would take, what would ship first, how many evenings it cost: questions for someone about to build, not someone laying out what the product is.

@@ -75,21 +75,31 @@ Then the options:
 
 - Two to five words each, in their language. *Plusieurs morceaux*, not *Product : un produit composé de plusieurs essences indépendantes*.
 - Nothing inside an option but the option. No justification, no reference, no second sentence: all of that is in the question.
-- No labels: never "(Recommandé)", never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in the question.
-- Your own opinion goes at the end of the question, in the first person: *moi je garderais le catalogue*. Give it whenever you have one, which is most of the time.
+- No labels except the one the suggestion puts on its option (below): never "(exclusifs)", never a parenthesis bolted onto the question. If two answers exclude each other, say it in the question.
 - Plain words, not product-manager English. The sizes are said as *une seule chose*, *plusieurs morceaux*, *plusieurs produits*; `sketch`, `product` and `platform` are internal names for the documents, never said out loud. No calendar words at all: no *soirées*, no *semaines*, no *livrer*.
 - Never another skill in the options: they are deciding about their product, not choosing what runs next.
 
-In the chat, when there is no question tool, the same text is written out and the options follow:
+### The suggestion
+
+Like `eureka`, almost every question carries 💡 a suggestion: the option you would pick, and why, in one line, in the first person. *Moi je garderais le catalogue : tu as dit que c'est lui qui fait venir les clients.* Give it whenever you have one, which is most of the time: a question with four options and no lean is a menu, not a question.
+
+The reason names what points there: something they said, a fact you found and linked, or what the option commands downstream. Only this interview and the documents on disk feed a suggestion, never what you know about the user from elsewhere. A suggestion they cannot trace reads as the skill deciding for them. The suggestion can hesitate honestly, *a, avec un peu de c*. When the question already gives your reading, as the sizing question does, the suggestion is that reading in one line, and the question text does not say it a second time.
+
+Leave it out on three questions only: the final check on the documents, the offer to go deep on a subject, and a question about their own taste. The suggestion is where your opinion lives; the question text above it carries the reasoning, not the pick.
+
+**With the question tool**: the suggested option goes first, "(Recommandé)" appended to its label in their language, and the one-line reason as its description. No other option gets the label, and no other description says more than a few words. The user still picks whatever they like.
+
+**In the chat**, when there is no question tool, the same text is written out and the options follow, then the suggestion on its own line:
 
 ```
 **<the explanation and the question, three or four sentences>**
 → <option>
 → <option>
 → <option>
+💡 <the option you would pick and why, in one line>
 ```
 
-Several questions in one round are numbered **1.** **2.** **3.**, each carrying its own explanation.
+Several questions in one round are numbered **1.** **2.** **3.**, each carrying its own explanation and its own suggestion.
 
 ## Sizing
 
@@ -103,7 +113,7 @@ Say what it commands before asking. One piece means everything is defined in one
 | one product made of several pieces, each with its own essence | `product` |
 | several products that would live apart from each other | `platform` |
 
-Give your own reading first, in the first person, even when they already named a shape: this question is your one chance to disagree, and an idea often holds more pieces than its owner thinks. Then they decide. If they pick a shape you think is wrong, say so once, drop it, and write their choice with your reserve beside it.
+Give your own reading first, in the first person, even when they already named a shape: this question is your one chance to disagree, and an idea often holds more pieces than its owner thinks. The reading is the suggestion on this question, with the pieces you count as its reason. Then they decide. If they pick a shape you think is wrong, say so once, drop it, and write their choice with your reserve beside it.
 
 ## Milestones
 
@@ -146,7 +156,7 @@ CONTEXT.md                 the product's words and what each one means exactly
 
 When the frontier is empty, read the documents you are about to write. A section with nothing in it is a branch nobody walked: name those out loud and ask whether to go there or leave them empty. Empty on purpose is an answer; empty by accident is a hole.
 
-Then show the documents and ask one thing: do they say it right? Yes, or "I would change something" left open. No recommendation on this one. Apply the change and ask again.
+Then show the documents and ask one thing: do they say it right? Yes, or "I would change something" left open. No suggestion on this one. Apply the change and ask again.
 
 When they say yes:
 

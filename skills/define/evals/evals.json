@@ -28,7 +28,7 @@
       "id": 4,
       "name": "natural-question-style",
       "prompt": "/define on a loose idea: 'un outil qui range mes captures d'écran toutes seules'",
-      "expected_output": "The question field itself carries the explanation: what is being settled, why it matters and what changes downstream, what bothers the skill, then the question naming its subject. Three or four sentences, answerable without reading the chat. Options are two to five words and hold nothing else. No (Recommandé), no (exclusifs). The opinion closes the question in the first person.",
+      "expected_output": "The question field itself carries the explanation: what is being settled, why it matters and what changes downstream, what bothers the skill, then the question naming its subject. Three or four sentences, answerable without reading the chat. Options are two to five words and hold nothing else; no (exclusifs). Almost every question carries a 💡 suggestion in the first person with its reason in one line, traceable to something the user said or a fact found: with the question tool the suggested option is first with (Recommandé) on its label and the reason as its description, in the chat a 💡 line closes the options. No suggestion on the final check.",
       "files": []
     },
     {
