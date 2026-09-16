@@ -1,0 +1,26 @@
+skills/define/evals/evals.json
+  s_5daf1fbb13e7f6::t_c0dfd6f966ed0b 31,69
+docs/skills/define.md
+  s_5daf1fbb13e7f6::t_c0dfd6f966ed0b 35
+skills/define/SKILL.md
+  s_5daf1fbb13e7f6::t_c0dfd6f966ed0b 86,88
+  s_5daf1fbb13e7f6::t_874f5ee3bb1b2e 78,82-85,87,89-92,99,102,116,159
+CHANGELOG.md
+  s_5daf1fbb13e7f6::t_c0dfd6f966ed0b 3-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "52d675aad8eaec04bb1e8135119caf7ba7a3ddc0",
+  "prompts": {},
+  "sessions": {
+    "s_5daf1fbb13e7f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0e27ea24-7ef3-48fd-b546-1202f5f1c88b",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
