@@ -1,0 +1,43 @@
+skills/style/companion.json
+  s_b3d6a1a02e1a09::t_6bb4bb8316aaea 1-36
+README.md
+  s_b3d6a1a02e1a09::t_108b7665b1b660 11,19,42
+  s_b3d6a1a02e1a09::t_2a5ee9f9a5b5db 43
+docs/skills/style.md
+  s_b3d6a1a02e1a09::t_3d2bb0e446d044 1-89
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_108b7665b1b660 3-15
+skills/style/assets/canvas.html
+  s_b3d6a1a02e1a09::t_fd712e15c58a10 1-69,72-124,126-132,134-147,149-192
+  s_b3d6a1a02e1a09::t_8ac9b53cde98e4 70-71,125,133,148
+skills/style/evals/evals.json
+  s_b3d6a1a02e1a09::t_62e997d417749b 21-23,30-33,54-57,64-67,89-97
+  s_b3d6a1a02e1a09::t_1269f3d5beb90b 1-20,24-29,34-53,58-63,68-88,98-100
+skills/style/SKILL.md
+  s_b3d6a1a02e1a09::t_d9010b9eb25c1d 123-135
+  s_b3d6a1a02e1a09::t_2ba11247d186e5 1-16,19-30,33-107,110-122,136-152,154,156-158
+  s_b3d6a1a02e1a09::t_76ac1fd99ff2d2 153,155
+  s_b3d6a1a02e1a09::t_87309d685d5777 17-18,31-32,108-109
+skills/style/scripts/pieces.py
+  s_b3d6a1a02e1a09::t_76ac1fd99ff2d2 111
+  s_b3d6a1a02e1a09::t_8ac9b53cde98e4 60
+  s_b3d6a1a02e1a09::t_6bd05f75a97c2a 1-59,61-110,112-115
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_108b7665b1b660 3,23-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "35dee6bbfdc6b545f9cd8ca163943a54b3194fa4",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
