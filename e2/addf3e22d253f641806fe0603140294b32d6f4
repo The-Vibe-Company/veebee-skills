@@ -1,0 +1,36 @@
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_f8554f601f8817 3,26-27
+skills/trust/assets/canvas.html
+  s_b3d6a1a02e1a09::t_60afe62263fa6e 1-122
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_f8554f601f8817 3-14
+README.md
+  s_b3d6a1a02e1a09::t_f8554f601f8817 17-18,21,50
+  s_b3d6a1a02e1a09::t_5b357058b7f0a4 51
+skills/trust/SKILL.md
+  s_b3d6a1a02e1a09::t_d791c94971052e 1-122
+skills/trust/evals/evals.json
+  s_b3d6a1a02e1a09::t_f8554f601f8817 1-89
+skills/trust/companion.json
+  s_b3d6a1a02e1a09::t_f8554f601f8817 1-39
+skills/trust/scripts/chain.py
+  s_b3d6a1a02e1a09::t_3bb66a975b9a87 1-101
+docs/skills/trust.md
+  s_b3d6a1a02e1a09::t_c385b995dc1e16 1-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e2addf3e22d253f641806fe0603140294b32d6f4",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
