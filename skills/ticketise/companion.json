@@ -1,7 +1,7 @@
 {
   "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
   "name": "ticketise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "layers",
   "title": "Ticketise",
   "description": "Cut a designed or defined product into vertical-slice tickets, written as files then pushed to Linear, Notion, GitHub Issues, or kept on disk.",
@@ -9,6 +9,13 @@
   "metadata": {
     "companionSkillId": "9524cd05-032f-4b9e-b6a1-6051d15dbd1f",
     "changelog": [
+      {
+        "version": "0.1.1",
+        "date": "2026-09-22",
+        "changes": [
+          "A ticket whose file says status: done was built and merged by autopilot and is never rewritten on a later run; a change to it becomes a new ticket."
+        ]
+      },
       {
         "version": "0.1.0",
         "date": "2026-09-22",

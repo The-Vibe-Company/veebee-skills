@@ -1,7 +1,7 @@
 {
   "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
   "name": "style",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "palette",
   "title": "Style",
   "description": "Settle how a product looks by an interview about taste, then write the prompt to paste into a design tool, one piece at a time.",
@@ -9,6 +9,13 @@
   "metadata": {
     "companionSkillId": "b2dc4e92-e044-4112-976f-0429ceb0ebe5",
     "changelog": [
+      {
+        "version": "0.1.1",
+        "date": "2026-09-22",
+        "changes": [
+          "The canvas snippet escapes </ when it writes the page, so a charter or prompt holding </script> can no longer end the page's script mid-way."
+        ]
+      },
       {
         "version": "0.1.0",
         "date": "2026-09-16",
