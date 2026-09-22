@@ -1,0 +1,122 @@
+<!-- Ticketise canvas: the cut, then the tickets. Works two ways with the same file: published with
+     an Artifact tool, or opened from disk in a browser, where it reloads itself. -->
+<meta charset="utf-8">
+<title>Ticketise</title>
+<style>
+  :root {
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479; --faint: #c9c3b6;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  main { max-width: 760px; margin: 0 auto; padding: 44px 24px 80px; }
+  .pill { display: inline-block; font-family: var(--sans); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .pill.empty { background: transparent; color: var(--faint); border: 1px dashed var(--faint); }
+  h1 { font-weight: 500; font-size: 38px; line-height: 1.1; margin: 10px 0 4px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+  .sub { font-family: var(--sans); font-size: 13.5px; color: var(--muted); margin: 0 0 32px; }
+
+  .ticket { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; margin: 0 0 14px; overflow: hidden; }
+  .ticket > .head { display: flex; gap: 14px; align-items: baseline; padding: 14px 20px; }
+  .ticket .num { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; min-width: 22px; }
+  .ticket .title { font-size: 18px; line-height: 1.35; flex: 1; }
+  .ticket .dep { font-family: var(--mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+  .ticket > .body { padding: 0 20px 16px 56px; }
+  .ticket .does { font-size: 15.5px; line-height: 1.5; color: var(--muted); margin: 0 0 8px; }
+  .ticket ul { margin: 0; padding: 0; list-style: none; }
+  .ticket li { font-size: 15px; line-height: 1.5; margin: 3px 0; padding-left: 22px; position: relative; }
+  .ticket li::before { content: "☐"; position: absolute; left: 0; color: var(--faint); }
+  .ticket .foot { font-family: var(--sans); font-size: 12px; padding: 8px 20px 8px 56px; border-top: 1px solid var(--line); background: var(--bg); color: var(--muted); }
+  .ticket .foot a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+  .box { background: var(--paper); border: 1px dashed var(--faint); border-radius: 10px; padding: 16px 20px; margin: 22px 0 14px; }
+  .box .label { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .box li { font-size: 15px; line-height: 1.5; margin: 3px 0; }
+  .box ul { margin: 0; padding-left: 20px; }
+  .tree { font-family: var(--mono); font-size: 13px; line-height: 1.7; white-space: pre; overflow-x: auto; margin: 0; }
+  .placeholder { height: 1em; border-bottom: 1px dashed var(--faint); width: 55%; margin: 18px 0; }
+  @media (max-width: 700px) { main { padding: 28px 16px 60px; } h1 { font-size: 30px; } .ticket > .body, .ticket .foot { padding-left: 20px; } }
+</style>
+
+<main>
+  <div class="pill" id="pill"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div id="tickets"></div>
+  <div id="holes"></div>
+  <div id="tree"></div>
+</main>
+
+<script>
+// Edit only this object. Build it in full and replace the whole declaration with json.dumps.
+const TICKETS = {
+  lang: "fr",
+  title: "",
+  piece: "",                 // label of the piece being cut, "" for the whole product
+  source: "",                // "design" | "documents" | "words": what the cut was made from
+  stage: "cut",              // "cut" while the cut is being validated, "written", then "pushed"
+  tickets: [],               // { id, title, depends_on: ["01"], does, criteria: [], tracker: { tool, url } | null }
+  holes: [],                 // what could not be placed: a rule, a screen, a feature
+  tree: "",                  // the text printed by scripts/tickets.py
+};
+
+const T = {
+  fr: { untitled: "Sans titre", whole: "le produit entier", cutting: "On découpe",
+        source: { design: "depuis le design", documents: "depuis les documents, sans design", words: "depuis tes mots" },
+        stage: { cut: "découpe à valider", written: "tickets écrits", pushed: "tickets poussés" },
+        after: "après", notPushed: "pas encore poussé", holes: "Ce que je n'ai pas pu placer", tree: "Le projet" },
+  en: { untitled: "Untitled", whole: "the whole product", cutting: "Cutting",
+        source: { design: "from the design", documents: "from the documents, no design", words: "from your words" },
+        stage: { cut: "cut to validate", written: "tickets written", pushed: "tickets pushed" },
+        after: "after", notPushed: "not pushed yet", holes: "What I could not place", tree: "The project" },
+};
+
+(function render() {
+  const t = T[TICKETS.lang] || T.en;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const list = TICKETS.tickets || [];
+
+  const pill = document.getElementById("pill");
+  pill.textContent = list.length ? t.stage[TICKETS.stage] || TICKETS.stage : t.stage.cut;
+  pill.classList.toggle("empty", !list.length);
+  const title = document.getElementById("title");
+  title.textContent = TICKETS.title || t.untitled;
+  title.classList.toggle("untitled", !TICKETS.title);
+  document.getElementById("sub").textContent =
+    `${t.cutting} : ${TICKETS.piece || t.whole}` + (TICKETS.source ? ` · ${t.source[TICKETS.source] || TICKETS.source}` : "");
+
+  const safeUrl = (u) => /^https?:\/\//.test(u || "") ? u : "";
+  document.getElementById("tickets").innerHTML = list.length ? list.map((k) => {
+    const deps = (k.depends_on || []).length ? `<span class="dep">${t.after} ${(k.depends_on || []).map(esc).join(", ")}</span>` : "";
+    const crit = (k.criteria || []).length ? `<ul>${k.criteria.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>` : "";
+    const body = (k.does || crit) ? `<div class="body">${k.does ? `<p class="does">${esc(k.does)}</p>` : ""}${crit}</div>` : "";
+    let foot = "";
+    if (TICKETS.stage !== "cut") {
+      const url = safeUrl(k.tracker && k.tracker.url);
+      foot = `<div class="foot">${url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(k.tracker.tool || "")} ↗</a>` : t.notPushed}</div>`;
+    }
+    return `<div class="ticket"><div class="head"><span class="num">${esc(k.id)}</span><span class="title">${esc(k.title)}</span>${deps}</div>${body}${foot}</div>`;
+  }).join("") : `<div class="placeholder"></div><div class="placeholder"></div>`;
+
+  const H = TICKETS.holes || [];
+  document.getElementById("holes").innerHTML = H.length
+    ? `<div class="box"><div class="label">${t.holes}</div><ul>${H.map((h) => `<li>${esc(h)}</li>`).join("")}</ul></div>` : "";
+  document.getElementById("tree").innerHTML = TICKETS.tree
+    ? `<div class="box"><div class="label">${t.tree}</div><pre class="tree">${esc(TICKETS.tree)}</pre></div>` : "";
+})();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
+</script>

@@ -128,9 +128,11 @@ Edit the `PROMPTS` object and nothing else. It carries comments, so it is not JS
 d = {"lang": "fr", "title": "...", "slug": "...", "piece": "...", "kind": "...",
      "charter": "...", "surfaces": [], "prompt": "...", "milestones": [], "done": False}
 s = re.sub(r"const PROMPTS = \{.*?\n\};",
-           lambda m: "const PROMPTS = " + json.dumps(d, ensure_ascii=False, indent=2) + ";",
+           lambda m: "const PROMPTS = " + json.dumps(d, ensure_ascii=False, indent=2).replace("</", "<\\/") + ";",
            open(dst).read(), count=1, flags=re.S)
 ```
+
+The `</` escape is not optional: a text holding `</script>` would otherwise end the page's script in the middle.
 
 `slug` is the milestone folder and decides the path shown on the prompt block; `piece` is the label under the title. Both empty at the root.
 

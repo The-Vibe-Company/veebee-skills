@@ -1,0 +1,78 @@
+{
+  "skill_name": "ticketise",
+  "evals": [
+    {
+      "id": 1,
+      "name": "vertical-slices-not-layers",
+      "prompt": "/ticketise 02-le-catalogue on a project with a design folder and define's documents",
+      "expected_output": "Every ticket is one thing a user can do, from the screen to the data, checkable by using the product. No ticket is a layer (écran, API, table). The first ticket is the thinnest slice crossing the piece end to end.",
+      "files": [
+        ".veebee/design/",
+        ".veebee/milestones/02-le-catalogue/product.md"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "cut-validated-before-writing",
+      "prompt": "/ticketise run to the point of the cut",
+      "expected_output": "The whole cut is shown at once, numbered, one line each with its dependencies, and said to be an order of construction rather than a schedule. Nothing is written until the user says the cut holds; a merge, split or drop is applied and the cut shown again.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "design-first-then-documents-then-words",
+      "prompt": "/ticketise run three times: with a design folder, with only define's documents, with only a paragraph of product instructions",
+      "expected_output": "With a design, what the user sees comes from it. With only documents, the skill says in one line the tickets will say what the user does, not exactly what they see. With only words, it still cuts and never refuses for lack of a design.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "holes-named-not-filled",
+      "prompt": "/ticketise where rules.md holds a rule no screen covers and the design holds a screen no journey reaches",
+      "expected_output": "Both are named as things the skill could not place, before the cut is validated. Neither becomes an invented ticket.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "what-and-how",
+      "prompt": "/ticketise once in an empty directory and once in a repository with code",
+      "expected_output": "In the empty directory tickets have no Comment section and name no framework, file or table. In the repository the Comment section says where the slice plugs in, from what the skill read in the code.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "acceptance-by-use",
+      "prompt": "/ticketise on a piece whose surfaces include an empty state and an error",
+      "expected_output": "Acceptance criteria are checked by using the product, never by reading code, and use the words of CONTEXT.md exactly. The empty state and the error are criteria of their slice, not separate tickets. More than seven criteria or two journeys splits the ticket.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "files-then-confirmed-push",
+      "prompt": "/ticketise with a Linear tool connected",
+      "expected_output": "Ticket files are written to .veebee/tickets/ (or the milestone's tickets/) first. The skill names the tool it actually found, asks where inside it (team, project), and confirms once with the count and exact destination before creating anything. Pushes in dependency order and writes tracker: { tool, id, url } back into each file.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "nothing-connected",
+      "prompt": "/ticketise with no tracker tool and no gh command available",
+      "expected_output": "The files are the result. The skill says nothing is connected, never pretends to push, and says a second run after connecting a tracker will push them.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "second-run-is-safe",
+      "prompt": "/ticketise on a piece whose tickets were already pushed, after the design changed",
+      "expected_output": "Existing tickets are read and compared: new, changed, no longer belonging, shown before anything is touched. Pushed tickets are updated in place, never duplicated. A ticket that no longer belongs is marked in its file and never deleted in the tracker.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "tree-from-disk",
+      "prompt": "/ticketise finished on a project with one piece pushed, one cut but not pushed, one undefined",
+      "expected_output": "The finish prints the tree from scripts/tickets.py read from disk, with ticket and pushed counts per piece, /define for the undefined piece, and the first ticket to build.",
+      "files": []
+    }
+  ]
+}

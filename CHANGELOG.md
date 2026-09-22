@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.0
+
+- New skill: **`ticketise`**, which cuts a designed or defined product into tickets and sends them to the tracker. It cuts; it neither builds nor plans a calendar.
+- It reads the best source it finds: what came back from a design tool, then `style`'s prompt to spot surfaces that were never drawn, then `define`'s documents, then plain product instructions. It never refuses for lack of a design, and says what the tickets will lack.
+- A ticket is a vertical slice: one thing a user can do, from the screen to the data, ending in one pull request that is checked by using the product. Never a layer. The first ticket is the thinnest slice crossing the whole product. Empty states and errors are acceptance criteria of their slice.
+- The whole cut is shown and validated before anything is written. What cannot be placed (a rule no ticket carries, a screen no journey reaches) is named, never filled.
+- Tickets say what, and how only when code exists; on an empty directory they name no framework and no file.
+- Files first in `.veebee/tickets/`, then pushed to whatever tracker is really connected (Linear, Notion, GitHub Issues) after one confirmation naming the count and the destination. The tracker id is written back, so a second run updates rather than duplicates, and nothing is ever deleted in the tracker.
+- `style`: the canvas snippet escapes `</`, so a charter or prompt holding `</script>` can no longer break the page.
+
 ## 0.11.0
 
 - New skill: **`style`**, step 3 of the chain. It settles how the product looks, then writes the prompt to paste into a design tool. It draws nothing itself: the prompt is the deliverable.
