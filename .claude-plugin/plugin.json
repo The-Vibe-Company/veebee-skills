@@ -1,6 +1,6 @@
 {
   "name": "veebee-skills",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "Veebee's skills for building a product from a blank page to a shipped PR: find an idea, define it precisely, brief the design, review it, set up the stack, cut tickets, ship.",
   "author": {
     "name": "The Vibe Company",
@@ -23,6 +23,7 @@
     "./skills/define",
     "./skills/style",
     "./skills/ticketise",
-    "./skills/autopilot"
+    "./skills/autopilot",
+    "./skills/trust"
   ]
 }

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.14.0
+
+- New skill: **`trust`**. One sentence in, a product that runs out. It goes through `eureka`, `define`, `style`, `ticketise` and `autopilot` alone, playing the user at every question.
+- It asks nothing. Three stops only: no sentence at all, a first push to a repository that already has a remote, and a sentence asking for something that should not be built.
+- Every decision taken in the user's place is written to `.veebee/trust/decisions.md` as it happens, with a reason that is something in their sentence, a checked fact, or a named convention. Never a preference with nothing behind it. Between two close options it takes the reversible one.
+- One slice: the size is settled before `define`'s first question, the smallest version that stands on its own, no milestones, the rest into `features.md` under *plus tard*. A question whose answer would not change the code is not asked at all.
+- The design is drawn on the spot by the design skill actually installed, instead of `style` handing out a prompt to paste elsewhere.
+- Tickets stay files, nothing reaches a tracker. A fresh directory stays local: `git init` and a commit per ticket into `main` after the same checks, no remote, no pull request.
+- It picks the stack and names it, since `setup` does not exist yet, and answers the product questions `autopilot` would block on with the smallest reversible choice. It never fakes money, authentication, permissions or personal data, and never bypasses a check.
+- It runs the product and goes through it before claiming anything, and says the failure first when there is one.
+- `scripts/chain.py` reads where a run stands from disk, so an interrupted run picks up where it left off.
+
 ## 0.13.0
 
 - New skill: **`autopilot`**, the last step of the chain. It takes the tickets one after another, builds each one, ships it as a pull request and merges it, without a human in the loop, until something truly blocks.

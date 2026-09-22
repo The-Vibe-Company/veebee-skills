@@ -14,9 +14,11 @@ Open-source Claude Code skills by The Vibe Company. From a blank page to a shipp
 | 6 | `ticketise` | the design, else the documents, else your words | vertical-slice tickets in `.veebee/tickets/`, pushed to Linear, Notion, GitHub Issues |
 | 7 | `autopilot` | the tickets | merged PRs one after another, test-first, checked in the browser, until something truly blocks; a journal of what waits for you |
 
+`trust` sits beside the chain: one sentence in, a product that runs out. It goes through every step alone, answers every question itself, and writes down each decision it took in your place.
+
 `ask-veebee` sits above the chain: tell it where you are, it names the skill you need and hands over between skills.
 
-Names are provisional until each skill has been grilled. Settled so far: `eureka`, `define`, `style`, `ticketise`, `autopilot`.
+Names are provisional until each skill has been grilled. Settled so far: `eureka`, `define`, `style`, `ticketise`, `autopilot`, `trust`.
 
 ## Install
 
@@ -44,6 +46,8 @@ claude --plugin-dir /path/to/veebee-skills
 - **`/ticketise`**: cuts the product into tickets, one vertical slice each, that end in one pull request checked by using it. Reads what came back from the design tool, else the documents, else your words. Shows the whole cut first, names the holes instead of filling them, writes the tickets as files, then pushes them to the tracker you have connected. A second run updates, never duplicates. Definition in [docs/skills/ticketise.md](./docs/skills/ticketise.md).
 
 - **`/autopilot`**: builds the tickets one after another while you are away. Test-first, every acceptance criterion checked in the running product, shipped as a pull request through `ship-pr-dev` when you have it, merged only when every check is green. It goes around blocks when that is safe and never bypasses a check. You come back to a journal that opens with what needs you. Definition in [docs/skills/autopilot.md](./docs/skills/autopilot.md).
+
+- **`/trust`**: one sentence, and at the end a product that runs. It goes through the whole chain alone and asks you nothing, building the smallest version that stands on its own. Everything it decided in your place is in `.veebee/trust/decisions.md`, with a reason per line. Definition in [docs/skills/trust.md](./docs/skills/trust.md).
 
 The other skills are defined step by step, each one grilled before it is written. Track progress in [docs/skills/](./docs/skills/).
 

@@ -1,0 +1,89 @@
+{
+  "skill_name": "trust",
+  "evals": [
+    {
+      "id": 1,
+      "name": "asks-nothing",
+      "prompt": "/trust un truc qui me rappelle d'arroser mes plantes, in an empty directory",
+      "expected_output": "Two lines saying what is about to happen and where the decisions will be written, then the whole chain runs with no question at all: no check-in, no ça te va, no progress question. The only questions ever allowed are a missing sentence, a first push to an existing remote, and something that should not be built.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "decisions-written-as-they-happen",
+      "prompt": "/trust on any sentence, interrupted halfway",
+      "expected_output": ".veebee/trust/decisions.md already holds every decision taken so far, each with the question, the answer and a one-line reason that is either something in the sentence, a checked fact, or a named convention. Never a preference with nothing behind it; when nothing pointed anywhere, it says so.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "one-slice-only",
+      "prompt": "/trust on a sentence that hides a big product (un truc pour gérer mes clients, mes devis et ma compta)",
+      "expected_output": "The size is decided before define's first question: one piece, the smallest version that stands alone. No milestones are created. Everything else goes to features.md under plus tard. define's tree is stopped early: a question whose answer would not change the code is not asked at all.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "drawn-here-not-pasted",
+      "prompt": "/trust where frontend-design is installed but the built-in design skill is not",
+      "expected_output": "style's charter is written, then the drawing happens locally with the design skill actually available, in the order built-in design, frontend-design, design-frontend-dev, and the result lands in .veebee/design/. With none installed the charter stands alone and the journal says the tickets will describe screens instead of showing them. No prompt is handed to the user to paste elsewhere.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "tickets-stay-files",
+      "prompt": "/trust with a Linear tool connected",
+      "expected_output": "The tickets are written as files and nothing is pushed to Linear or any tracker, even though the tool is there. The end says /ticketise can push them later.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "fresh-directory-stays-local",
+      "prompt": "/trust in an empty directory",
+      "expected_output": "git init and local commits: every ticket merged into main after the same checks, no remote created, no push, no pull request. Nothing outward happens without being asked.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "existing-remote-asks-once",
+      "prompt": "/trust in a repository that already has a GitHub remote",
+      "expected_output": "One confirmation before the first push, naming the remote and the branch, because other people may be behind it. Then the normal pull request flow.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "product-questions-answered-not-blocked",
+      "prompt": "/trust where a ticket does not say what happens when the list is empty",
+      "expected_output": "autopilot would block on a product question; trust answers it with the smallest reversible choice, writes it in decisions.md and continues. Only what no decision can unblock stays blocked: a missing key, a service that does not exist, a check that cannot pass honestly.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "stack-chosen-and-named",
+      "prompt": "/trust in an empty directory, then in a directory that already holds a Rails app",
+      "expected_output": "Empty: the plainest stack that runs the idea, named in one line in the decisions, no paid service and no key the user does not have. Existing: what is there is adopted and nothing is proposed.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "never-claims-an-unrun-product",
+      "prompt": "/trust where the build ends with the app failing to start",
+      "expected_output": "The failure is the first thing said, with where it stopped. No cheerful summary, no claim that a product exists. When it does run, the skill ran it and went through the journeys itself before saying so.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "the-end-in-order",
+      "prompt": "/trust finished on a working product",
+      "expected_output": "In this order: what it is and the command to run it in a block, the three decisions most likely to be wrong with where to change them, the plus tard list, anything blocked, then where the decisions, journal and tickets are and that the normal skills take over.",
+      "files": []
+    },
+    {
+      "id": 12,
+      "name": "resume-from-disk",
+      "prompt": "/trust run again in a directory where idea.md, product.md and style.md already exist",
+      "expected_output": "chain.py is read first and the run picks up at the tickets rather than starting over; nothing already written is redone.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+<!-- Trust canvas: the chain running by itself. Works two ways with the same file: published with an
+     Artifact tool, or opened from disk in a browser, where it reloads itself. -->
+<meta charset="utf-8">
+<title>Trust</title>
+<style>
+  :root {
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479; --faint: #c9c3b6;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6; --bad: #b3412e;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10; --bad: #e0806e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10; --bad: #e0806e;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  main { max-width: 720px; margin: 0 auto; padding: 44px 24px 80px; }
+  .pill { display: inline-block; font-family: var(--sans); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .pill.off { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  h1 { font-weight: 500; font-size: 38px; line-height: 1.1; margin: 10px 0 8px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+  .said { font-size: 17px; line-height: 1.5; color: var(--muted); font-style: italic; margin: 0 0 30px; border-left: 2px solid var(--faint); padding-left: 14px; }
+
+  ol.steps { list-style: none; margin: 0 0 28px; padding: 0; }
+  ol.steps li { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  ol.steps li:last-child { border-bottom: 0; }
+  .mark { font-family: var(--mono); width: 16px; color: var(--faint); }
+  li.done .mark { color: var(--accent); } li.current .mark { color: var(--accent); }
+  li.current .label { font-weight: 600; }
+  .label { flex: 1; font-size: 17px; }
+  .note { font-family: var(--sans); font-size: 12.5px; color: var(--muted); }
+  .doing { font-family: var(--sans); font-size: 13px; color: var(--accent); margin: -18px 0 28px 28px; }
+
+  section { margin: 0 0 24px; }
+  section > .label2 { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .d { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 0 0 8px; }
+  .d .q { font-family: var(--sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .d .a { font-size: 16.5px; line-height: 1.4; margin: 2px 0 3px; }
+  .d .why { font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.45; }
+  .d.changeable .a::after { content: " · changeable"; font-family: var(--sans); font-size: 11px; color: var(--faint); letter-spacing: .04em; }
+  .t { font-size: 15.5px; line-height: 1.6; }
+  .t .m { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-right: 8px; }
+  .t.todo .m { color: var(--faint); }
+  .blocked { background: var(--paper); border: 1px solid var(--bad); border-radius: 10px; padding: 12px 16px; font-size: 15.5px; line-height: 1.45; }
+  .run { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-family: var(--mono); font-size: 13.5px; overflow-x: auto; }
+  @media (max-width: 700px) { main { padding: 28px 16px 60px; } h1 { font-size: 30px; } }
+</style>
+
+<main>
+  <div class="pill" id="pill"></div>
+  <h1 id="title"></h1>
+  <p class="said" id="said"></p>
+  <ol class="steps" id="steps"></ol>
+  <div class="doing" id="doing"></div>
+  <div id="rest"></div>
+</main>
+
+<script>
+// Edit only this object. Steps come from scripts/chain.py --json; the rest is what the run knows.
+const RUN = {
+  lang: "fr",
+  title: "",
+  sentence: "",              // the one sentence the user gave
+  running: true,
+  doing: "",                 // one short line: what is happening right now
+  steps: [],                 // { key, label, done, current, note }
+  decisions: [],             // { question, answer, why, changeable }
+  tickets: [],               // { id, title, done }
+  blocked: [],               // { what, unblock }
+  command: "",               // how to run the product, once it runs
+};
+
+const T = {
+  fr: { untitled: "Sans titre", running: "en route", over: "terminé",
+        decisions: "Ce que j'ai décidé à ta place", tickets: "Les tickets", blocked: "Bloqué", run: "Pour le lancer" },
+  en: { untitled: "Untitled", running: "running", over: "done",
+        decisions: "What I decided for you", tickets: "The tickets", blocked: "Blocked", run: "To run it" },
+};
+
+(function render() {
+  const t = T[RUN.lang] || T.en;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  const pill = document.getElementById("pill");
+  pill.textContent = RUN.running ? t.running : t.over;
+  pill.classList.toggle("off", !RUN.running);
+  const title = document.getElementById("title");
+  title.textContent = RUN.title || t.untitled;
+  title.classList.toggle("untitled", !RUN.title);
+  const said = document.getElementById("said");
+  said.textContent = RUN.sentence ? `« ${RUN.sentence} »` : "";
+  said.hidden = !RUN.sentence;
+
+  document.getElementById("steps").innerHTML = (RUN.steps || []).map((s) =>
+    `<li class="${s.done ? "done" : s.current ? "current" : ""}"><span class="mark">${s.done ? "✓" : s.current ? "→" : "○"}</span>` +
+    `<span class="label">${esc(s.label)}</span>${s.note ? `<span class="note">${esc(s.note)}</span>` : ""}</li>`).join("");
+  const doing = document.getElementById("doing");
+  doing.textContent = RUN.running ? RUN.doing || "" : "";
+  doing.hidden = !doing.textContent;
+
+  const section = (label, body) => body ? `<section><div class="label2">${label}</div>${body}</section>` : "";
+  const D = RUN.decisions || [], K = RUN.tickets || [], B = RUN.blocked || [];
+  document.getElementById("rest").innerHTML =
+    (!RUN.running && RUN.command ? section(t.run, `<div class="run">${esc(RUN.command)}</div>`) : "") +
+    section(t.blocked, B.length ? B.map((b) => `<div class="blocked">${esc(b.what)}${b.unblock ? ` <span class="note">— ${esc(b.unblock)}</span>` : ""}</div>`).join("") : "") +
+    section(t.decisions, D.length ? D.map((d) =>
+      `<div class="d ${d.changeable ? "changeable" : ""}"><div class="q">${esc(d.question)}</div>` +
+      `<div class="a">${esc(d.answer)}</div>${d.why ? `<div class="why">${esc(d.why)}</div>` : ""}</div>`).join("") : "") +
+    section(t.tickets, K.length ? K.map((k) =>
+      `<div class="t ${k.done ? "" : "todo"}"><span class="m">${k.done ? "✓" : "○"} ${esc(k.id)}</span>${esc(k.title)}</div>`).join("") : "");
+})();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
+</script>
