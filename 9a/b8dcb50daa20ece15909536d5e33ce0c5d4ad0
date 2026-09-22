@@ -1,0 +1,21 @@
+skills/style/companion.json
+  s_b3d6a1a02e1a09::t_36d6cdc96b9c71 4,12-18
+skills/ticketise/companion.json
+  s_b3d6a1a02e1a09::t_81ba1f861b3b50 4,13-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9ab8dcb50daa20ece15909536d5e33ce0c5d4ad0",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
