@@ -126,6 +126,7 @@ When tickets already exist, read them first and compare with the new cut: new ti
 - A ticket with a `tracker` is **updated** in place, never created twice.
 - A ticket that no longer belongs is marked in its file and **never deleted in the tracker**: say which ones, and let them close them.
 - A ticket someone already started in the tracker is not rewritten without asking.
+- A ticket whose file says `status: done` has been built by `autopilot` and merged: it is never rewritten. A change to what it does is a new ticket.
 
 ## The page
 
