@@ -1,0 +1,42 @@
+skills/style/SKILL.md
+  s_b3d6a1a02e1a09::t_2e3b58fb8efb2d 131,135
+  s_b3d6a1a02e1a09::t_25aa5048a6df42 136
+skills/ticketise/evals/evals.json
+  s_b3d6a1a02e1a09::t_a7b6deeb32638d 1-78
+docs/skills/ticketise.md
+  s_b3d6a1a02e1a09::t_f96d0e3d32f729 1-77
+skills/ticketise/scripts/tickets.py
+  s_b3d6a1a02e1a09::t_bb0473d6012c12 95,135
+  s_b3d6a1a02e1a09::t_eb6836139fac24 1-94,96-134,136-145
+skills/ticketise/assets/canvas.html
+  s_b3d6a1a02e1a09::t_bb0473d6012c12 1-122
+skills/ticketise/SKILL.md
+  s_b3d6a1a02e1a09::t_eb6836139fac24 54-57,66,70,73
+  s_b3d6a1a02e1a09::t_2e3b58fb8efb2d 136,139-140
+  s_b3d6a1a02e1a09::t_91c308b417444d 1-53,58-65,67-69,71-72,74-135,137-138,141-159
+.claude-plugin/plugin.json
+  s_b3d6a1a02e1a09::t_a7b6deeb32638d 3,24-25
+README.md
+  s_b3d6a1a02e1a09::t_a7b6deeb32638d 14,19,44
+  s_b3d6a1a02e1a09::t_972badd7ab6537 45
+CHANGELOG.md
+  s_b3d6a1a02e1a09::t_a7b6deeb32638d 3-12
+skills/ticketise/companion.json
+  s_b3d6a1a02e1a09::t_a7b6deeb32638d 1-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0a50cc0e93bbdf58db81613a2a64140362b8688c",
+  "prompts": {},
+  "sessions": {
+    "s_b3d6a1a02e1a09": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7c70dff-d508-4919-9ac7-53de5cb40668",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Zewed <dewez.antoine2@gmail.com>"
+    }
+  }
+}
