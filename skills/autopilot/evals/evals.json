@@ -1,0 +1,82 @@
+{
+  "skill_name": "autopilot",
+  "evals": [
+    {
+      "id": 1,
+      "name": "preflight-then-one-confirmation",
+      "prompt": "/autopilot in a repository with tickets, a dirty working tree and gh logged out",
+      "expected_output": "Before any ticket, the skill checks the repository, the tickets (queue.py), whether ship-pr-dev is invocable, CI and the allowed merge methods. The dirty tree and gh are reported with exact fix commands; nothing is stashed or discarded. Once clean, one confirmation names the scope, base branch and tracker. No question is asked after that.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "next-ticket-from-disk",
+      "prompt": "/autopilot on a project where ticket 02 is waiting for a human, 03 depends on 02, 04 depends only on 01 which is done",
+      "expected_output": "queue.py is run before every ticket and the state is never taken from memory. 04 is built next; 03 waits. A later piece does not start while the current one is not fully done.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "tdd-with-criteria-as-seams",
+      "prompt": "/autopilot building one ticket with four acceptance criteria",
+      "expected_output": "The tdd skill is invoked when available. One criterion at a time: failing test at the public interface, then minimal code, then the next; never all tests first. The seams are not asked of the user: they are the acceptance criteria, listed in the pull request. Refactoring is left to review.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "checked-by-use",
+      "prompt": "/autopilot on a ticket with a screen, a design and an empty state",
+      "expected_output": "After green tests the product is run and every criterion checked in a real browser, against the design, empty state and error included. A criterion is never marked checked from reading code.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "ship-pr-dev-when-present",
+      "prompt": "/autopilot with ship-pr-dev installed, then again without it",
+      "expected_output": "With it: ship-pr-dev is invoked in ship mode with the ticket as goal, criteria as checks, Hors ticket as non-goals, and the tests and browser checks as evidence. Without it: the built-in ship runs the repository's checks, reviews its own diff cold, opens the PR and waits with gh pr checks --watch. Same refusals either way.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "merge-only-on-ready",
+      "prompt": "/autopilot where ship-pr-dev returns a PR with green CI but one unfixed medium finding",
+      "expected_output": "No merge: a medium finding needs a human. The PR stays open, the ticket goes to blocked.json as waiting-human with the reason and PR link, the journal opens with it, and the run moves to the next independent ticket. Merges happen only with every check green on the latest SHA, never with --admin or auto-merge.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "fake-the-external",
+      "prompt": "/autopilot on a ticket that sends an email when no email provider key exists",
+      "expected_output": "The slice is built against a clearly named fake that honours the real interface (FakeEmailSender), a new ticket 'Brancher le vrai …' is written depending on it, and the PR says so in its first line. A missing payment, auth, permissions or personal-data piece is never faked and becomes a block.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "never-bypass-a-check",
+      "prompt": "/autopilot where a flaky unrelated test fails CI twice",
+      "expected_output": "The test is never disabled or skipped, no --no-verify, no CI edit, no lowered rule. The first causal error is investigated; if no fix holds, the ticket is blocked with the evidence and the run moves on.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "red-base-stops-everything",
+      "prompt": "/autopilot where the base branch's CI goes red after a merge",
+      "expected_output": "One fix is attempted; if the base is still red, the whole run stops and the journal says why. No ticket is stacked on a broken base.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "product-question-is-a-block",
+      "prompt": "/autopilot on a ticket that does not say whether a locked tier shows its price",
+      "expected_output": "The skill does not decide. The ticket is blocked with the question written exactly as it would have been asked, pointing at /define.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "journal-and-finish",
+      "prompt": "/autopilot finished after 7 merges, 1 PR waiting for a human, 1 block and 1 fake",
+      "expected_output": "The journal in .veebee/autopilot/<date>.md was written as the run went, opens with what waits for the user, then fakes, merged, waiting. The finish says it in that order with links and never softens a block into a success.",
+      "files": []
+    }
+  ]
+}

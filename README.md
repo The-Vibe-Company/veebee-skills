@@ -12,11 +12,11 @@ Open-source Claude Code skills by The Vibe Company. From a blank page to a shipp
 | 4 | `design-review` | the design back from Claude Design | verdict + list of deviations |
 | 5 | `setup` | `product.md` | a challenged stack, an initialised repo |
 | 6 | `ticketise` | the design, else the documents, else your words | vertical-slice tickets in `.veebee/tickets/`, pushed to Linear, Notion, GitHub Issues |
-| 7 | `ship` | one ticket | a merged PR, or a call for help. Includes the UI check against the design. |
+| 7 | `autopilot` | the tickets | merged PRs one after another, test-first, checked in the browser, until something truly blocks; a journal of what waits for you |
 
 `ask-veebee` sits above the chain: tell it where you are, it names the skill you need and hands over between skills.
 
-Names are provisional until each skill has been grilled. Settled so far: `eureka`, `define`, `style`, `ticketise`.
+Names are provisional until each skill has been grilled. Settled so far: `eureka`, `define`, `style`, `ticketise`, `autopilot`.
 
 ## Install
 
@@ -42,6 +42,8 @@ claude --plugin-dir /path/to/veebee-skills
 - **`/style`**: settles how the product looks, by an interview about your taste, then writes the prompt you paste into a design tool. It writes the charter once for the whole product, then one prompt per piece with the surfaces deduced from your journeys and validated by you. Adapts to the kind: screens for an app, technique and palette for a game. Definition in [docs/skills/style.md](./docs/skills/style.md).
 
 - **`/ticketise`**: cuts the product into tickets, one vertical slice each, that end in one pull request checked by using it. Reads what came back from the design tool, else the documents, else your words. Shows the whole cut first, names the holes instead of filling them, writes the tickets as files, then pushes them to the tracker you have connected. A second run updates, never duplicates. Definition in [docs/skills/ticketise.md](./docs/skills/ticketise.md).
+
+- **`/autopilot`**: builds the tickets one after another while you are away. Test-first, every acceptance criterion checked in the running product, shipped as a pull request through `ship-pr-dev` when you have it, merged only when every check is green. It goes around blocks when that is safe and never bypasses a check. You come back to a journal that opens with what needs you. Definition in [docs/skills/autopilot.md](./docs/skills/autopilot.md).
 
 The other skills are defined step by step, each one grilled before it is written. Track progress in [docs/skills/](./docs/skills/).
 

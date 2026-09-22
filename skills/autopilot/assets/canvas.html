@@ -1,0 +1,132 @@
+<!-- Autopilot canvas: the board during the run. Works two ways with the same file: published with an
+     Artifact tool, or opened from disk in a browser, where it reloads itself. -->
+<meta charset="utf-8">
+<title>Autopilot</title>
+<style>
+  :root {
+    --bg: #efece5; --paper: #fffdf9; --ink: #1c1a16; --muted: #8a8479; --faint: #c9c3b6;
+    --line: #e8e3d9; --accent: #f27313; --accent-soft: #fff1e6; --ok: #3f7d4e; --bad: #b3412e;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+      --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10; --ok: #7fbf8e; --bad: #e0806e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --paper: #1c1a17; --ink: #f1ede4; --muted: #8f887b; --faint: #4a4438;
+    --line: #2b2823; --accent: #f27313; --accent-soft: #2e1d10; --ok: #7fbf8e; --bad: #e0806e;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); }
+  main { max-width: 760px; margin: 0 auto; padding: 44px 24px 80px; }
+  .pill { display: inline-block; font-family: var(--sans); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .pill.off { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  h1 { font-weight: 500; font-size: 38px; line-height: 1.1; margin: 10px 0 4px; letter-spacing: -.01em; }
+  h1.untitled { color: var(--muted); font-style: italic; font-weight: 400; }
+  .sub { font-family: var(--sans); font-size: 13.5px; color: var(--muted); margin: 0 0 26px; }
+  .tally { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; font-family: var(--sans); font-size: 13px; }
+  .tally span { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; }
+  .tally b { font-size: 16px; margin-right: 4px; }
+
+  .now { background: var(--paper); border: 1px solid var(--accent); border-radius: 10px; padding: 16px 20px; margin: 0 0 26px; }
+  .now .label, section > .label { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .now .title { font-size: 19px; }
+  .now .step { font-family: var(--sans); font-size: 13px; color: var(--accent); margin-top: 4px; }
+
+  section { margin: 0 0 22px; }
+  .row { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 11px 16px; margin: 0 0 8px; display: flex; gap: 12px; align-items: baseline; }
+  .row .key { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 64px; }
+  .row .main { flex: 1; font-size: 16px; line-height: 1.4; }
+  .row .why { display: block; font-family: var(--sans); font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .row a { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  section.human .row { border-color: var(--accent); }
+  section.blocked .row .key { color: var(--bad); }
+  section.done .row .key { color: var(--ok); }
+  section.done .row .main, section.todo .row .main { font-size: 15px; }
+  .empty { font-family: var(--sans); font-size: 13px; color: var(--faint); }
+  @media (max-width: 700px) { main { padding: 28px 16px 60px; } h1 { font-size: 30px; } .row { flex-wrap: wrap; } }
+</style>
+
+<main>
+  <div class="pill" id="pill"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="tally" id="tally"></div>
+  <div id="now"></div>
+  <div id="sections"></div>
+</main>
+
+<script>
+// Edit only this object. Build it from scripts/queue.py --json plus what the run knows
+// (the ticket in progress, the pull request links), and replace the declaration with json.dumps.
+const BOARD = {
+  lang: "fr",
+  title: "",
+  scope: "",                 // "02-le-catalogue" or "" for the whole project
+  running: true,             // false once the run is over
+  updated: "",               // "03:42", when this page was last written
+  current: null,             // { key, title, step } — step in words: "tests", "dans le navigateur", "CI", "merge"
+  tickets: [],               // { key, title, state, reason, pr } — state: done | ready | waiting | blocked | waiting-human
+  fakes: [],                 // { key, what, ticket } — a fake built in place of something missing
+};
+
+const T = {
+  fr: { untitled: "Sans titre", running: "en route", over: "course terminée", whole: "tout le projet", updated: "mis à jour à",
+        now: "En cours", human: "T'attend", blocked: "Bloqué", fakes: "Faux à remplacer", done: "Mergé", todo: "À venir",
+        states: { done: "mergés", "waiting-human": "t'attendent", blocked: "bloqués", ready: "prêts", waiting: "en attente" },
+        none: "Rien ici.", pr: "PR ↗", replaced: "remplacé par le ticket" },
+  en: { untitled: "Untitled", running: "running", over: "run over", whole: "the whole project", updated: "updated at",
+        now: "In progress", human: "Waiting for you", blocked: "Blocked", fakes: "Fakes to replace", done: "Merged", todo: "Coming",
+        states: { done: "merged", "waiting-human": "waiting for you", blocked: "blocked", ready: "ready", waiting: "waiting" },
+        none: "Nothing here.", pr: "PR ↗", replaced: "replaced by ticket" },
+};
+
+(function render() {
+  const t = T[BOARD.lang] || T.en;
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const safe = (u) => /^https?:\/\//.test(u || "") ? u : "";
+  const list = BOARD.tickets || [];
+
+  const pill = document.getElementById("pill");
+  pill.textContent = BOARD.running ? t.running : t.over;
+  pill.classList.toggle("off", !BOARD.running);
+  const title = document.getElementById("title");
+  title.textContent = BOARD.title || t.untitled;
+  title.classList.toggle("untitled", !BOARD.title);
+  document.getElementById("sub").textContent =
+    (BOARD.scope || t.whole) + (BOARD.updated ? ` · ${t.updated} ${BOARD.updated}` : "");
+
+  const c = BOARD.current;
+  const inFlight = (k) => c && BOARD.running && k.key === c.key;
+  const count = {};
+  list.filter((k) => !inFlight(k)).forEach((k) => { count[k.state] = (count[k.state] || 0) + 1; });
+  document.getElementById("tally").innerHTML = ["done", "waiting-human", "blocked", "ready", "waiting"]
+    .filter((s) => count[s]).map((s) => `<span><b>${count[s]}</b>${esc(t.states[s])}</span>`).join("");
+
+  document.getElementById("now").innerHTML = c && BOARD.running
+    ? `<div class="now"><div class="label">${t.now}</div><div class="title">${esc(c.key)} · ${esc(c.title)}</div>${c.step ? `<div class="step">${esc(c.step)}</div>` : ""}</div>` : "";
+
+  const row = (k) => {
+    const url = safe(k.pr);
+    return `<div class="row"><span class="key">${esc(k.key)}</span><span class="main">${esc(k.title)}` +
+      `${k.reason ? `<span class="why">${esc(k.reason)}</span>` : ""}</span>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${t.pr}</a>` : ""}</div>`;
+  };
+  const section = (cls, label, items, render = row, always = false) =>
+    (items.length || always) ? `<section class="${cls}"><div class="label">${label}</div>${items.length ? items.map(render).join("") : `<div class="empty">${t.none}</div>`}</section>` : "";
+
+  const by = (s) => list.filter((k) => s.includes(k.state) && !inFlight(k));
+  const F = BOARD.fakes || [];
+  document.getElementById("sections").innerHTML =
+    section("human", t.human, by(["waiting-human"])) +
+    section("blocked", t.blocked, by(["blocked"])) +
+    section("fakes", t.fakes, F, (f) => `<div class="row"><span class="key">${esc(f.key)}</span><span class="main">${esc(f.what)}${f.ticket ? `<span class="why">${t.replaced} ${esc(f.ticket)}</span>` : ""}</span></div>`) +
+    section("done", t.done, by(["done"]), row, true) +
+    section("todo", t.todo, by(["ready", "waiting"]));
+})();
+
+// Opened from disk (no Artifact tool): reload every few seconds so the latest rewrite shows up.
+if (location.protocol === "file:") setTimeout(() => location.reload(), 3000);
+</script>

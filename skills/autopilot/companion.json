@@ -1,0 +1,35 @@
+{
+  "$schema": "https://thecompanion.sh/schemas/companion-manifest.v2.schema.json",
+  "name": "autopilot",
+  "version": "0.1.0",
+  "icon": "rocket",
+  "title": "Autopilot",
+  "description": "Build the tickets one after another without a human in the loop: test-first, shipped as a PR, merged when every check is green, around blocks when safe.",
+  "notes": "## Autopilot\n\nLast skill of the Veebee chain (open source, MIT): from a blank page to a shipped product, one skill per step. Takes over from `ticketise`.\n\n**It builds, ships and merges the tickets one after another, without a human in the loop, until something truly blocks.**\n\n- **One confirmation, then silence.** Before the first ticket it checks everything that would stop the night an hour in (clean tree, gh, CI, merge methods, whether `ship-pr-dev` is invocable), then asks once, naming the scope and the base branch. No question after that: whatever needs the user goes in the journal.\n- **Next ticket read from disk every time**, by `scripts/queue.py`: done, ready, waiting, blocked, waiting for a human. Pieces in order, tickets by dependency.\n- **Test-first.** Uses the `tdd` skill when present: one acceptance criterion at a time, red then green. The seams `tdd` wants confirmed are the acceptance criteria the user already validated in `ticketise`.\n- **Checked by use**: after green tests, every criterion is checked in the running product, in a real browser against the design, empty state and error included.\n- **Ships through `ship-pr-dev` when it is installed**, a built-in ship otherwise (checks, a cold self-review, the PR, CI watched to green).\n- **Merges only on a ready verdict**: every check green on the latest commit, no conflict, no critical, high or medium finding left. A medium finding needs a human, so the PR stays open and the run moves on.\n- **Goes around blocks**: skips to tickets that do not depend on the blocked one, and fakes what is missing outside the code (a key, a service) behind a clearly named fake with a ticket to plug the real one. Never fakes money, auth, permissions or personal data. Never bypasses a check: no skipped test, no `--no-verify`, no CI edit, no `--admin`.\n- **Stops** when nothing is ready, or when the base branch goes red and one fix does not bring it back.\n- **A journal** written as it goes, opening on what waits for the user, and a live board page.\n\nTriggers: \"code les tickets\", \"enchaîne les tickets\", \"lance l'autopilot\", \"build the tickets\", \"run autopilot\". Not for cutting tickets: that is `ticketise`.\n\nOptional companions, used when installed: `ship-pr-dev` for each pull request, `tdd` for the loop. No secrets, no environment variables. Source: https://github.com/The-Vibe-Company/veebee-skills",
+  "metadata": {
+    "changelog": [
+      {
+        "version": "0.1.0",
+        "date": "2026-09-22",
+        "changes": [
+          "First Companion release, from repository v0.13.0. Last skill of the chain, after ticketise.",
+          "One preflight and one confirmation, then no question until the end; whatever needs the user goes in a journal.",
+          "Next ticket read from disk by queue.py before every ticket.",
+          "Test-first with the tdd skill when present; the acceptance criteria are the agreed seams.",
+          "Every criterion checked in the running product after the tests pass.",
+          "Ships through ship-pr-dev when installed, a built-in ship otherwise; merges only when every check is green on the latest commit and no medium or worse finding is left.",
+          "Goes around blocks by skipping to independent tickets and faking missing external pieces behind named fakes; never fakes money, auth, permissions or personal data, never bypasses a check.",
+          "Stops the run when the base branch goes red and one fix does not bring it back."
+        ]
+      }
+    ]
+  },
+  "environment": {
+    "env": {},
+    "secrets": {}
+  },
+  "dependencies": {
+    "ticketise": "9524cd05-032f-4b9e-b6a1-6051d15dbd1f"
+  },
+  "commands": []
+}

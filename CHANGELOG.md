@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.13.0
+
+- New skill: **`autopilot`**, the last step of the chain. It takes the tickets one after another, builds each one, ships it as a pull request and merges it, without a human in the loop, until something truly blocks.
+- One preflight and one confirmation while the user is there, naming the scope and the base branch; then no question until the end. Whatever needs the user goes in a journal, `.veebee/autopilot/<date>.md`, written as the run goes and opening on what waits for them.
+- The next ticket is read from disk before every ticket by `scripts/queue.py`: done, ready, waiting, blocked, waiting for a human. Pieces in order, tickets by dependency. A ticket is done when `status: done` reaches the base branch inside its own pull request.
+- Test-first: the `tdd` skill's loop when it is present, one acceptance criterion at a time. The seams `tdd` wants confirmed are the acceptance criteria, which the user already validated when the tickets were cut. After green tests every criterion is checked in the running product, in a real browser, against the design.
+- Each pull request goes through `ship-pr-dev` when it is installed, a built-in ship otherwise. A merge happens only when every check is green on the latest commit and no critical, high or medium finding is left; a medium finding needs a human, so the pull request stays open and the run moves on.
+- It goes around blocks: tickets that do not depend on the blocked one go on, and something missing outside the code (a key, a service) is replaced by a clearly named fake with a ticket to plug the real one. Never money, auth, permissions or personal data. Never a bypassed check.
+- A red base branch that one fix does not bring back stops the whole run.
+
 ## 0.12.0
 
 - New skill: **`ticketise`**, which cuts a designed or defined product into tickets and sends them to the tracker. It cuts; it neither builds nor plans a calendar.
